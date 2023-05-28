@@ -18,4 +18,4 @@ More instructions on how to use it soon
 
 ## A Shoutout to Soler
 
-Thanks Soler for taking care of Twitch Integration for so long, best wishesh to you and good luck with your future project.
+Thanks Soler for taking care of Twitch Integration for so long, best wishesh to you and good luck with your future projects.

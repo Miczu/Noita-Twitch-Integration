@@ -306,7 +306,7 @@
         "twitch_fragments/outcomes/worm_can.lua": "a9754a1d59db1a23559c01d46a0f7d0c166668e360d6ca6d8bfb1452617fb1e1",
         "twitch_fragments/potion_material.lua": "d4b1260c058bd01409e5fb19c18a7ac4a08bfaeda28418473dccbabc50c0882d",
         "twitch_fragments/utils.lua": "5c67be53a2189e515f259d7cde6907ca1b707d3416667178886da87bb56b8ecb",
-        "update.js": "d09ad2528877016d7d73429274acd0137773060f0eabe56a0f93168d912e1a36",
+        "update.js": "c5714a2d2e6645313d4d28bf6d721a5e9edabebd83cc3f918b176ecf753a80d3",
         "webui/index.html": "fe1e877ad7805a1feb6a97bac5f430a2b3b8eca8c014d8d80224652f15ede635",
         "webui/js/main.js": "e556a0586af38ed1d14e57ff3ce734e0866766ef6d8b2cb178baddd1bd5e063f"
     }

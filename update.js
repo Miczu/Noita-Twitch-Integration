@@ -6,7 +6,7 @@ const path = require('path');
 const EventEmitter = require('events');
 
 // Constants
-const AutoUpdateServers = ['https://raw.githubusercontent.com/Miczu/noita-twitch-integration/'];
+const AutoUpdateServers = ['https://raw.githubusercontent.com/soler91/noita-twitch-integration/'];
 
 // Implementation
 function forcedirSync(dir) {

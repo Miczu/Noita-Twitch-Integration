@@ -223,7 +223,7 @@
         "twitch_fragments/outcomes/couple_worms.lua": "0be2bc3572e0149479bc0ea26a685cfa9e3fcd7b97a7a44a73e57d62490256e3",
         "twitch_fragments/outcomes/cut_health.lua": "558c8d912c028c72087212fe59975234fa89bd007f94d874965f24f9aa0e5e71",
         "twitch_fragments/outcomes/deers.lua": "55b5db0d87a09e9abee0c0777ce6d0383fadb433ba82040a74062c6a9a4e7514",
-        "twitch_fragments/outcomes/derandomize_enemy_waves.lua": "6ab7937c2f58f34e31dfd5b052f22866cf86ad1cc21332ecb01d0e1f2054496e",
+        "twitch_fragments/outcomes/derandomize_enemy_waves.lua": "319e113bdba98c241fa35f7ee9c44ec9243b94d7abde684b8ab23be3005a5cf7",
         "twitch_fragments/outcomes/dryspell.lua": "c4bf4e0974daf04ecdb36a7adb1a2c295d7afbb455ba76c6af4c6a7ce8e72cc1",
         "twitch_fragments/outcomes/earthquake.lua": "3b5729d62bb95d63bc3fffc962e4ac991b367fee6f234247f6ade6e931101102",
         "twitch_fragments/outcomes/electrocution.lua": "f8c82328d3f36149013e09ebeee068b521104a3940e5942ff768fd84a0ec8ec9",

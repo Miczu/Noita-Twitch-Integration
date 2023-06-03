@@ -254,7 +254,7 @@ function twitch_conga_derandomized_projectiles()
         local table = 4
         if rng <= 15 then
             table = 1
-        elseif rng <= 50 then
+        elseif rng <= 45 then
             table = 2
         elseif rng <= 75 then
             table = 3

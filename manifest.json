@@ -213,7 +213,7 @@
         "twitch_fragments/outcomes/conga_bad_water.lua": "e747a2f8863fc136e0ffaed56f017b1a2feb80854c8a0035671942d27441aad6",
         "twitch_fragments/outcomes/conga_blackhole_boomerang.lua": "86853fc2cf5586abda991a28b2fba2153c41e7aebff1d76fed4cd791df400336",
         "twitch_fragments/outcomes/conga_delusional.lua": "4419b20e5427f7ded87f6e744f2192dbce7a4908b25bccf91ea37b8a373e29a0",
-        "twitch_fragments/outcomes/conga_derandomized_projectiles.lua": "80add98cfd973730e1131a4ef978d0b31b42680793f927f417b10ef5732be90d",
+        "twitch_fragments/outcomes/conga_derandomized_projectiles.lua": "8be4ded2f2dd6d0e8653c16843a0c0efae50baae288c6ca518fdf54479355350",
         "twitch_fragments/outcomes/conga_monstrous_drink.lua": "a6143c19b80d5cf0042d2f9b57a84927789cae2defad8aae257e8541ccc18b95",
         "twitch_fragments/outcomes/conga_random_projectiles.lua": "26db4c862232e7736b12a529d7341e742cd4f7e51c6512fe42fa89b52c4f2caf",
         "twitch_fragments/outcomes/conga_spells_to_worms.lua": "b2e9b0db854c4c10d7d66b3be8657c29d7712cc82dc1b6ab2110fe146c995a67",

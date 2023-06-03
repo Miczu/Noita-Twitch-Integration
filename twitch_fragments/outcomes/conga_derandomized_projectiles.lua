@@ -82,7 +82,7 @@ function twitch_conga_derandomized_projectiles()
         uiicon = "randomatk_dangerous.png",
         threatlevel = 4,
         options = {
-            "bomb_holy",
+            --"bomb_holy",
             "circle_acid_small",
             "circle_lava_small",
             "chaos_polymorph",
@@ -135,7 +135,7 @@ function twitch_conga_derandomized_projectiles()
             "shieldshot_small",
             "tnt",
             "deck/all_blackholes",
-            "deck/berserk_field",
+            --"deck/berserk_field",
             "deck/big_magic_shield_start",
             "deck/black_hole",
             "deck/cloud_acid",
@@ -149,6 +149,8 @@ function twitch_conga_derandomized_projectiles()
             "deck/material_cement",
             "deck/material_blood",
             "deck/luminous_drill",
+            "deck/regeneration_field"
+            "deck/regeneration_aura"
         }
     }
     
@@ -244,17 +246,17 @@ function twitch_conga_derandomized_projectiles()
         }
     }
     
-    local projTables = {projPoolFast,projPoolEasy,projPoolMedium,projPoolDangerous}
+    local projTables = {projPoolEasy,projPoolMedium,projPoolFast,projPoolDangerous}
     
     function chooseSpell(rng1,rng2)
         SetRandomSeed(rng1 + rng2, rng1 - rng2)
-        local rng = Random(1,202)
+        local rng = Random(1,100)
         local table = 4
-        if rng <= 59 then
+        if rng <= 15 then
             table = 1
-        elseif rng <= 81 then
+        elseif rng <= 50 then
             table = 2
-        elseif rng <= 113 then
+        elseif rng <= 75 then
             table = 3
         else    --202
             table = 4

@@ -149,7 +149,7 @@ function twitch_conga_derandomized_projectiles()
             "deck/material_cement",
             "deck/material_blood",
             "deck/luminous_drill",
-            "deck/regeneration_field"
+            "deck/regeneration_field",
             "deck/regeneration_aura"
         }
     }

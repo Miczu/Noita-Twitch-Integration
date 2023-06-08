@@ -74,6 +74,7 @@ class Updater extends EventEmitter {
                         abspath: filepath
                     });
             });
+			fs.writeFileSync('manifest.json', JSON.stringify(manifest, undefined, 4));
 
             this.emit('check_success', serverIndex, operations);
             return {

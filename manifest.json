@@ -292,7 +292,7 @@
         "twitch_fragments/outcomes/swapper_curse.lua": "4179732daf15c1bc96ce5cab5361e0286175bf416c1d765ec4ede4a98918a9b3",
         "twitch_fragments/outcomes/swimming_pool.lua": "1174fae8a46cae9db826f2fc813dfb6ecc6f04b5dda9832b1ec8b5b1e7b3477a",
         "twitch_fragments/outcomes/teleport_beacon.lua": "51991c90bdcad700600cf03c43d75b15c74f1bfa467403b4cffb90ea645212cc",
-        "twitch_fragments/outcomes/teleport_rideshare.lua": "615c0e7ea5b45f0f91bb812a30b9e7c103bf7c43b39325d9a5454c956a9686a8",
+        "twitch_fragments/outcomes/teleport_rideshare.lua": "9e18173d2bae0cff4fedb9179e2bcf9d5f1a2f9571f3654a746f99a602f5f578",
         "twitch_fragments/outcomes/the_purge.lua": "bcdd0c9f5d61a9aa8e26516c9b5ffd64e7da5a8fbc1a6a16813718361399d897",
         "twitch_fragments/outcomes/the_swarm.lua": "d2ea71a78eaa23fce9dcc9d5f72337b4943fa17bb7cde71b1491f24080fbdddd",
         "twitch_fragments/outcomes/thunderstone_madness.lua": "7c8c6590c0590cd527997aa65bcf21714f5e08793c630324d8a2b806fb0674db",
@@ -306,7 +306,7 @@
         "twitch_fragments/outcomes/worm_can.lua": "a9754a1d59db1a23559c01d46a0f7d0c166668e360d6ca6d8bfb1452617fb1e1",
         "twitch_fragments/potion_material.lua": "d4b1260c058bd01409e5fb19c18a7ac4a08bfaeda28418473dccbabc50c0882d",
         "twitch_fragments/utils.lua": "5c67be53a2189e515f259d7cde6907ca1b707d3416667178886da87bb56b8ecb",
-        "update.js": "c5714a2d2e6645313d4d28bf6d721a5e9edabebd83cc3f918b176ecf753a80d3",
+        "update.js": "bdc68c213786748d597b1800bcae733c294161d5e0797adbcfb364ebe5240732",
         "webui/index.html": "fe1e877ad7805a1feb6a97bac5f430a2b3b8eca8c014d8d80224652f15ede635",
         "webui/js/main.js": "e556a0586af38ed1d14e57ff3ce734e0866766ef6d8b2cb178baddd1bd5e063f"
     }

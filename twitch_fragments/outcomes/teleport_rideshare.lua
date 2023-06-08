@@ -4,7 +4,7 @@
 --100
 --Nearby creatures will teleport with player
 function twitch_teleport_rideshare()
-	add_icon_effect("mods/twitch-integration/files/effects/status_icons/teleportitis_BAD2.png", "Swapper Curse", "I'm feeling like giving random strangers a ride", 120*60, function()
+	add_icon_effect("mods/twitch-integration/files/effects/status_icons/teleportitis_BAD2.png", "Teleport Rideshare", "I'm feeling like giving random strangers a ride", 120*60, function()
 		async(rideshare)
 	end)
 end
@@ -34,7 +34,7 @@ function rideshare()
 			end
 		end
 		wait(0)
-	until not is_icon_effect_active("Swapper Curse")
+	until not is_icon_effect_active("Teleport Rideshare")
 end
 
 function did_teleport(newX, newY, oldX, oldY, vx, vy)

@@ -1,0 +1,32 @@
+<Entity >
+	<InheritTransformComponent />
+   
+	<LuaComponent
+		script_source_file="mods/Twitch-integration/files/scripts/effect_derandomized_projectiles.lua"
+		execute_every_n_frame="45"
+		>
+	</LuaComponent>
+
+	<LuaComponent
+		script_source_file="mods/Twitch-integration/files/scripts/effect_everyone_loves_hookbolts.lua"
+		execute_every_n_frame="3"
+		>
+	</LuaComponent>
+
+	<GameEffectComponent 
+		effect="NONE"
+		frames="2400"
+		>
+	</GameEffectComponent >
+
+	<UIIconComponent
+		name="Everyone Loves Hookbolts"
+		description="Everyone Loves Hookbolts"
+		icon_sprite_file="mods/Twitch-integration/files/ui_gfx/status_indicators/everyone_loves_hookbolts_ui.png"
+		is_perk="0"
+		display_above_head="0"
+		display_in_hud="1"
+		>
+	</UIIconComponent>
+  
+</Entity>

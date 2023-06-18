@@ -35,9 +35,10 @@ if ( #projectiles > 0 ) then
       goto nextprojectile
     end
 
-    -- do not larpa projectiles that originate from the environment
-    ---[[
     local projectilecomponents = EntityGetComponent( projectile_id, "ProjectileComponent" )
+
+    -- do not larpa projectiles that originate from the environment
+    --[[
     local mWhoShot = ComponentGetValue2(projectilecomponents[1], "mWhoShot" )
     
     if ( mWhoShot == 0 ) then
@@ -46,7 +47,7 @@ if ( #projectiles > 0 ) then
     --]]
     
     -- do not larpa projectiles that have no initial velocity
-    --[[
+    ---[[
     local velocitycomponents = EntityGetComponent( projectile_id, "VelocityComponent" )
     
     if ( velocitycomponents == nil ) then

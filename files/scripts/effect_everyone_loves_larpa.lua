@@ -3,6 +3,24 @@ dofile_once("data/scripts/lib/utilities.lua")
 local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform( entity_id )
 
+local larpa_exclude_projectiles = {
+  -- Puska's slime/acid shots
+  -- "data/entities/projectiles/bloomshot.xml",
+  -- Spiraalikalma/Kiukkukalma's orb spawner shots (spawned orbs will still larpa)
+  "data/entities/projectiles/orbspawner.xml",
+  ---"data/entities/projectiles/orbspawner_blue.xml",
+  "data/entities/projectiles/orbspawner_green.xml",
+  -- Ylialkemisti's wand orbs
+  "data/entities/animals/boss_alchemist/wand_orb.xml",
+  -- Ylialkemisti's wand beams (spawned projectiles will still larpa, and may be excessive)
+  "data/entities/projectiles/enlightened_laser_dark_wand.xml",
+  "data/entities/projectiles/enlightened_laser_elec_wand.xml",
+  "data/entities/projectiles/enlightened_laser_light_wand.xml",
+  "data/entities/projectiles/enlightened_laser_fire_wand.xml",
+  -- Toukka's slime trail (spawned slimeblobs will still larpa)
+  "data/entities/projectiles/slimetrail.xml",
+}
+
 local projectiles = EntityGetWithTag( "projectile" )
 
 local function contains(table, val)
@@ -15,9 +33,6 @@ local function contains(table, val)
 end
 
 if ( #projectiles > 0 ) then
-  local exclude_projectiles = {
-    --"data/entities/projectiles/bloomshot.xml",
-  }
 
   for k=1,#projectiles do
     local projectile_id = projectiles[k]
@@ -31,7 +46,7 @@ if ( #projectiles > 0 ) then
     EntityAddTag( projectile_id, "projectile_larpa_added" )
     
     local projectile_filename = EntityGetFilename( projectile_id )
-    if ( contains( exclude_projectiles, projectile_filename ) ) then
+    if ( contains( larpa_exclude_projectiles, projectile_filename ) ) then
       goto nextprojectile
     end
 

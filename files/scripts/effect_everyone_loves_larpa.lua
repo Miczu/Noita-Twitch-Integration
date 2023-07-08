@@ -4,21 +4,25 @@ local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform( entity_id )
 
 local larpa_exclude_projectiles = {
-  -- Puska's slime/acid shots
-  -- "data/entities/projectiles/bloomshot.xml",
-  -- Spiraalikalma/Kiukkukalma's orb spawner shots (spawned orbs will still larpa)
-  "data/entities/projectiles/orbspawner.xml",
-  ---"data/entities/projectiles/orbspawner_blue.xml",
-  "data/entities/projectiles/orbspawner_green.xml",
-  -- Ylialkemisti's wand orbs
-  "data/entities/animals/boss_alchemist/wand_orb.xml",
-  -- Ylialkemisti's wand beams (spawned projectiles will still larpa, and may be excessive)
-  "data/entities/projectiles/enlightened_laser_dark_wand.xml",
-  "data/entities/projectiles/enlightened_laser_elec_wand.xml",
-  "data/entities/projectiles/enlightened_laser_light_wand.xml",
-  "data/entities/projectiles/enlightened_laser_fire_wand.xml",
-  -- Toukka's slime trail (spawned slimeblobs will still larpa)
-  "data/entities/projectiles/slimetrail.xml",
+  "data/entities/projectiles/orbspawner.xml"                    , -- Spiraalikalma's (blue phantom) orb spawner shots (spawned orbs will still larpa)
+  "data/entities/projectiles/orbspawner_green.xml"              , -- Kiukkukalma's (green phantom) orb spawner shots (spawned orbs will still larpa)
+  "data/entities/animals/boss_alchemist/wand_orb.xml"           , -- Ylialkemisti's wand orbs (these normally spawn the wand beams)
+  "data/entities/projectiles/enlightened_laser_dark_wand.xml"   , -- Ylialkemisti's dark wand beam (spawned projectiles will still larpa)
+  "data/entities/projectiles/enlightened_laser_elec_wand.xml"   , -- Ylialkemisti's electric wand beam (spawned projectiles will still larpa)
+  "data/entities/projectiles/enlightened_laser_light_wand.xml"  , -- Ylialkemisti's light wand beam (spawned projectiles will still larpa)
+  "data/entities/projectiles/enlightened_laser_fire_wand.xml"   , -- Ylialkemisti's fire wand beam (spawned projectiles will still larpa)
+  "data/entities/projectiles/slimetrail.xml"                    , -- Toukka's slime trail (spawned slimeblobs will still larpa)
+  "data/entities/projectiles/thunderball_line.xml"              , -- Suur-Ukko's thunderball trail (spawned slow thunderballs will still larpa)
+  "data/entities/projectiles/megalaser_blue.xml"                , -- Jättilaser-lennokki (toaster) megalaser (spawned lasers will still larpa)
+  "data/entities/animals/boss_robot/rocket_roll.xml"            , -- Kolmisilmän silmä (mecha kolmi) rocket roll (spawned missiles will still larpa)
+  "data/entities/animals/boss_wizard/statusburst.xml"           , -- Mestarien mestari (MoM) status burst (spawned status orbs will still larpa)
+  "data/entities/animals/boss_centipede/firepillar.xml"         , -- Kolmisilmä fire pillar (spawned firepillar parts will still larpa)
+  "data/entities/animals/boss_centipede/orb_homing.xml"         , -- Kolmisilmä orb homing (spawned orb homing parts will still larpa)
+  "data/entities/animals/boss_centipede/melee.xml"              , -- Kolmisilmä melee shots (spawned orb circleshots will still larpa)
+  "data/entities/projectiles/darkflame_stationary.xml"          , -- Path of dark flame stationary trail
+  "data/entities/projectiles/deck/glitter_bomb_shrapnel.xml"    , -- Glitter bomb shrapnel
+  "data/entities/projectiles/deck/spiral_part.xml"              , -- Spiral shot parts
+  "data/entities/projectiles/thunderburst_thundermage.xml"      , -- Thunderball lightning burst
 }
 
 local projectiles = EntityGetWithTag( "projectile" )
@@ -62,7 +66,7 @@ if ( #projectiles > 0 ) then
     --]]
     
     -- do not larpa projectiles that have no initial velocity
-    ---[[
+    --[[
     local velocitycomponents = EntityGetComponent( projectile_id, "VelocityComponent" )
     
     if ( velocitycomponents == nil ) then
@@ -139,7 +143,7 @@ if ( #projectiles > 0 ) then
       execute_every_n_frame = "5",
     } )
     EntityAddComponent( projectile_id, "LifetimeComponent", {
-      lifetime = "300"
+      lifetime = "200"
     } )
     --]]
 
@@ -147,7 +151,7 @@ if ( #projectiles > 0 ) then
     --[[
     EntityAddComponent( projectile_id, "LuaComponent", {
       script_source_file = "data/scripts/projectiles/larpa_downwards.lua",
-      execute_every_n_frame = "5",
+      execute_every_n_frame = "10",
     } )
     EntityAddComponent( projectile_id, "LifetimeComponent", {
       lifetime = "300"
@@ -158,7 +162,7 @@ if ( #projectiles > 0 ) then
     --[[
     EntityAddComponent( projectile_id, "LuaComponent", {
       script_source_file = "data/scripts/projectiles/larpa_upwards.lua",
-      execute_every_n_frame = "5",
+      execute_every_n_frame = "10",
     } )
     EntityAddComponent( projectile_id, "LifetimeComponent", {
       lifetime = "300"

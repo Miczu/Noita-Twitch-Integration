@@ -23,6 +23,7 @@ local larpa_exclude_projectiles = {
   "data/entities/projectiles/deck/glitter_bomb_shrapnel.xml"    , -- Glitter bomb shrapnel
   "data/entities/projectiles/deck/spiral_part.xml"              , -- Spiral shot parts
   "data/entities/projectiles/thunderburst_thundermage.xml"      , -- Thunderball lightning burst
+  "data/entities/projectiles/pollen_ball.xml"                   , -- Huhtasieni (giga fungus) pollen ball
 }
 
 local projectiles = EntityGetWithTag( "projectile" )

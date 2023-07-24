@@ -308,7 +308,7 @@
         "twitch_fragments/utils.lua": "5c67be53a2189e515f259d7cde6907ca1b707d3416667178886da87bb56b8ecb",
         "update.js": "bdc68c213786748d597b1800bcae733c294161d5e0797adbcfb364ebe5240732",
         "webui/index.html": "fe1e877ad7805a1feb6a97bac5f430a2b3b8eca8c014d8d80224652f15ede635",
-        "webui/js/main.js": "e556a0586af38ed1d14e57ff3ce734e0866766ef6d8b2cb178baddd1bd5e063f"
+        "webui/js/main.js": "e556a0586af38ed1d14e57ff3ce734e0866766ef6d8b2cb178baddd1bd5e063f",
         "files/entities/misc/effect_everyone_loves_larpa.xml": "5d7bb7afe566dfd35a3c23fada2fe254748fb35caa046cbb0f5ece1b48f3a385",
         "files/scripts/effect_everyone_loves_larpa.lua": "9c2b813576603c5aef563417f7de54ab4eaef57242d9244981159efd41532416",
         "files/scripts/effect_everyone_loves_larpa_end.lua": "e105887a9f97c77252af638361b811a59ed24d27f77cb127637935ed9773ff3c",

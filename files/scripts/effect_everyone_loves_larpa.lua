@@ -20,11 +20,12 @@ larpa_exclude_projectiles = {
   "data/entities/animals/boss_centipede/firepillar.xml"         , -- Kolmisilmä fire pillar (spawned firepillar parts will still larpa)
   "data/entities/animals/boss_centipede/orb_homing.xml"         , -- Kolmisilmä orb homing (spawned orb homing parts will still larpa)
   "data/entities/animals/boss_centipede/melee.xml"              , -- Kolmisilmä melee shots (spawned orb circleshots will still larpa)
+  "data/entities/projectiles/pollen_ball.xml"                   , -- Huhtasieni (giga fungus) pollen ball (spawned pollen will still larpa)
+  "data/entities/animals/boss_alchemist/projectile_counter.xml" , -- Ylialkemisti's counter shield"
   "data/entities/projectiles/darkflame_stationary.xml"          , -- Path of dark flame stationary trail
   "data/entities/projectiles/deck/glitter_bomb_shrapnel.xml"    , -- Glitter bomb shrapnel
   "data/entities/projectiles/deck/spiral_part.xml"              , -- Spiral shot parts
   "data/entities/projectiles/thunderburst_thundermage.xml"      , -- Thunderball lightning burst
-  "data/entities/projectiles/pollen_ball.xml"                   , -- Huhtasieni (giga fungus) pollen ball
 }
 
 local function contains(table, val)
@@ -38,7 +39,7 @@ end
 
 local larpa_enabled = GlobalsGetValue("twitch_everyone_loves_larpa_enabled")
 
-if (#projectiles > 0) then
+if (#projectiles > 0 and #projectiles < 300) then -- disable larpa effects if there are excess projectiles
   for k=1,#projectiles do
     local projectile_id = projectiles[k]
 
@@ -53,7 +54,7 @@ if (#projectiles > 0) then
     if (contains(larpa_exclude_projectiles,projectile_filename)) then
       goto nextprojectile
     end
-
+    --[[
     if (string.find(larpa_enabled,"C")) then
       -- chaos larpa
       EntityAddComponent(projectile_id,"LuaComponent",{
@@ -64,7 +65,7 @@ if (#projectiles > 0) then
         lifetime = "300"
       })
     end
-    
+    --]]
     if (string.find(larpa_enabled,"O")) then
       -- orbit larpa
       EntityAddComponent(projectile_id,"VariableStorageComponent",{
@@ -110,7 +111,7 @@ if (#projectiles > 0) then
         ComponentSetValue2(projectilecomponents[c],"bounces_left",1)
       end
     end
-    
+    --[[
     if (string.find(larpa_enabled,"T")) then
       -- copy trail
       EntityAddComponent(projectile_id,"LuaComponent",{
@@ -143,7 +144,7 @@ if (#projectiles > 0) then
         lifetime = "300"
       })
     end
-
+    --]]
     ::nextprojectile::
 	end
 end

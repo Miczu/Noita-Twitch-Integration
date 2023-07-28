@@ -1,8 +1,8 @@
 dofile_once("data/scripts/lib/utilities.lua")
 
 local entity_id = GetUpdatedEntityID()
-local x, y = EntityGetTransform( entity_id )
-local projectiles = EntityGetWithTag( "projectile" )
+local x, y = EntityGetTransform(entity_id)
+local projectiles = EntityGetWithTag("projectile")
 
 larpa_exclude_projectiles = {
   "data/entities/projectiles/orbspawner.xml"                    , -- Spiraalikalma's (blue phantom) orb spawner shots (spawned orbs will still larpa)
@@ -21,14 +21,14 @@ larpa_exclude_projectiles = {
   "data/entities/animals/boss_centipede/orb_homing.xml"         , -- Kolmisilmä orb homing (spawned orb homing parts will still larpa)
   "data/entities/animals/boss_centipede/melee.xml"              , -- Kolmisilmä melee shots (spawned orb circleshots will still larpa)
   "data/entities/projectiles/pollen_ball.xml"                   , -- Huhtasieni (giga fungus) pollen ball (spawned pollen will still larpa)
-  "data/entities/animals/boss_alchemist/projectile_counter.xml" , -- Ylialkemisti's counter shield"
+  "data/entities/animals/boss_alchemist/projectile_counter.xml" , -- Ylialkemisti's counter shield
   "data/entities/projectiles/darkflame_stationary.xml"          , -- Path of dark flame stationary trail
   "data/entities/projectiles/deck/glitter_bomb_shrapnel.xml"    , -- Glitter bomb shrapnel
   "data/entities/projectiles/deck/spiral_part.xml"              , -- Spiral shot parts
   "data/entities/projectiles/thunderburst_thundermage.xml"      , -- Thunderball lightning burst
 }
 
-local function contains(table, val)
+local function contains(table,val)
   for i=1,#table do
     if table[i] == val then 
       return true

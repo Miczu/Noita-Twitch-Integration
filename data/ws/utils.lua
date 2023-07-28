@@ -383,6 +383,7 @@ function append_viewer_name(entity)
 			usedNames = {}
 		end
         wait(5)
+		if EntityGetIsAlive(entity) == false then return end
         local text = {
             string = name,
             offset_y = "-6",

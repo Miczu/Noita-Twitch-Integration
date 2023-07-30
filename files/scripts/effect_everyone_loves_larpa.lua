@@ -45,7 +45,6 @@ if (#projectiles > 0 and #projectiles < 300) then -- disable larpa effects if th
     local tags = EntityGetTags(projectile_id)
 
     if (string.find(tags,"projectile_larpa_added") or string.find(tags,"projectile_cloned") or string.find(tags,"boss_alchemist") or string.find(tags,"ti_")) then
-      print(tags)
       goto nextprojectile
     end
     

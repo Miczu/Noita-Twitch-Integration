@@ -42,8 +42,9 @@ local larpa_enabled = GlobalsGetValue("twitch_everyone_loves_larpa_enabled")
 if (#projectiles > 0 and #projectiles < 300) then -- disable larpa effects if there are excess projectiles
   for k=1,#projectiles do
     local projectile_id = projectiles[k]
+    local tags = EntityGetTags(projectile_id)
 
-    if (EntityHasTag(projectile_id,"projectile_larpa_added") or EntityHasTag(projectile_id,"projectile_cloned")) then
+    if (string.find(tags,"projectile_larpa_added") or string.find(tags,"projectile_cloned") or string.find(tags,"boss_alchemist") or string.find(tags,"ti_")) then
       goto nextprojectile
     end
     

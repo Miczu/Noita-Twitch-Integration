@@ -8,9 +8,14 @@ local projectiles = EntityGetWithTag( "projectile" )
 if ( #projectiles > 0 ) then
     for k=1,#projectiles
     do local projectile_id = projectiles[k]
-		local tags = EntityGetTags( projectile_id )
+		local tags = EntityGetTags( projectile_id )		
 		
-		if ( tags == nil ) or ( string.find( tags, "ti_wormshot" ) == nil ) then
+		if ( tags == nil ) or ( string.find( tags, "ti_wormshot" ) == nil ) then			
+			if tags ~= nil and string.find( tags, "projectile_cloned" ) ~= nil then 
+				-- replacing cloned spells with worms is too jank
+				goto continue 
+			end
+		
 			local px, py = EntityGetTransform( projectile_id )
 			local vel_x, vel_y = 0,0
 			
@@ -34,5 +39,6 @@ if ( #projectiles > 0 ) then
 			shoot_projectile_from_projectile( projectile_id, "mods/Twitch-integration/files/entities/projectiles/worm_shot.xml", px, py, vel_x * 0.8, vel_y * 0.8 )
 			EntityKill( projectile_id )
 		end
+		::continue::
 	end
 end

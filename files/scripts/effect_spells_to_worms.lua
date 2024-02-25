@@ -3,7 +3,7 @@ dofile_once("data/scripts/lib/utilities.lua")
 local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform( entity_id )
 
-local projectiles = EntityGetWithTag( "projectile" )
+local projectiles = EntityGetWithTag( "projectile" ) or {}
 
 if ( #projectiles > 0 ) then
     for k=1,#projectiles

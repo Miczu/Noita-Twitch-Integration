@@ -1,0 +1,10 @@
+<Entity >
+	<InheritTransformComponent />
+   
+	<LuaComponent
+		script_source_file="mods/Twitch-integration/files/scripts/status_effects/effect_refresh_mimic.lua"
+		execute_every_n_frame="3"
+		>
+	</LuaComponent>
+  
+</Entity>

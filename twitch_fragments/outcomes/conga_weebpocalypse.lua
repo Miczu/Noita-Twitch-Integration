@@ -7,7 +7,7 @@ function twitch_conga_weebpocalypse()
     local players = EntityGetWithTag("player_unit")
     for k=1,#players
     do v = players[k]
-        local x,y = EntityGetTransform(player)
+        local x,y = EntityGetTransform(v)
         local c = EntityLoad("mods/Twitch-integration/files/entities/misc/effect_weebpocalypse.xml",x,y)
         EntityAddChild(v,c)
     end

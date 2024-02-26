@@ -11,9 +11,9 @@ function twitch_conga_refresh_mimic()
         math.randomseed(x+y)
         local c = 0
 
-        --10% chance for a health mimic
-        --90% chance for a refresh mimic
-        if 1 == 1 then
+        --20% chance for a health mimic
+        --80% chance for a refresh mimic
+        if math.random(1,10) <= 2 then
             c = EntityLoad("mods/Twitch-integration/files/entities/misc/effect_health_mimic.xml",x,y)
         else
             c = EntityLoad("mods/Twitch-integration/files/entities/misc/effect_refresh_mimic.xml",x,y)

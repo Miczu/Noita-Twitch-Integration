@@ -238,7 +238,7 @@
         "twitch_fragments/outcomes/conga_derandomized_projectiles.lua": "99ba22d0b8d2ad0fb90cbf41c7b0b907f0fb75977ecd54e705d08d0ddf68da16",
         "twitch_fragments/outcomes/conga_forced_checkpoint.lua": "5609a06fcf5ed8d51fdd2ece6b9eaa958468357d6c856436a6655aef7542f14b",
         "twitch_fragments/outcomes/conga_monstrous_drink.lua": "47c3bf524fd9029075e8f064625d5193808a8a6db0e89e43489b4cd824b02589",
-        "twitch_fragments/outcomes/conga_refresh_mimic.lua": "b59a95e0ed9ddc663b064c834304282692caf95b927ccb69c5e7968efc447079",
+        "twitch_fragments/outcomes/conga_refresh_mimic.lua": "16a65b9bd1df3feeeea8d1b50193e26c0b09919c99fb4bbb52e07580ef1eb19c",
         "twitch_fragments/outcomes/conga_spells_to_worms.lua": "85b637e0f3ad9d9c9292ebaa2c6041af0919ead7343488fa11222c6bca4e0e4c",
         "twitch_fragments/outcomes/conga_steal_wand.lua": "faa5c7b8187ce6d84b90449464c88b26249bfb18163aee578320ad7af9619e6b",
         "twitch_fragments/outcomes/conga_teleport_nullification.lua": "820b4c62e83e6fa4bba25ce7bdd569a9dea87c9be7f7feb852f6d9e12b612037",

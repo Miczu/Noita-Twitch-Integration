@@ -172,7 +172,7 @@
         "files/scripts/stealwand_distance_delete.lua": "dec34b51d56ff6a375b725707d090ae76b89e61ac3a8722839c4be70a107a145",
         "files/scripts/stealwand_emptyhands.lua": "4b7071293c5d979d02b3cbf278c05f2cb9f51555ed1af6e352ae8126bfc518fd",
         "files/scripts/status_effects/effect_health_mimic.lua": "bc90b817898f54bc7a72f95339462ce5eaeaabaeab29b371ee369e5f898ae9b7",
-        "files/scripts/status_effects/effect_hm_mimic.lua": "5826070fa7f868f4bae12c40f9be176dbbf278d0815f66edddb7c8cc92d330f7",
+        "files/scripts/status_effects/effect_hm_mimic.lua": "018abb677e53b26db5f28f6a63d78bf32031cad5ca81304d0878658a7f8eefbc",
         "files/scripts/status_effects/effect_refresh_mimic.lua": "58f29b53aa7c807f50f818ff70daabc6585e5149f3c1382ab44186e3e96d1600",
         "files/scripts/status_effects/teleport_cancel.lua": "2f79b0e425dc3c875b77bc2d70fec4ae774b44cc674aedf96dbcec6766b3b360",
         "files/scripts/status_effects/teleport_cancel_end.lua": "979e179f7a5c19727b30c50f0952b6c4878f24d1457320b412d48e6114c306be",

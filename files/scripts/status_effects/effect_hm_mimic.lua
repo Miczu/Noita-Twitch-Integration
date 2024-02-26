@@ -31,7 +31,7 @@ if regenid ~= 0 and refreshid ~= 0 then
 	local target_id = 0
 	local output = ""
 	
-	local rng = ((math.floor((hp * 25) + 5) / 80) * 0.5)
+	local rng = ((math.floor((hp * 25) + 20) / 100) * 0.5)
 	rng = math.min(math.floor(rng * 100),50)
 
 	math.randomseed(x + y)

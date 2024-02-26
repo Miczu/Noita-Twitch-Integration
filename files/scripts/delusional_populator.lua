@@ -1,4 +1,4 @@
-dofile_once("data/scripts/lib/utilities.lua")
+
 local entity_id    = GetUpdatedEntityID()
 local parent_id = EntityGetParent(entity_id)
 if EntityHasTag(parent_id, "player_unit") then
@@ -14,7 +14,13 @@ if EntityHasTag(parent_id, "player_unit") then
     local rnd = Random( 1, #illusion_list )
     local target = illusion_list[rnd]
 
-    EntityLoad( "mods/Twitch-integration/files/entities/animals/psychotic/" .. target .. ".xml", pos_x, pos_y )
+    math.randomseed(pos_x + pos_y)
+    if math.random(1,5000) == 1 then
+        -- :)
+        EntityLoad( table.concat({"data/entities/animals/",target,".xml"}), pos_x, pos_y ) 
+    else
+        EntityLoad( table.concat({"mods/Twitch-integration/files/entities/animals/psychotic/",target,".xml"}), pos_x, pos_y )
+    end
 else
     EntityKill(entity_id)
 end

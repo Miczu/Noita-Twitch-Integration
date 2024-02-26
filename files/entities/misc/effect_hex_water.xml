@@ -29,7 +29,7 @@
 	-->
 	
 	<LifetimeComponent
-		lifetime="1800"
+		lifetime="2700"
 	>
 	</LifetimeComponent>
 	

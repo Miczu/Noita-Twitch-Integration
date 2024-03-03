@@ -26,7 +26,15 @@ function OnModPreInit()
 end
 
 function OnModInit()
-	-- Nothing to do but this function has to exist
+	-- Injects TI chest events into the chest script rather than being a hard override so it'll automatically stay up to date with vanilla and modded chest loot
+	ModLuaFileAppend("data/scripts/items/chest_random.lua","data/scripts/items/chest_ti_appends.lua")
+
+	do
+		local path = "data/scripts/items/chest_random.lua"
+		local content = ModTextFileGetContent(path)
+		content = content:gsub("local rnd = Random%(1,100%)", "local rnd = Random(1,100) rnd = TwitchChestKuuCheck(rnd,x,y) rnd = TwitchChestLogic(x,y,entity_id,rnd)")
+		ModTextFileSetContent(path, content)
+	end
 end
 
 function OnModPostInit()

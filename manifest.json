@@ -310,6 +310,7 @@
         "twitch_fragments/outcomes/shuffle.lua": "d02ce54a6fb10011371dcf49bc0f1f487b7f2e4e7a42a753d493bb7863ca3d96",
         "twitch_fragments/outcomes/shuffle_deck.lua": "b3b8fa22b66bd0c6555f2a95125cf8c92c894e9c9fddb8076828a4d6bc42681f",
         "twitch_fragments/outcomes/six_shields.lua": "7136033a81fb60a7b6664a81e7100794cdd2eedacd14e0ac7fc32a2039e8cad3",
+        "twitch_fragments/outcomes/slime_squad.lua": "bf5caa73d87c55c91ca7b5b1428dae83ddb74d8b159c810a14ff1d068f6a1b4b",
         "twitch_fragments/outcomes/spell_refresher.lua": "3dfb5491da918493d2f22b868ee7fb936df8170ea83200c29b0c1065460da667",
         "twitch_fragments/outcomes/spicy_perks.lua": "0d2ec434af465cd6457963340d29f3859e0b2fafafc02669ed278045e564692b",
         "twitch_fragments/outcomes/spiderman.lua": "fb2694037d9b1c2d3072d2d7dd65b613862d5ee16d435305f0b1a30e2d031863",

@@ -5,7 +5,13 @@
 --Spawns a squad of 4 to 17 enemies consisting of toxic slimes, acid slimes, and mother slimes. Affected by current player health.
 function twitch_slime_squad()
     local additional = 0
-    local damage_model = EntityGetFirstComponentIncludingDisabled(get_player(), "DamageModelComponent")
+    local player = get_player()
+    if player == nil then
+        spawn_something("data/entities/animals/giantshooter_weak.xml", Random(90, 120), Random(120, 150), false, false, append_viewer_name)
+        spawn_something("data/entities/animals/giantshooter_weak.xml", Random(90, 120), Random(120, 150), false, false, append_viewer_name)
+        return
+    end
+    local damage_model = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
     if damage_model ~= nil then
        local hp = tonumber(ComponentGetValue2(damage_model, "hp"))
        if hp > 150 then additional = additional + 1 end

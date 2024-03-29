@@ -2,7 +2,7 @@
 --A truly toxic ambush
 --enemies
 --150
---Spawns a squad of 4 to 17 enemies consisting of toxic slimes, acid slimes, and mother slimes. Affected by current player health
+--Spawns a squad of 4 to 17 enemies consisting of toxic slimes, acid slimes, and mother slimes. Affected by current player health.
 function twitch_slime_squad()
     local additional = 0
     local damage_model = EntityGetFirstComponentIncludingDisabled(get_player(), "DamageModelComponent")

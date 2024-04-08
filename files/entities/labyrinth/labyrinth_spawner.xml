@@ -1,0 +1,54 @@
+<Entity name="labyrinth_spawner">
+	<InheritTransformComponent
+		only_position="1" >
+	</InheritTransformComponent>
+
+	<ParticleEmitterComponent 
+		_tags="buildup_particles"
+		emitted_material_name="spark_red_bright"
+		gravity.y="0.0"
+		lifetime_min="0.8"
+		lifetime_max="5.5"
+		count_min="20"
+		count_max="40"
+		render_on_grid="0"
+		fade_based_on_lifetime="1"
+		area_circle_radius.min="0"
+		area_circle_radius.max="0"
+		cosmetic_force_create="0"
+		airflow_force="1.1"
+		airflow_time="1.01"
+		airflow_scale="0.05"
+		emission_interval_min_frames="1"
+		emission_interval_max_frames="1"
+		emit_cosmetic_particles="1"
+		image_animation_file="mods/twitch-integration/files/entities/particles/image_emitters/square_out_128.png"
+		image_animation_speed="10"
+		image_animation_loop="0"
+		is_emitting="1"
+		velocity_always_away_from_center="100" >
+	</ParticleEmitterComponent>
+
+    <AudioLoopComponent
+		_enabled="1"
+		file="data/audio/Desktop/misc.bank"
+		event_name="misc/chest_dark_open"
+		calculate_material_lowpass="0"
+		auto_play="1"
+	></AudioLoopComponent>
+
+    <LuaComponent
+        script_source_file="mods/twitch-integration/files/scripts/labyrinth.lua"
+        execute_every_n_frame="30"
+        execute_times="1">
+    </LuaComponent>
+
+    <LuaComponent
+        script_source_file="mods/twitch-integration/files/scripts/labyrinth_crumble.lua"
+        execute_every_n_frame="1800"
+        execute_times="1">
+    </LuaComponent>
+
+    <Entity name="exit_arrow_1"><Base file="mods/twitch-integration/files/entities/labyrinth/labyrinth_exit_arrow.xml" /></Entity>
+    <Entity name="exit_arrow_2"><Base file="mods/twitch-integration/files/entities/labyrinth/labyrinth_exit_arrow.xml" /></Entity>
+</Entity>

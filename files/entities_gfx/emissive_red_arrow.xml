@@ -1,0 +1,18 @@
+<Sprite
+filename="mods/twitch-integration/files/entities_gfx/emissive_red_arrow.png"
+offset_x="1"
+offset_y="1"
+default_animation="oscillate" >
+
+<RectAnimation
+    name="oscillate"
+    pos_x="0"
+    pos_y="0"
+    frame_count="6"
+    frame_width="15"
+    frame_height="16"
+    frame_wait=".12"
+    frames_per_row="6"
+    loop="1" >
+</RectAnimation>
+</Sprite>

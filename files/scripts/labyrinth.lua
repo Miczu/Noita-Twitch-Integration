@@ -73,16 +73,24 @@ function generate_labyrinth(width, height, x, y)
             local pixel_x = anchor_x + ((i - 1) * cell_size) - 1
             local pixel_y = anchor_y + ((j - 1) * cell_size) - 1
             if cell.walls["N"] then
-                LoadPixelScene("mods/twitch-integration/files/pixel_scenes/labyrinth//labyrinth_wall_horizontal.png", "", pixel_x, pixel_y, "", true, false, {}, 1, true)
+                if j ~= 1 and Random(1, 40) == 1 then
+                    LoadPixelScene("mods/twitch-integration/files/pixel_scenes/labyrinth/labyrinth_wall_horizontal_ice.png", "", pixel_x, pixel_y, "", true, false, {}, 1, true)
+                else
+                    LoadPixelScene("mods/twitch-integration/files/pixel_scenes/labyrinth/labyrinth_wall_horizontal.png", "", pixel_x, pixel_y, "", true, false, {}, 1, true)
+                end
             end
             if cell.walls["W"] then
-                LoadPixelScene("mods/twitch-integration/files/pixel_scenes/labyrinth//labyrinth_wall_vertical.png", "", pixel_x, pixel_y, "", true, false, {}, 1, true)
+                if i ~= 1 and Random(1, 40) == 1 then
+                    LoadPixelScene("mods/twitch-integration/files/pixel_scenes/labyrinth/labyrinth_wall_vertical_ice.png", "", pixel_x, pixel_y, "", true, false, {}, 1, true)
+                else
+                    LoadPixelScene("mods/twitch-integration/files/pixel_scenes/labyrinth/labyrinth_wall_vertical.png", "", pixel_x, pixel_y, "", true, false, {}, 1, true)
+                end
             end
             if j == height and cell.walls["S"] then
-                LoadPixelScene("mods/twitch-integration/files/pixel_scenes/labyrinth//labyrinth_wall_horizontal.png", "", pixel_x, pixel_y + cell_size + 1, "", true, false, {}, 1, true)
+                LoadPixelScene("mods/twitch-integration/files/pixel_scenes/labyrinth/labyrinth_wall_horizontal.png", "", pixel_x, pixel_y + cell_size + 1, "", true, false, {}, 1, true)
             end
             if i == width and cell.walls["E"] then
-                LoadPixelScene("mods/twitch-integration/files/pixel_scenes/labyrinth//labyrinth_wall_vertical.png", "", pixel_x + cell_size + 1, pixel_y, "", true, false, {}, 1, true)
+                LoadPixelScene("mods/twitch-integration/files/pixel_scenes/labyrinth/labyrinth_wall_vertical.png", "", pixel_x + cell_size + 1, pixel_y, "", true, false, {}, 1, true)
             end
         end
     end

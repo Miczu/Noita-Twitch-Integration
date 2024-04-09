@@ -1,0 +1,11 @@
+<Entity name="labyrinth_exit_arrow">
+    <SpriteComponent
+		alpha="1" 
+		image_file="mods/twitch-integration/files/entities_gfx/emissive_red_arrow.xml"
+		emissive="1"
+        additive="1"
+        offset_x="5"
+		offset_y="7"
+		rect_animation="oscillate" >
+	</SpriteComponent>
+</Entity>

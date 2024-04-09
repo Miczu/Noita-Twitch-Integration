@@ -1,0 +1,17 @@
+<Entity name="labyrinth_crumbler">
+    <LooseGroundComponent
+        probability="0.02"
+        max_distance="50"
+        min_radius="20"
+        max_radius="50"
+        max_angle="3.1415"
+        chunk_max_angle="1.57"
+        chunk_probability="0.15"
+        collapse_images="data/procedural_gfx/collapse_big/$[0-14].png"
+        _enabled="1" >
+    </LooseGroundComponent>
+
+    <LifetimeComponent
+        lifetime="120">
+    </LifetimeComponent>
+</Entity>

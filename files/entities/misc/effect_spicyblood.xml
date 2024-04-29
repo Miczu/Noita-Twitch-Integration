@@ -1,0 +1,15 @@
+<Entity >
+	<InheritTransformComponent />
+   
+	<LuaComponent
+		script_source_file="mods/Twitch-integration/files/scripts/effect_spicyblood.lua"
+		execute_every_n_frame="30"
+		>
+	</LuaComponent>
+	
+	<GameEffectComponent 
+		effect="NONE"
+		frames="2700"
+		>
+	</GameEffectComponent >
+</Entity>

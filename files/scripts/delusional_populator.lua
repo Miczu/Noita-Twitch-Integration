@@ -15,7 +15,7 @@ if EntityHasTag(parent_id, "player_unit") then
     local target = illusion_list[rnd]
 
     math.randomseed(pos_x + pos_y)
-    if math.random(1,1500) == 1 then
+    if math.random(1,750) == 1 then
         -- :)
         EntityLoad( table.concat({"data/entities/animals/",target,".xml"}), pos_x, pos_y ) 
     else

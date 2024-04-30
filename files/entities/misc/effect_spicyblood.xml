@@ -1,4 +1,4 @@
-<Entity >
+<Entity name="ti_spicyblood_ui_timer">
 	<InheritTransformComponent />
    
 	<LuaComponent
@@ -7,7 +7,7 @@
 		>
 	</LuaComponent>
 	
-	<GameEffectComponent 
+	<GameEffectComponent
 		effect="NONE"
 		frames="2700"
 		>

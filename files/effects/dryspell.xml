@@ -26,13 +26,6 @@
 		>
 	</LuaComponent>
 
-	<!-- keep track of fire, and reignite if extinguished -->
-	<LuaComponent
-		script_source_file="mods/twitch-integration/files/effects/dryspell.lua"
-		execute_every_n_frame="1"
-		>
-	</LuaComponent>
-
 	<!-- re-enable stains -->
 	<LuaComponent
 		script_source_file="mods/twitch-integration/files/effects/dryspell_end.lua"

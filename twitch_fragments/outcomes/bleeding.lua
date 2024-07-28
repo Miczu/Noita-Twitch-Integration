@@ -1,6 +1,6 @@
 --Bleeding
 --I think you might need a bandage
---enviromental
+--lame
 --160
 --todo
 function twitch_bleeding()

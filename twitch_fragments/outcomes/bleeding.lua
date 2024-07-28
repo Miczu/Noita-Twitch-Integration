@@ -11,8 +11,8 @@ function twitch_bleeding()
 			local x, y = get_player_pos()
 			local player_entity = get_player()
 			local percent_to_remove = 0.01;
-			local conditionMin = 3
-			local conditionMax = 8
+			local conditionMin = 0
+			local conditionMax = 32
 			local condition = rand(conditionMin,conditionMax)
 			
 			repeat

@@ -815,7 +815,7 @@ function start_icon_effect(icon_file, name, description, duration, startFunction
         if startFunction ~= nil then
             startFunction()
         end
-        end_icon_effect(name, pid, cid, duration, endFunction)
+        end_icon_effect(name, cid, duration, endFunction)
     else
         async(function()
             wait(60)
@@ -824,20 +824,34 @@ function start_icon_effect(icon_file, name, description, duration, startFunction
     end
 end
 
-function end_icon_effect(name, pid, cid, duration, endFunction)
+function end_icon_effect(name, cid, duration, endFunction)
     async(function()
         wait(duration+1)
-        if is_icon_effect_active(name) ~= true then
-            EntityRemoveComponent(pid, cid)
+        local pid = get_player()
+        if is_icon_effect_active(name) ~= true and pid ~= nil then
+            remove_icon_component(pid, name)
             remove_icon_effect_state(name)
             if endFunction ~= nil then
                 endFunction()
             end
         else
             local remaining = get_remaining_duration(name)
-            end_icon_effect(name, pid, cid, remaining, endFunction)
+            end_icon_effect(name, cid, remaining, endFunction)
         end
     end)
+end
+
+function remove_icon_component(pid, name)
+    local lua_components = EntityGetComponent(pid, "UIIconComponent")
+
+    if (lua_components ~= nil) then
+        for _, component in ipairs(lua_components) do
+            local comp_name = ComponentGetValue2(component, "name")
+            if (comp_name ~= nil and comp_name == name) then
+                EntityRemoveComponent(pid, component)
+            end
+        end
+    end
 end
 
 function add_icon_effect_state(name, duration)

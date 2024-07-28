@@ -11,27 +11,31 @@ function twitch_bleeding()
 			local x, y = get_player_pos()
 			local player_entity = get_player()
 			local percent_to_remove = 0.01;
+			local conditionMin = 3
+			local conditionMax = 8
+			local condition = rand(conditionMin,conditionMax)
 			
 			repeat
 				x, y = get_player_pos()
-			LoadPixelScene("mods/twitch-integration/files/pixel_scenes/bleeding.png","",x-8 , y-11, "", true)
-			counter = counter + 1
-			if counter > rand(3,8) then
-				local damage_models = EntityGetComponent(player_entity,"DamageModelComponent") or {};
-				local hp = 0;
-				for _, damage_model in pairs(damage_models) do
-					hp = hp + ComponentGetValue(damage_model, "hp");
+				LoadPixelScene("mods/twitch-integration/files/pixel_scenes/bleeding.png","",x-8 , y-11, "", true)
+				counter = counter + 1
+				if counter > condition then
+					local damage_models = EntityGetComponent(player_entity,"DamageModelComponent") or {};
+					local hp = 0;
+					for _, damage_model in pairs(damage_models) do
+						hp = hp + ComponentGetValue(damage_model, "hp");
+					end
+					x, y = get_player_pos()
+					local take_damage = EntityLoad("data/entities/misc/area_damage.xml", x, y);
+					local area_damage = EntityGetFirstComponent(take_damage,"AreaDamageComponent");
+					ComponentSetValue(area_damage, "entities_with_tag", "player_unit");
+					ComponentSetValue(area_damage, "damage_per_frame", hp * percent_to_remove);
+					ComponentSetValue(area_damage, "damage_type", "DAMAGE_CURSE");
+					EntityAddComponent(take_damage, "LifetimeComponent", {lifetime = 2});
+					counter = 1
+					condition = rand(conditionMin,conditionMax)
 				end
-				x, y = get_player_pos()
-				local take_damage = EntityLoad("data/entities/misc/area_damage.xml", x, y);
-				local area_damage = EntityGetFirstComponent(take_damage,"AreaDamageComponent");
-				ComponentSetValue(area_damage, "entities_with_tag", "player_unit");
-				ComponentSetValue(area_damage, "damage_per_frame", hp * percent_to_remove);
-				ComponentSetValue(area_damage, "damage_type", "DAMAGE_CURSE");
-				EntityAddComponent(take_damage, "LifetimeComponent", {lifetime = 2});
-				counter = 1
-			end
-			wait(rand(60, 180))
+				wait(rand(60, 180))
 			until not is_icon_effect_active(name)
 		end)
 	end)

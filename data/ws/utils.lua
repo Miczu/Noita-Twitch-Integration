@@ -780,7 +780,7 @@ function spawn_healer_pikku( username, message )
 end
 
 
-function add_icon_effect(icon_file, name, description, duration, startFunction, endFunction)
+function add_icon_effect(icon_file, name, description, duration, startFunction, endFunction, showTimer)
     if duration < 0 then
         return
     end
@@ -797,25 +797,17 @@ function add_icon_effect(icon_file, name, description, duration, startFunction, 
     end
 end
 
-function start_icon_effect(icon_file, name, description, duration, startFunction, endFunction)
+function start_icon_effect(icon_file, name, description, duration, startFunction, endFunction, showTimer)
     --GamePrint("New")
     local pid = get_player()
     if pid ~= nil then
-
-        local cid = EntityAddComponent2( pid, "UIIconComponent",
-        {
-            name = name,
-            description = description,
-            icon_sprite_file = icon_file,
-            display_above_head = false,
-            display_in_hud = true,
-            is_perk = true
-        })
+        add_icon_object(pid, icon_file, name, description, duration)
+        
         add_icon_effect_state(name, duration)
         if startFunction ~= nil then
             startFunction()
         end
-        end_icon_effect(name, cid, duration, endFunction)
+        end_icon_effect(name, duration, endFunction)
     else
         async(function()
             wait(60)
@@ -824,34 +816,39 @@ function start_icon_effect(icon_file, name, description, duration, startFunction
     end
 end
 
-function end_icon_effect(name, cid, duration, endFunction)
+function add_icon_object(pid, icon_file, name, description, duration, showTimer)
+	local statusId = EntityCreateNew("status_icon_TI_"..name)
+    local cid = EntityAddComponent2( statusId, "UIIconComponent",
+    {
+        name = name,
+        description = description,
+        icon_sprite_file = icon_file,
+        display_above_head = false,
+        display_in_hud = true,
+        is_perk = showTimer ~= true
+    })
+	EntityAddComponent2( statusId, "GameEffectComponent",
+    {
+		effect="CUSTOM",
+		frames=duration
+    })
+	EntityAddChild(pid, statusId)
+end
+
+function end_icon_effect(name, duration, endFunction)
     async(function()
         wait(duration+1)
         local pid = get_player()
         if is_icon_effect_active(name) ~= true and pid ~= nil then
-            remove_icon_component(pid, name)
             remove_icon_effect_state(name)
             if endFunction ~= nil then
                 endFunction()
             end
         else
             local remaining = get_remaining_duration(name)
-            end_icon_effect(name, cid, remaining, endFunction)
+            end_icon_effect(name, remaining, endFunction)
         end
     end)
-end
-
-function remove_icon_component(pid, name)
-    local lua_components = EntityGetComponent(pid, "UIIconComponent")
-
-    if (lua_components ~= nil) then
-        for _, component in ipairs(lua_components) do
-            local comp_name = ComponentGetValue2(component, "name")
-            if (comp_name ~= nil and comp_name == name) then
-                EntityRemoveComponent(pid, component)
-            end
-        end
-    end
 end
 
 function add_icon_effect_state(name, duration)
@@ -868,6 +865,23 @@ function extend_icon_effect(name, duration)
     local final = duration + tonumber(nowFinal[2])
     local new = nowFinal[1] .. "|" .. final
     GlobalsSetValue(name, new)
+    set_icon_effect_duration(name, final)
+end
+
+function set_icon_effect_duration(name, duration)
+	local pid = get_player()
+	if pid ~= nil then
+		local statusId = EntityCreateNew("status_icon_TI")
+		local children = EntityGetAllChildren(pid)
+		local status_name = "status_icon_TI_"..name
+		
+		for idx_child, child in ipairs(children) do
+			if(EntityGetName(child) == status_name) then
+				local entityId = EntityGetFirstComponent( child, "GameEffectComponent")
+				ComponentSetValue2(entityId, "frames", duration)
+			end
+		end
+	end
 end
 
 function is_icon_effect_active(name)
@@ -875,6 +889,7 @@ function is_icon_effect_active(name)
     local value = GlobalsGetValue(name, "" .. now .. "|" .. now)
     local nowFinal = split(value, "%d+")
     if (tonumber(nowFinal[1]) < now) and (now < tonumber(nowFinal[2])) then
+        set_icon_effect_duration(name, tonumber(nowFinal[2]) - now)
         return true
     end
     return false

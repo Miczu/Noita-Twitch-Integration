@@ -780,7 +780,7 @@ function spawn_healer_pikku( username, message )
 end
 
 
-function add_icon_effect(icon_file, name, description, duration, startFunction, endFunction, showTimer)
+function add_icon_effect(icon_file, name, description, duration, startFunction, endFunction)
     if duration < 0 then
         return
     end
@@ -797,7 +797,7 @@ function add_icon_effect(icon_file, name, description, duration, startFunction, 
     end
 end
 
-function start_icon_effect(icon_file, name, description, duration, startFunction, endFunction, showTimer)
+function start_icon_effect(icon_file, name, description, duration, startFunction, endFunction)
     --GamePrint("New")
     local pid = get_player()
     if pid ~= nil then
@@ -816,8 +816,8 @@ function start_icon_effect(icon_file, name, description, duration, startFunction
     end
 end
 
-function add_icon_object(pid, icon_file, name, description, duration, showTimer)
-	local statusId = EntityCreateNew("status_icon_TI_"..name)
+function add_icon_object(pid, icon_file, name, description, duration)
+    local statusId = EntityCreateNew("status_icon_TI_"..name)
     local cid = EntityAddComponent2( statusId, "UIIconComponent",
     {
         name = name,
@@ -825,14 +825,14 @@ function add_icon_object(pid, icon_file, name, description, duration, showTimer)
         icon_sprite_file = icon_file,
         display_above_head = false,
         display_in_hud = true,
-        is_perk = showTimer ~= true
+        is_perk = false
     })
-	EntityAddComponent2( statusId, "GameEffectComponent",
+    EntityAddComponent2( statusId, "GameEffectComponent",
     {
-		effect="CUSTOM",
-		frames=duration
+        effect="CUSTOM",
+        frames=duration
     })
-	EntityAddChild(pid, statusId)
+    EntityAddChild(pid, statusId)
 end
 
 function end_icon_effect(name, duration, endFunction)

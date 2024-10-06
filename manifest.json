@@ -122,7 +122,7 @@
         "files/entities/misc/effect_hex_water.xml": "ecd0a00d7cdc6bca3d9a3665ad23697c73e2c46940ab5a98267ba963e87226f7",
         "files/entities/misc/effect_hm_mimic.xml": "A09D9C209F184E102199F3C9C75D36735819A02B963A3BDB2980C5770359C1D4",
         "files/entities/misc/effect_portal_mimic.xml": "e88f8975cd1f5412994ca40c6da4e2c3c6d92c945d06e3cb5f0d7d53c93d5ca3",
-        "files/entities/misc/effect_immunity_cancel.xml": "9c5043975bad5da7414deb7d3a188d6847c1f46a47e8bc8efc93ee978daba860",
+        "files/entities/misc/effect_immunity_cancel.xml": "0e98266560b88542b1988232f9fc67600cc9cf8fb374c6553b8611aa1131f6f1",
         "files/entities/misc/effect_teleport_cancel.xml": "845793C260C7832DB2B1500D8A808A06E02BC6BFD6E0588A35990300029D52C2",
         "files/entities/misc/effect_teleport_cancel_remove.xml": "F7A00FBC967D659D0797A14325EEA49B91E1418CC5F1AE7AEDDF8A71674F420B",
         "files/entities/misc/effect_random_projectiles.xml": "32b7816a25b0a6ae514e0421d7e116bbe4405a96791d47a1252e2a66ecb49ba0",

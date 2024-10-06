@@ -1,4 +1,4 @@
-<Entity >
+<Entity name="ti_event_weebpocalypse">
 	<InheritTransformComponent />
    
 	<LuaComponent
@@ -7,10 +7,11 @@
 		>
 	</LuaComponent>
 	
-	<LifetimeComponent
-		lifetime="1800"
-		>
-	</LifetimeComponent>
+    <GameEffectComponent
+    	effect="NONE"
+    	frames="1800"
+    >
+	</GameEffectComponent >
 
 	<UIIconComponent
 		name="Weebpocalypse"

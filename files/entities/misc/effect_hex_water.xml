@@ -25,10 +25,11 @@
 		>
 	</LuaComponent>
 	
-	<LifetimeComponent
-		lifetime="2700"
-	>
-	</LifetimeComponent>
+	<GameEffectComponent
+		effect="NONE"
+		frames="2700"
+		>
+	</GameEffectComponent >
 	
 	<UIIconComponent
 		icon_sprite_file="mods/Twitch-integration/files/ui_gfx/status_indicators/hex_water.png"

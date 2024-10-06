@@ -7,9 +7,21 @@ function twitch_conga_ambrosia_nullification()
     local players = EntityGetWithTag("player_unit")
     for k=1,#players
     do v = players[k]
-        local x,y = EntityGetTransform(v)
-        local c = EntityLoad("mods/Twitch-integration/files/entities/misc/effect_ambrosia_cancel.xml",x,y)
-        EntityAddChild(v,c)
+        local found = false
+        local children = EntityGetAllChildren(v)
+        for z=1,#children do
+            if EntityGetName(children[z]) == "apotheosis_ambrosia_cancel" then
+                local comp = EntityGetFirstComponentIncludingDisabled(children[z],"GameEffectComponent")
+                ComponentSetValue2(comp,"frames",ComponentGetValue2(comp,"frames") + 3600)
+                found = true
+                break
+            end
+        end
+        if found == false then
+            local x,y = EntityGetTransform(v)
+            local c = EntityLoad("mods/Twitch-integration/files/entities/misc/effect_ambrosia_cancel.xml",x,y)
+            EntityAddChild(v,c)
+        end
     end
 end
 

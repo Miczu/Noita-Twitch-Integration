@@ -1,0 +1,27 @@
+<Entity name="apotheosis_ambrosia_cancel">
+	<InheritTransformComponent>
+    </InheritTransformComponent>
+    
+	<LuaComponent
+		script_source_file="mods/Twitch-integration/files/scripts/status_effects/ambrosia_cancel.lua"
+		execute_every_n_frame="1"
+		>
+	</LuaComponent>
+
+    <GameEffectComponent
+    	effect="NONE"
+    	frames="3600"
+    >
+	</GameEffectComponent >
+
+	<UIIconComponent
+		name="Ambrosia Nullification"
+		description="Ambrosia will have no effect on you"
+		icon_sprite_file="mods/Twitch-integration/files/ui_gfx/status_indicators/ambrosia_cancel.png"
+		is_perk="0"
+		display_above_head="1"
+		display_in_hud="1"
+		>
+	</UIIconComponent>
+	
+</Entity>

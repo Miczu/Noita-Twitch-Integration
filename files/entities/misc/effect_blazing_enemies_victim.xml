@@ -1,0 +1,69 @@
+<Entity >
+	<InheritTransformComponent />
+   
+	<LuaComponent
+		script_shot="mods/Twitch-integration/files/scripts/effect_blazing_enemies_shoot.lua"
+		execute_every_n_frame="-1"
+		>
+	</LuaComponent>
+
+	<GameEffectComponent 
+		effect="PROTECTION_FIRE"
+		frames="-1"
+		>
+	</GameEffectComponent >
+
+	<ParticleEmitterComponent 
+		_tags="lurker_data"
+		emitted_material_name="fire"
+		count_min="3"
+		count_max="7"
+		offset.x="0"
+		offset.y="-0.5"
+		x_pos_offset_min="-4"
+		y_pos_offset_min="-4"
+		x_pos_offset_max="4"
+		y_pos_offset_max="4"
+		x_vel_min="-10"
+		x_vel_max="10"
+		y_vel_min="-10"
+		y_vel_max="10"
+		count_min="8"
+		count_max="8"
+		lifetime_min="0.4"
+		lifetime_max="1.0"
+		create_real_particles="1"
+		emit_cosmetic_particles="0"
+		emission_interval_min_frames="2"
+		emission_interval_max_frames="3"
+		is_emitting="1" >
+	</ParticleEmitterComponent>
+  
+	<ParticleEmitterComponent 
+		_tags="lurker_data"
+		emitted_material_name="fire"
+		custom_style="FIRE"
+		count_min="3"
+		count_max="7"
+		offset.x="0"
+		offset.y="-0.5"
+		x_pos_offset_min="-4"
+		y_pos_offset_min="-4"
+		x_pos_offset_max="4"
+		y_pos_offset_max="4"
+		x_vel_min="-10"
+		x_vel_max="10"
+		y_vel_min="-10"
+		y_vel_max="10"
+		count_min="8"
+		count_max="8"
+		lifetime_min="0.4"
+		lifetime_max="1.0"
+		create_real_particles="1"
+		emit_cosmetic_particles="0"
+		emission_interval_min_frames="1"
+		emission_interval_max_frames="2"
+		is_emitting="1" >
+	</ParticleEmitterComponent>
+  
+</Entity>

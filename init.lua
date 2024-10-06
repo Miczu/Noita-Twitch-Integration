@@ -35,6 +35,14 @@ function OnModInit()
 		content = content:gsub("local rnd = Random%(1,100%)", "local rnd = Random(1,100) rnd = TwitchChestKuuCheck(rnd,x,y) rnd = TwitchChestLogic(x,y,entity_id,rnd)")
 		ModTextFileSetContent(path, content)
 	end
+
+	--Modifies the ice skull to respect derandomized projectiles
+	do
+		local path = "data/scripts/animals/iceskull_damage.lua"
+		local content = ModTextFileGetContent(path)
+		content = content:gsub("\"data/entities/projectiles/ice%.xml\"", "ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(entity_id,\"AnimalAIComponent\"),\"attack_ranged_entity_file\")")
+		ModTextFileSetContent(path, content)
+	end
 end
 
 function OnModPostInit()

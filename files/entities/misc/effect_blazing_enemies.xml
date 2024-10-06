@@ -1,0 +1,25 @@
+<Entity >
+	<InheritTransformComponent />
+   
+	<LuaComponent
+		script_source_file="mods/Twitch-integration/files/scripts/effect_blazing_enemies.lua"
+		execute_every_n_frame="30"
+		>
+	</LuaComponent>
+	
+	<LifetimeComponent
+		lifetime="1800"
+		>
+	</LifetimeComponent>
+
+	<UIIconComponent
+		name="Blazing Enemies"
+		description="Burn baby burn"
+		icon_sprite_file="mods/Twitch-integration/files/ui_gfx/status_indicators/blazing_enemies.png"
+		is_perk="0"
+		display_above_head="0"
+		display_in_hud="1"
+		>
+	</UIIconComponent>
+  
+</Entity>

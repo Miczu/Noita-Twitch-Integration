@@ -18,12 +18,14 @@
 		>
 	</LuaComponent>
 
+	<!-- This handles stain damage
 	<LuaComponent
 		execute_on_added="0"
 		script_source_file="mods/Twitch-integration/files/scripts/hex_water_persistent.lua"
 		execute_every_n_frame="30"
 		>
 	</LuaComponent>
+	-->
 	
 	<GameEffectComponent
 		effect="NONE"

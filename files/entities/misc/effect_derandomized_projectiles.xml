@@ -1,4 +1,4 @@
-<Entity >
+<Entity name="ti_event_derandomized_projectiles" >
 	<InheritTransformComponent />
    
 	<LuaComponent

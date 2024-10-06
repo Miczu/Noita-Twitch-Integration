@@ -1,4 +1,4 @@
-<Entity >
+<Entity name="apotheosis_delusional" >
 	<InheritTransformComponent />
    
 	<LuaComponent
@@ -8,10 +8,11 @@
 		>
 	</LuaComponent>
 	
-	<LifetimeComponent
-		lifetime="3600"
+	<GameEffectComponent
+		effect="NONE"
+		frames="3600"
 		>
-	</LifetimeComponent>
+	</GameEffectComponent >
 
 	<UIIconComponent
 		name="Delusional"

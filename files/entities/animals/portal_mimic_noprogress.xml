@@ -1,0 +1,222 @@
+<Entity name="$animal_dark_alchemist"> 
+	<Base file="data/entities/base_enemy_basic.xml" >		
+		<AnimalAIComponent 
+			_enabled="1" 
+			preferred_job="JobDefault"
+			escape_if_damaged_probability="0"
+			creature_detection_range_x="700"
+			creature_detection_range_y="10"
+			food_material="meat"
+			needs_food="0"
+			sense_creatures="1"
+			attack_ranged_enabled="0"
+			attack_melee_enabled="1"
+			can_fly="0" 
+			attack_melee_action_frame="5"
+			aggressiveness_min="95"
+			aggressiveness_max="100"
+			is_static_turret="1"
+			attack_melee_max_distance="32"
+			attack_melee_damage_min="1.2"
+			attack_melee_damage_max="1.6"
+		>
+		</AnimalAIComponent>
+		
+		<DamageModelComponent 
+            hp="4"
+			air_needed="0" 
+            ragdoll_material="wood_prop"
+			ragdoll_filenames_file="" 
+			blood_material=""
+			blood_multiplier="0"
+        	ragdoll_fx_forced="DISINTEGRATED"
+			fire_probability_of_ignition="0"
+			>
+		</DamageModelComponent>
+
+		<SpriteComponent 
+			image_file="mods/Twitch-integration/files/enemies_gfx/dunkisbald_alt.xml"
+			offset_x="0"
+			offset_y="0"
+			>
+		</SpriteComponent>
+
+		<PathFindingGridMarkerComponent
+			marker_work_flag="16" >
+		</PathFindingGridMarkerComponent>
+		
+		<GenomeDataComponent 
+			herd_id="trap"
+			food_chain_rank="5"
+			is_predator="1" >
+		</GenomeDataComponent>
+		
+		<CharacterPlatformingComponent 
+			velocity_min_x="0" 
+			velocity_max_x="0" 
+			velocity_min_y="0"
+			velocity_max_y="0"
+			pixel_gravity="0"
+			jump_velocity_y="0" 
+			run_velocity="0"  >
+		</CharacterPlatformingComponent>
+		
+		<PathFindingComponent
+			can_jump="0"
+			can_fly="0" 
+			can_walk="0"
+			>
+		</PathFindingComponent>
+
+		<CameraBoundComponent
+			max_count="30"
+			distance="160000">
+		</CameraBoundComponent>
+		
+		<HitboxComponent 
+            _enabled="1" 
+            aabb_min_x="0" 
+            aabb_max_x="0" 
+            aabb_min_y="0" 
+            aabb_max_y="0" 
+			>
+        </HitboxComponent>
+		
+		<CharacterDataComponent
+			collision_aabb_min_x="-8" 
+			collision_aabb_max_x="8" 
+			collision_aabb_min_y="-8" 
+			collision_aabb_max_y="8" 
+			mass="0.01"
+			gravity="0"
+			>
+	    </CharacterDataComponent>
+
+	</Base>
+
+	<!-- Protections  -->
+	<Entity>
+		<InheritTransformComponent />
+
+		<GameEffectComponent 
+			effect="KNOCKBACK_IMMUNITY"
+			frames="-1"
+			>
+		</GameEffectComponent >
+		
+	    <GameEffectComponent 
+	        effect="STUN_PROTECTION_FREEZE"
+	        frames="-1"
+	    >
+		</GameEffectComponent >
+
+		<GameEffectComponent 
+			effect="STUN_PROTECTION_ELECTRICITY"
+			frames="-1"
+			>
+		</GameEffectComponent >
+	</Entity>
+
+	<AudioLoopComponent
+		file="data/audio/Desktop/misc.bank"
+		event_name="misc/teleport_loop"
+		calculate_material_lowpass="0"
+		auto_play="0"
+		auto_play_if_enabled="1"
+		play_on_component_enable="1" >
+	</AudioLoopComponent>
+
+	<AudioLoopComponent
+		file="data/audio/Desktop/misc.bank"
+		event_name="misc/teleport_emitter_loop"
+		calculate_material_lowpass="0"
+		auto_play="0"
+		auto_play_if_enabled="1"
+		play_on_component_enable="1" >
+	</AudioLoopComponent>
+
+	<!-- gfx -->
+	
+	<UIInfoComponent
+		name="$teleport_deeper"
+		>
+	</UIInfoComponent>
+
+	<LightComponent 
+		_enabled="1" 
+		radius="255"
+		fade_out_time="1.5" 
+		r="64"
+		g="100"
+		b="255"
+		offset_y="-16"
+	></LightComponent>
+	
+	<LightComponent 
+		_enabled="1" 
+		radius="64"
+		fade_out_time="1.5" 
+		r="64"
+		g="100"
+		b="255"
+		offset_y="-16"
+	></LightComponent>
+	
+	<ParticleEmitterComponent 
+		emitted_material_name="spark_purple"
+		gravity.y="0.0"
+		lifetime_min="3"
+		lifetime_max="4"
+		x_vel_min="0"
+		x_vel_max="0"
+		y_vel_min="0"
+		y_vel_max="0"
+		count_min="115"
+		count_max="115"
+		render_on_grid="1"
+		fade_based_on_lifetime="0"
+		area_circle_radius.min="15"
+		area_circle_radius.max="15"
+		cosmetic_force_create="1"
+		collide_with_grid="0"
+		airflow_force="0.051"
+		airflow_time="1.01"
+		airflow_scale="0.03"
+		emission_interval_min_frames="18"
+		emission_interval_max_frames="18"
+		emit_cosmetic_particles="1"
+		velocity_always_away_from_center="11"
+		render_back="1"
+		is_emitting="1" >
+	</ParticleEmitterComponent>
+
+	<ParticleEmitterComponent 
+		emitted_material_name="spark_purple"
+		gravity.y="0.0"
+		lifetime_min="3"
+		lifetime_max="4"
+		x_vel_min="0"
+		x_vel_max="0"
+		y_vel_min="0"
+		y_vel_max="0"
+		count_min="1"
+		count_max="1"
+		render_on_grid="1"
+		fade_based_on_lifetime="1"
+		area_circle_radius.min="0"
+		area_circle_radius.max="15"
+		cosmetic_force_create="1"
+		collide_with_grid="0"
+		airflow_force="0.051"
+		airflow_time="1.01"
+		airflow_scale="0.03"
+		emission_interval_min_frames="18"
+		emission_interval_max_frames="18"
+		emit_cosmetic_particles="1"
+		velocity_always_away_from_center="0"
+		render_back="1"
+		is_emitting="1" >
+	</ParticleEmitterComponent>
+
+</Entity>
+

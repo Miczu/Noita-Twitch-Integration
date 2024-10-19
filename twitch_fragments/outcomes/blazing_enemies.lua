@@ -13,7 +13,7 @@ function twitch_blazing_enemies()
         for z=1,#children do
             if EntityGetName(children[z]) == "ti_effect_blazing_enemies" then
                 local comp = EntityGetFirstComponentIncludingDisabled(children[z],"GameEffectComponent")
-                ComponentSetValue2(comp,"frames",ComponentGetValue2(comp,"frames") + 1800)
+                ComponentSetValue2(comp,"frames",ComponentGetValue2(comp,"frames") + 3600)
                 found = true
                 break
             end

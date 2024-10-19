@@ -216,6 +216,7 @@
         "files/status_list_append.lua": "dea4cced71650340c5179ac8c8fb4ad96798c7c3b0474aaf3e92c3f6607e6d0f",
         "files/temple_altar_append.lua": "340cd79cdabdf21b6e5dd9ffede3b6cd8de038fad67ea143aeeca829bfd56d40",
         "files/temple_append.lua": "38ad83a5d68ba5fd6a093629bd4ad3438954a4ac48d4f0ce40a71e1e27dccceb",
+        "files/ui_gfx/status_indicators/ambrosia_cancel.png": "9889c0ade585a9981ff4064c1848c171d0b4a74bbd42250d1c9f426caf575b39",
         "files/ui_gfx/status_indicators/blazing_enemies.png": "5a4b527697cf97fc662a8bef31dd47327f508aace6a6b8d155fe7a77b832fcc9",
         "files/ui_gfx/status_indicators/delusional.png": "d3e79392f54794fdba32d672e5dab82302cab84ccf5e6bd5ee7e2d2bc415c247",
         "files/ui_gfx/status_indicators/derandomized_attacks.png": "f38defee39389a5471eb4bb8e41dac63817685a9fed2f6612cc6954186a241e8",

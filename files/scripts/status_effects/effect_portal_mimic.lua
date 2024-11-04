@@ -11,7 +11,7 @@ if ( #targets > 0 ) then
     for k=1,#targets
     do local v = targets[k]
 		local comp = EntityGetFirstComponentIncludingDisabled(v,"UIInfoComponent") or 0
-		if comp ~= 0 and ComponentGetValue2(comp,"name") == "$teleport_deeper" then
+		if comp ~= 0 and (ComponentGetValue2(comp,"name") == "$teleport_deeper" or ComponentGetValue2(comp,"name") == "$teleport_ending") then --Conga the portal to the laboratory is red and the mimic will be crazy obvious as is but I don't have the time to fix it right now; I feel this change is better than chat being scammed out of a portal mimic entirely however
 			portal_id = v
 			break
 		end

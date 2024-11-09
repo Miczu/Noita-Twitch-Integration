@@ -1,8 +1,8 @@
 {
     "files": {
         "data/entities/bloody.xml": "b9f4f641c3cc61787aa71fc16c3b7e9d5d8dcbd442d198c1f53ca93c5df39be9",
-        "data/entities/buildings/teleport.xml": "914c3892506ecd9b99cdbb9fc45740b8d2f28e594e60befc931decd3f16ae531",
-        "data/entities/buildings/teleport_ending.xml": "3f353c6714a663292177973ef62260d004dcfad28c6a0acf5a0693f49cae8391",
+        "data/entities/buildings/teleport.xml": "7125a965402db4bd1f29618380c1fc3335fa9a64a2a8ae51c290dbb608023390",
+        "data/entities/buildings/teleport_ending.xml": "af57869f7f388fdfc4979eeac79f004c49afcf8d701b41066a65b67ce6db4a61",
         "data/entities/buildings/teleport_liquid_powered.xml": "b46dd1ce5f914172030edfdb85da88a322b637bcbe87643754af955689a03531",
         "data/entities/cheesy.xml": "695e7113350add1e5c9c39346444f2e1ce258ba52dd5151d1a0c7f199168a348",
         "data/entities/crystal_green_effect.xml": "00177c8069e67ae9ff3f1f2b97a2f1d83956e3ad327d930ed8ed32e2790a38b7",

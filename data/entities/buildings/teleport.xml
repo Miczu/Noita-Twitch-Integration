@@ -17,7 +17,7 @@
 	<!-- gfx -->
 	
 	<UIInfoComponent
-		name="Portal deeper"
+		name="$teleport_deeper"
 		>
 	</UIInfoComponent>
 

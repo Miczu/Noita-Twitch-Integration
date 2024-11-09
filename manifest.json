@@ -1,8 +1,8 @@
 {
     "files": {
         "data/entities/bloody.xml": "b9f4f641c3cc61787aa71fc16c3b7e9d5d8dcbd442d198c1f53ca93c5df39be9",
-        "data/entities/buildings/teleport.xml": "914c3892506ecd9b99cdbb9fc45740b8d2f28e594e60befc931decd3f16ae531",
-        "data/entities/buildings/teleport_ending.xml": "3f353c6714a663292177973ef62260d004dcfad28c6a0acf5a0693f49cae8391",
+        "data/entities/buildings/teleport.xml": "7125a965402db4bd1f29618380c1fc3335fa9a64a2a8ae51c290dbb608023390",
+        "data/entities/buildings/teleport_ending.xml": "af57869f7f388fdfc4979eeac79f004c49afcf8d701b41066a65b67ce6db4a61",
         "data/entities/buildings/teleport_liquid_powered.xml": "b46dd1ce5f914172030edfdb85da88a322b637bcbe87643754af955689a03531",
         "data/entities/cheesy.xml": "695e7113350add1e5c9c39346444f2e1ce258ba52dd5151d1a0c7f199168a348",
         "data/entities/crystal_green_effect.xml": "00177c8069e67ae9ff3f1f2b97a2f1d83956e3ad327d930ed8ed32e2790a38b7",
@@ -204,7 +204,7 @@
         "files/scripts/status_effects/effect_health_mimic.lua": "074D91F82BA5BBABFFD41F49EF6E79EF83BB919A830CF3ECF434A09C02E7F6CB",
         "files/scripts/status_effects/effect_hm_mimic.lua": "6EFC5A576D74FDE73D087EE88092F39179824FD0E6F4EAE54BBEBC999C26F594",
         "files/scripts/status_effects/effect_refresh_mimic.lua": "48DF535314DC497461B4D72BC258E72F6A36B3AF0E068F243426A8D8C6D6674A",
-        "files/scripts/status_effects/effect_portal_mimic.lua": "a63421046845f5364924b547374505fadfa9e9ebb3465012e82b7b0d831913d6",
+        "files/scripts/status_effects/effect_portal_mimic.lua": "297ee3cf80fc92f1fb1696d748a11435685017826b433dc113fcbe1dd8de5ba5",
         "files/scripts/status_effects/ambrosia_cancel_start.lua": "a678fdf17e7edc94b3e7d901e834c0000e660deb81db3025785f6ff5f7431785",
         "files/scripts/status_effects/ambrosia_cancel.lua": "4004d77613d6477c86b86279fbe24869b9a906c11a219dd1e8466aa1fe86ffe9",
         "files/scripts/status_effects/ambrosia_cancel_end.lua": "13f4eb4e7734f98aa666e8971763736ebce75a93f542127fac90ac8dbf05a86d",

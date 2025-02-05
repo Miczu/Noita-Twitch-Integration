@@ -1,8 +1,11 @@
 <Entity >
 	<InheritTransformComponent />
+
+    <VariableStorageComponent
+        name="last_heartbeat"
+        value_int="-999" />
    
 	<LuaComponent
-		script_source_file="mods/Twitch-integration/files/scripts/status_effects/effect_heartache.lua"
-		execute_every_n_frame="300"
-        execute_times="3" />
+		script_source_file="mods/Twitch-integration/files/scripts/status_effects/effect_heart_attack.lua"
+		execute_every_n_frame="1" />
 </Entity>

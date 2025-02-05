@@ -3,7 +3,7 @@
 --curses
 --150
 --Stacks a 15-second heartache modifier on the player every 5 seconds, 3 times in a row
-function heart_attack()
+function twitch_heart_attack()
     local player = EntityGetWithTag("player_unit")[1]
     if player then
         local x, y = EntityGetTransform(player)

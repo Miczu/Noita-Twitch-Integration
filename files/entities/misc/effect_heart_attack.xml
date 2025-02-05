@@ -1,0 +1,8 @@
+<Entity >
+	<InheritTransformComponent />
+   
+	<LuaComponent
+		script_source_file="mods/Twitch-integration/files/scripts/status_effects/effect_heartache.lua"
+		execute_every_n_frame="300"
+        execute_times="3" />
+</Entity>

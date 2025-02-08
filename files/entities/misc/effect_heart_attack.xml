@@ -1,0 +1,19 @@
+<Entity tags="heart_attack">
+    <InheritTransformComponent />
+
+    <VariableStorageComponent
+        name="max_max_hp"
+        value_float="0.0" />
+
+    <VariableStorageComponent
+        name="last_max_hp"
+        value_float="0.0" />
+
+    <VariableStorageComponent
+        name="last_heartbeat"
+        value_int="0" />
+
+    <LuaComponent
+        script_source_file="mods/Twitch-integration/files/scripts/status_effects/effect_heart_attack.lua"
+        execute_every_n_frame="1" />
+</Entity>

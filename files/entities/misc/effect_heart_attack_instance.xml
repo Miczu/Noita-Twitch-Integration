@@ -1,0 +1,7 @@
+<Entity tags="heart_attack_instance">
+    <InheritTransformComponent />
+
+    <VariableStorageComponent
+        name="frame_spawned"
+        value_int="0" />
+</Entity>

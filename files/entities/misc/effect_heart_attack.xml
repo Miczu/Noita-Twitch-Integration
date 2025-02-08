@@ -11,7 +11,7 @@
 
     <VariableStorageComponent
         name="last_heartbeat"
-        value_int="-999" />
+        value_int="0" />
 
     <LuaComponent
         script_source_file="mods/Twitch-integration/files/scripts/status_effects/effect_heart_attack.lua"

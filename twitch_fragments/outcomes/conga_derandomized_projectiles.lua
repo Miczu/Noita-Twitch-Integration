@@ -4,7 +4,7 @@
 --90
 --
 function twitch_conga_derandomized_projectiles()
-    local players = EntityGetWithTag("player_unit")
+    local players = get_player_as_table()
     for k=1,#players
     do v = players[k]
         local found = false
@@ -101,7 +101,7 @@ function twitch_conga_derandomized_projectiles()
             --"meteor_green", 300+ damage in a single hit
             "freeze_circle",
             "orb_dark",
-            "orb_pink_big_super_shrapnel",
+            "orb_pink_big_super",
             "remove_ground",
             --"lightning", Kind of just unfun as a stunlock
             "pollen_ball",
@@ -282,7 +282,7 @@ function twitch_conga_derandomized_projectiles()
         return spellid, iconid, threatlevel
     end
 
-    local x,y = EntityGetTransform(EntityGetWithTag("player_unit")[1])
+    local x,y = EntityGetTransform(get_player())
     local projFile, iconid, threatlevel = chooseSpell(x,y)
     GlobalsSetValue("TI_randomproj",projFile)
     GlobalsSetValue("TI_randomprojicon",iconid)

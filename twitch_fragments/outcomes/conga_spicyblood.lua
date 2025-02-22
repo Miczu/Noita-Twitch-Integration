@@ -4,7 +4,7 @@
 --100
 --Enemies can have lava, acid or polymorphine blood
 function twitch_conga_spicyblood()
-    local players = EntityGetWithTag("player_unit")
+    local players = get_player_as_table()
     for k=1,#players
     do v = players[k]
         local x,y = EntityGetTransform(v)

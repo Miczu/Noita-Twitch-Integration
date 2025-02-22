@@ -4,7 +4,7 @@
 --150
 --
 function twitch_conga_portal_mimic()
-    local players = EntityGetWithTag("player_unit")
+    local players = get_player_as_table()
     for k=1,#players
     do v = players[k]
         local x,y = EntityGetTransform(v)

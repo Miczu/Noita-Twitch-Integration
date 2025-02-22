@@ -1,6 +1,6 @@
 local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform(entity_id)
-local player = EntityGetClosestWithTag(x, y, "mortal")
+local player = EntityGetParent(entity_id)
 local childs = EntityGetAllChildren(player)
 local walker_count = 0
 local attacker_count = 0
@@ -34,17 +34,24 @@ for _, child in ipairs(childs) do
     end
 end
 
-local platformingcomponents = EntityGetComponent(player,"CharacterPlatformingComponent")
+local platformingcomponent = EntityGetFirstComponentIncludingDisabled(player,"CharacterPlatformingComponent")
 if (platformingcomponents ~= nil) then
-    for i, component in ipairs(platformingcomponents) do
-        local run_speed = tonumber(ComponentGetMetaCustom(component,"run_velocity")) * 0.8
-        local vel_x = math.abs(tonumber(ComponentGetMetaCustom(component,"velocity_max_x"))) * 0.8
+    local run_speed = tonumber(ComponentGetMetaCustom(platformingcomponent,"run_velocity")) * 0.8
+    local vel_x = math.abs(tonumber(ComponentGetMetaCustom(platformingcomponent,"velocity_max_x"))) * 0.8
 
-        local vel_x_min = 0 - vel_x
-        local vel_x_max = vel_x
+    local vel_x_min = 0 - vel_x
+    local vel_x_max = vel_x
 
-        ComponentSetMetaCustom(component, "run_velocity", run_speed)
-        ComponentSetMetaCustom(component, "velocity_min_x", vel_x_min)
-        ComponentSetMetaCustom(component, "velocity_max_x", vel_x_max)
+    ComponentSetMetaCustom(platformingcomponent, "run_velocity", run_speed)
+    ComponentSetMetaCustom(platformingcomponent, "velocity_min_x", vel_x_min)
+    ComponentSetMetaCustom(platformingcomponent, "velocity_max_x", vel_x_max)
+end
+
+local children = EntityGetAllChildren(player)
+for z=1,#children do
+    local ccomp = EntityGetFirstComponentIncludingDisabled(children[z],"LuaComponent")
+    if ComponentGetValue2(ccomp,"script_source_file","data/scripts/perks/attack_foot_climb.lua") then
+        EntityKill(children[z]) --This should remove 1 lukki leg script for 1 spiderman vote; meaning it *shouldn't* break lukki legs if given/taken as a perk.
+        break
     end
 end

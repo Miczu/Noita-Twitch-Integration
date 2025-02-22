@@ -4,7 +4,7 @@
 --100
 --You can no longer benefit from any immunities
 function twitch_conga_immunity_nullification()
-    local players = EntityGetWithTag("player_unit")
+    local players = get_player_as_table()
     for k=1,#players
     do v = players[k]
         local found = false

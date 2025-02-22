@@ -6,7 +6,15 @@ function hello()
     print("Hello")
 end
 
-function get_player() return EntityGetWithTag("player_unit")[1] end
+function get_player()
+    local plyr = EntityGetWithTag("player_unit")[1] or EntityGetWithTag("player_polymorphed")[1]
+    return plyr
+end
+
+function get_player_as_table()
+    local plyr = EntityGetWithTag("player_unit") or EntityGetWithTag("player_polymorphed")
+    return plyr
+end
 
 function get_player_pos()
     local x, y = EntityGetTransform(get_player())

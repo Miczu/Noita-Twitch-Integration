@@ -4,7 +4,7 @@
 --200
 --
 function twitch_conga_steal_wand()
-    local players = EntityGetWithTag("player_unit")
+    local players = EntityGetWithTag("player_unit") --Probably best this only works with non-poly'd players, not updating this one.
     for k=1,#players
     do v = players[k]
         local x,y = EntityGetTransform(player)

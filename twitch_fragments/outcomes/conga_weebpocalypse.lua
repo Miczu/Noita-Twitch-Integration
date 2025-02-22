@@ -4,7 +4,7 @@
 --10
 --Spawns an apocalypse of hentacle related hazards
 function twitch_conga_weebpocalypse()
-    local players = EntityGetWithTag("player_unit")
+    local players = get_player_as_table()
     for k=1,#players
     do v = players[k]
         local x,y = EntityGetTransform(v)

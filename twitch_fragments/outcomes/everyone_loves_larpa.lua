@@ -6,7 +6,7 @@
 dofile_once("data/scripts/lib/utilities.lua")
 
 function twitch_everyone_loves_larpa()
-  local players = EntityGetWithTag("player_unit")
+  local players = get_player_as_table()
   for k=1,#players do
     local v = players[k]
     -- Remove older instances of projectile larpa script

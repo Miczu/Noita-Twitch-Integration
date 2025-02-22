@@ -45,6 +45,7 @@ if (platformingcomponents ~= nil) then
     ComponentSetMetaCustom(platformingcomponent, "run_velocity", run_speed)
     ComponentSetMetaCustom(platformingcomponent, "velocity_min_x", vel_x_min)
     ComponentSetMetaCustom(platformingcomponent, "velocity_max_x", vel_x_max)
+    ComponentSetValue2( platformingcomponent, "pixel_gravity", 350 )
 end
 
 local children = EntityGetAllChildren(player)

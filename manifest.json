@@ -53,7 +53,7 @@
         "files/effects/moneyshot_start.lua": "2286bdac7cd12afa4a840b8413e8b30586c8615f7e019a59f7d85b3ba7a64fbd",
         "files/effects/randomizer.lua": "1504fae2366fe624d8a423d743b0c22e316c998b519ee48127a645f895ec1025",
         "files/effects/randomizer.xml": "022e45d8662b818aa139e57e24de13644634a3c4edacb2a730f89defc96bb943",
-        "files/effects/remove_legs.lua": "11a7efed6b0f908b6981edae88aa4cb5782d2907f62968dbcea802af0325b816",
+        "files/effects/remove_legs.lua": "7912e139cb53da01a6a5f396bea049dc5307e45de93b1f304e7c97ba973285f0",
         "files/effects/sanic_curse.xml": "9540d0bbcef6821c504b563a2367830c0ba763361b6ad7f4ee953828b31d65f8",
         "files/effects/sanic_curse_damage.lua": "01374465f34d5df905edb86fcb94e6004bab655605fa6fe935d958244ad69b35",
         "files/effects/sanic_curse_end.lua": "c2fa1d0ee1b952b0d13201b9f381bd56a37fc661f65179e1f0bdf2168cfee097",

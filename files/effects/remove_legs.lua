@@ -35,7 +35,7 @@ for _, child in ipairs(childs) do
 end
 
 local platformingcomponent = EntityGetFirstComponentIncludingDisabled(player,"CharacterPlatformingComponent")
-if (platformingcomponents ~= nil) then
+if (platformingcomponent ~= nil) then
     local run_speed = tonumber(ComponentGetMetaCustom(platformingcomponent,"run_velocity")) * 0.8
     local vel_x = math.abs(tonumber(ComponentGetMetaCustom(platformingcomponent,"velocity_max_x"))) * 0.8
 
@@ -51,8 +51,8 @@ end
 
 local children = EntityGetAllChildren(player,"perk_entity")
 for z=1,#children do
-    local ccomp = EntityGetFirstComponentIncludingDisabled(children[z],"LuaComponent")
-    if ComponentGetValue2(ccomp,"script_source_file","data/scripts/perks/attack_foot_climb.lua") then
+    local ccomp = EntityGetFirstComponentIncludingDisabled(children[z],"LuaComponent") or nil
+    if ccomp ~= nil and ComponentGetValue2(ccomp,"script_source_file","data/scripts/perks/attack_foot_climb.lua") then
         EntityKill(children[z]) --This should remove 1 lukki leg script for 1 spiderman vote; meaning it *shouldn't* break lukki legs if given/taken as a perk.
         break
     end

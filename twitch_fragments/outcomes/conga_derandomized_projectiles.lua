@@ -101,7 +101,7 @@ function twitch_conga_derandomized_projectiles()
             --"meteor_green", 300+ damage in a single hit
             "freeze_circle",
             "orb_dark",
-            "orb_pink_big_super_shrapnel",
+            "orb_pink_big_super",
             "remove_ground",
             --"lightning", Kind of just unfun as a stunlock
             "pollen_ball",

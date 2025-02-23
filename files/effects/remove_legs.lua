@@ -1,6 +1,6 @@
 local entity_id = GetUpdatedEntityID()
 local x, y = EntityGetTransform(entity_id)
-local player = EntityGetClosestWithTag(x, y, "mortal")
+local player = EntityGetParent(entity_id)
 local childs = EntityGetAllChildren(player)
 local walker_count = 0
 local attacker_count = 0
@@ -34,17 +34,39 @@ for _, child in ipairs(childs) do
     end
 end
 
-local platformingcomponents = EntityGetComponent(player,"CharacterPlatformingComponent")
-if (platformingcomponents ~= nil) then
-    for i, component in ipairs(platformingcomponents) do
-        local run_speed = tonumber(ComponentGetMetaCustom(component,"run_velocity")) * 0.8
-        local vel_x = math.abs(tonumber(ComponentGetMetaCustom(component,"velocity_max_x"))) * 0.8
+local platformingcomponent = EntityGetFirstComponentIncludingDisabled(player,"CharacterPlatformingComponent")
+if (platformingcomponent ~= nil) then
+    local run_speed = tonumber(ComponentGetMetaCustom(platformingcomponent,"run_velocity")) * 0.8
+    local vel_x = math.abs(tonumber(ComponentGetMetaCustom(platformingcomponent,"velocity_max_x"))) * 0.8
 
-        local vel_x_min = 0 - vel_x
-        local vel_x_max = vel_x
+    local vel_x_min = 0 - vel_x
+    local vel_x_max = vel_x
 
-        ComponentSetMetaCustom(component, "run_velocity", run_speed)
-        ComponentSetMetaCustom(component, "velocity_min_x", vel_x_min)
-        ComponentSetMetaCustom(component, "velocity_max_x", vel_x_max)
+    ComponentSetMetaCustom(platformingcomponent, "run_velocity", run_speed)
+    ComponentSetMetaCustom(platformingcomponent, "velocity_min_x", vel_x_min)
+    ComponentSetMetaCustom(platformingcomponent, "velocity_max_x", vel_x_max)
+    local gravity = 350 * (0.75^math.max(0,tonumber(GlobalsGetValue( "PERK_PICKED_GAS_BLOOD_PICKUP_COUNT","0"))))
+    ComponentSetValue2( platformingcomponent, "pixel_gravity", gravity )
+end
+
+
+
+--Reset lukki legs taken count to allow future legs to function properly and remove the associated script if no additional lukki legs are taken.
+local lukki_leg_count = tonumber(GlobalsGetValue( "PERK_PICKED_ATTACK_FOOT_PICKUP_COUNT","1"))
+lukki_leg_count = math.max(0,lukki_leg_count - 1)
+GlobalsGetValue( "PERK_PICKED_ATTACK_FOOT_PICKUP_COUNT",tostring(lukki_leg_count))
+if lukki_leg_count == 0 then
+    GameRemoveFlagRun( "ATTACK_FOOT_CLIMBER" )
+    local children = EntityGetAllChildren(player,"perk_entity")
+    for z=1,#children do
+        local ccomp = EntityGetFirstComponentIncludingDisabled(children[z],"LuaComponent")
+        if ccomp ~= 0 and ComponentGetValue2(ccomp,"script_source_file","data/scripts/perks/attack_foot_climb.lua") then --This prints errors regardless of many times you politely ask noita to confirm the component exists but doesn't stop the code from working.
+            EntityKill(children[z])
+            break
+        end
     end
 end
+
+--Lukki legs is bad on an in-game level and an in-code level. I want the hours of my life back
+--To any poor souls who need to work on this code in the future, I wish you the best of luck, you'll need it
+--https://congalyne.neocities.org/images/conga_tired2.png

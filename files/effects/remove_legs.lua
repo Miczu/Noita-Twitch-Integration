@@ -45,14 +45,14 @@ if (platformingcomponent ~= nil) then
     ComponentSetMetaCustom(platformingcomponent, "run_velocity", run_speed)
     ComponentSetMetaCustom(platformingcomponent, "velocity_min_x", vel_x_min)
     ComponentSetMetaCustom(platformingcomponent, "velocity_max_x", vel_x_max)
-    local gravity = 350 * (0.75^math.max(0,tonumber(GlobalsGetValue( "PERK_PICKED_GAS_BLOOD_PICKUP_COUNT"))))
+    local gravity = 350 * (0.75^math.max(0,tonumber(GlobalsGetValue( "PERK_PICKED_GAS_BLOOD_PICKUP_COUNT","0"))))
     ComponentSetValue2( platformingcomponent, "pixel_gravity", gravity )
 end
 
 local children = EntityGetAllChildren(player,"perk_entity")
 for z=1,#children do
-    local ccomp = EntityGetFirstComponentIncludingDisabled(children[z],"LuaComponent") or nil
-    if ccomp ~= nil and ComponentGetValue2(ccomp,"script_source_file","data/scripts/perks/attack_foot_climb.lua") then
+    local ccomp = EntityGetFirstComponentIncludingDisabled(children[z],"LuaComponent")
+    if ccomp ~= 0 and ComponentGetValue2(ccomp,"script_source_file","data/scripts/perks/attack_foot_climb.lua") then
         EntityKill(children[z]) --This should remove 1 lukki leg script for 1 spiderman vote; meaning it *shouldn't* break lukki legs if given/taken as a perk.
         break
     end

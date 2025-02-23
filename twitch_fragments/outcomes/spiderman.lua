@@ -4,6 +4,8 @@
 --100
 --todo
 function twitch_spiderman()
+	local lukki_count_true = GlobalsGetValue( "PERK_PICKED_ATTACK_FOOT_PICKUP_COUNT","0")
+	local lukki_transformation_progress_true = GlobalsGetValue( "PLAYER_LUKKINESS_LEVEL","0")
 	local x, y = get_player_pos()
 	local player = get_player()
 	if player ~= nil then
@@ -22,4 +24,7 @@ function twitch_spiderman()
 		end
     end
 
+	--Restore true lukki perks taken count
+	GlobalsSetValue( "PERK_PICKED_ATTACK_FOOT_PICKUP_COUNT",lukki_count_true)
+	GlobalsSetValue( "PLAYER_LUKKINESS_LEVEL",lukki_transformation_progress_true)
 end

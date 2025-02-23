@@ -49,11 +49,24 @@ if (platformingcomponent ~= nil) then
     ComponentSetValue2( platformingcomponent, "pixel_gravity", gravity )
 end
 
-local children = EntityGetAllChildren(player,"perk_entity")
-for z=1,#children do
-    local ccomp = EntityGetFirstComponentIncludingDisabled(children[z],"LuaComponent")
-    if ccomp ~= 0 and ComponentGetValue2(ccomp,"script_source_file","data/scripts/perks/attack_foot_climb.lua") then
-        EntityKill(children[z]) --This should remove 1 lukki leg script for 1 spiderman vote; meaning it *shouldn't* break lukki legs if given/taken as a perk.
-        break
+
+
+--Reset lukki legs taken count to allow future legs to function properly and remove the associated script if no additional lukki legs are taken.
+local lukki_leg_count = tonumber(GlobalsGetValue( "PERK_PICKED_ATTACK_FOOT_PICKUP_COUNT","1"))
+lukki_leg_count = math.max(0,lukki_leg_count - 1)
+GlobalsGetValue( "PERK_PICKED_ATTACK_FOOT_PICKUP_COUNT",tostring(lukki_leg_count))
+if lukki_leg_count == 0 then
+    GameRemoveFlagRun( "ATTACK_FOOT_CLIMBER" )
+    local children = EntityGetAllChildren(player,"perk_entity")
+    for z=1,#children do
+        local ccomp = EntityGetFirstComponentIncludingDisabled(children[z],"LuaComponent")
+        if ccomp ~= 0 and ComponentGetValue2(ccomp,"script_source_file","data/scripts/perks/attack_foot_climb.lua") then --This prints errors regardless of many times you politely ask noita to confirm the component exists but doesn't stop the code from working.
+            EntityKill(children[z])
+            break
+        end
     end
 end
+
+--Lukki legs is bad on an in-game level and an in-code level. I want the hours of my life back
+--To any poor souls who need to work on this code in the future, I wish you the best of luck, you'll need it
+--https://congalyne.neocities.org/images/conga_tired2.png

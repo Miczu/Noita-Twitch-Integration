@@ -47,7 +47,6 @@ function OnModInit()
 	--Adds spell appends
 	do
 		ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/Twitch-Integration/files/scripts/gun/gun_action_appends.lua")
-		print(ModTextFileGetContent("data/scripts/gun/gun_actions.lua"))
 	end
 end
 

@@ -21,14 +21,14 @@
 		emission_interval_max_frames="1"
 		emit_cosmetic_particles="1"
 		image_animation_file="data/particles/image_emitters/aura.png"
-		image_animation_speed="3.5"
+		image_animation_speed="4.0"
 		image_animation_loop="0"
 		is_emitting="1" >
 	</ParticleEmitterComponent>
   
 	<LuaComponent
 		script_source_file="mods/Twitch-integration/files/scripts/steal_wand.lua"
-		execute_every_n_frame="70"
+		execute_every_n_frame="60"
 		>
 	</LuaComponent>
 

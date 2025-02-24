@@ -43,6 +43,12 @@ function OnModInit()
 		content = content:gsub("\"data/entities/projectiles/ice%.xml\"", "ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(entity_id,\"AnimalAIComponent\"),\"attack_ranged_entity_file\")")
 		ModTextFileSetContent(path, content)
 	end
+
+	--Adds spell appends
+	do
+		ModLuaFileAppend("data/scripts/gun/gun_actions.lua", "mods/Twitch-Integration/files/scripts/gun/gun_action_appends.lua")
+		print(ModTextFileGetContent("data/scripts/gun/gun_actions.lua"))
+	end
 end
 
 function OnModPostInit()

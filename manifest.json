@@ -379,7 +379,7 @@
         "twitch_fragments/outcomes/unshuffle.lua": "712925ed305e85e32e3fdbdefbaf41128df555d8cb61bee55f78ddcdfb72a7d0",
         "twitch_fragments/outcomes/void_circle.lua": "bcefdcfd399a6d1ffe0ec782ef14e0d278a13b22e893127c4209b7f546546e05",
         "twitch_fragments/outcomes/wand_mirage.lua": "e633013d8b8e2462072ecd7d479ce6d325652311bb942cd39f1605d28f2c2e6a",
-        "twitch_fragments/outcomes/wand_replacement.lua": "412e6279e9c7da58b6e9825bff937cf3906d1131c04137e5c70409b9e285e09e",
+        "twitch_fragments/outcomes/wand_replacement.lua": "311ba870ad201e7873ae23a88971985fcefae748d4e5b7b6d190737ffa23fdcd",
         "twitch_fragments/outcomes/worm_can.lua": "a9754a1d59db1a23559c01d46a0f7d0c166668e360d6ca6d8bfb1452617fb1e1",
         "twitch_fragments/potion_material.lua": "d4b1260c058bd01409e5fb19c18a7ac4a08bfaeda28418473dccbabc50c0882d",
         "twitch_fragments/utils.lua": "5c67be53a2189e515f259d7cde6907ca1b707d3416667178886da87bb56b8ecb",

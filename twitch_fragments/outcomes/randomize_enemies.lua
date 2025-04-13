@@ -5,6 +5,10 @@
 --todo
 
 function twitch_randomize_enemies()
+    async(effect_randomize_enemies)
+end
+
+function effect_randomize_enemies()
     
     local player
 

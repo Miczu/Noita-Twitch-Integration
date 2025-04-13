@@ -4,6 +4,10 @@
 --5
 --ohno
 function twitch_conga_monstrous_drink()
+    async(effect_conga_monstrous_drink)
+end
+
+function effect_conga_monstrous_drink()
 
     --Ensure we only trigger monstrous drink if the player has an inventory
     repeat

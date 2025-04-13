@@ -4,6 +4,10 @@
 --200
 --
 function twitch_conga_delusional()
+    async(effect_conga_delusional)
+end
+
+function effect_conga_delusional()
     local player
 
     repeat

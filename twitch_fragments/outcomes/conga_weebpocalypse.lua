@@ -4,6 +4,10 @@
 --10
 --Spawns an apocalypse of hentacle related hazards
 function twitch_conga_weebpocalypse()
+    async(effect_conga_weebpocalypse)
+end
+
+function effect_conga_weebpocalypse()
     local player
 
     repeat

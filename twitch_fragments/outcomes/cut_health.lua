@@ -4,6 +4,10 @@
 --250
 --todo
 function twitch_cut_health()
+    async(effect_cut_health)
+end
+
+function effect_cut_health()
     local percent_to_remove = 0.25;
     local player_entity
 

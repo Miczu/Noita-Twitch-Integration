@@ -4,6 +4,10 @@
 --250
 --todo
 function twitch_buoyancy()
+    async(effect_buoyancy)
+end
+
+function effect_buoyancy()
     local player
 
     repeat

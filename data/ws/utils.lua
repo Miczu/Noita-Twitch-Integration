@@ -11,9 +11,16 @@ function get_player()
     if #player > 0 then
         return player[1]
     end
+    return 0
 end
 
-function get_player_nopoly() return EntityGetWithTag("player_unit")[1] end
+function get_player_nopoly()
+    local player = EntityGetWithTag("player_unit") or {}
+    if #player > 0 then
+        return player[1]
+    end
+    return 0
+end
 
 function get_player_pos()
     local x, y = EntityGetTransform(get_player())

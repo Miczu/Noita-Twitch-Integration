@@ -4,6 +4,10 @@
 --300
 --Everyone against eachother
 function twitch_the_purge()
+    async(effect_the_purge)
+end
+
+function effect_the_purge()
     local player
 
     repeat

@@ -4,12 +4,7 @@
 --50
 --
 function twitch_conga_forced_checkpoint()
-    local player
-
-    repeat
-		wait(1);
-		player = get_player();
-	until player > 0;
+    local player = get_player()
 
     local x,y = EntityGetTransform(player)
     

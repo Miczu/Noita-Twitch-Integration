@@ -4,6 +4,10 @@
 --230
 --todo
 function twitch_shrooms()
+    async(effect_shrooms)
+end
+
+function effect_shrooms()
     local player
 
     repeat

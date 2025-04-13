@@ -6,6 +6,10 @@
 dofile_once("data/scripts/lib/utilities.lua")
 
 function twitch_everyone_loves_larpa()
+    async(effect_everyone_loves_larpa)
+end
+
+function effect_everyone_loves_larpa()
   local player
 
     repeat

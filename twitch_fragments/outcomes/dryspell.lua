@@ -4,6 +4,10 @@
 --220
 --todo
 function twitch_dryspell()
+    async(effect_dryspell)
+end
+
+function effect_dryspell()
     local player
 
     repeat

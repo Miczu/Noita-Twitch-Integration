@@ -4,6 +4,10 @@
 --150
 --todo
 function twitch_farts()
+    async(effect_farts)
+end
+
+function effect_farts()
     local player
 
     repeat

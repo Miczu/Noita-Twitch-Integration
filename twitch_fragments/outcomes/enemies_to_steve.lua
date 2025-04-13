@@ -5,6 +5,10 @@
 --todo
 
 function twitch_enemies_to_steve()
+    async(effect_enemies_to_steve)
+end
+
+function effect_enemies_to_steve()
     local player
 
     repeat

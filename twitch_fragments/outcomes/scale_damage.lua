@@ -4,6 +4,10 @@
 --10
 --reee
 function twitch_scale_damage()
+    async(effect_scale_damage)
+end
+
+function effect_scale_damage()
     
     local player_entity
 

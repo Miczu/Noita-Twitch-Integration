@@ -4,6 +4,10 @@
 --100
 --todo
 function twitch_spiderman()
+    async(effect_spiderman)
+end
+
+function effect_spiderman()
 	local lukki_count_true = GlobalsGetValue( "PERK_PICKED_ATTACK_FOOT_PICKUP_COUNT","0")
 	local lukki_transformation_progress_true = GlobalsGetValue( "PLAYER_LUKKINESS_LEVEL","0")
 	local x, y = get_player_pos()

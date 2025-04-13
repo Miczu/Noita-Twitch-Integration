@@ -4,6 +4,10 @@
 --300
 --counters melee hits
 function twitch_counter()
+    async(effect_counter)
+end
+
+function effect_counter()
     local player
 
     repeat

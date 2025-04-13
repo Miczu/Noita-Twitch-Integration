@@ -4,6 +4,10 @@
 --250
 --
 function twitch_become_speed()
+    async(effect_become_speed)
+end
+
+function effect_become_speed()
     local player
 
     repeat

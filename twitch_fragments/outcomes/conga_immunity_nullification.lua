@@ -4,6 +4,10 @@
 --100
 --You can no longer benefit from any immunities
 function twitch_conga_immunity_nullification()
+    async(effect_conga_immunity_nullification)
+end
+
+function effect_conga_immunity_nullification()
     local player
 
     repeat

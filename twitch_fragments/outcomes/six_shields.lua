@@ -4,6 +4,10 @@
 --70
 --todo
 function twitch_six_shields()
+    async(effect_six_shields)
+end
+
+function effect_six_shields()
     local player
 
     repeat

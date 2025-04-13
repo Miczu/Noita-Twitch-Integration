@@ -4,6 +4,10 @@
 --150
 --idk fml
 function twitch_transmutation()
+    async(effect_transmutation)
+end
+
+function effect_transmutation()
     local player
 
     repeat

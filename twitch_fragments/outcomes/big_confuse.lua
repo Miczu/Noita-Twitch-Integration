@@ -4,10 +4,10 @@
 --170
 --confuses player?
 function twitch_big_confuse()
-    async(big_confuse_effect)
+    async(effect_big_confuse)
 end
 
-function big_confuse_effect()
+function effect_big_confuse()
     local player
 
     repeat
@@ -16,6 +16,6 @@ function big_confuse_effect()
 	until player > 0;
     
     local effect = CellFactory_GetType("twitch_big_confuse")
-    EntityIngestMaterial( player, effect, 10 )
+    EntityIngestMaterial(player, effect, 10 )
     empty_player_stomach()
 end

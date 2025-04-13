@@ -4,6 +4,10 @@
 --100
 --Enemies can have lava, acid or polymorphine blood
 function twitch_conga_spicyblood()
+    async(effect_conga_spicyblood)
+end
+
+function effect_conga_spicyblood()
     local player
 
     repeat

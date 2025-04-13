@@ -4,6 +4,10 @@
 --20
 --
 function twitch_sugarrush()
+    async(effect_sugarrush)
+end
+
+function effect_sugarrush()
     local player
 
     repeat

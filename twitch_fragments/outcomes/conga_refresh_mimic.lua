@@ -4,6 +4,10 @@
 --200
 --
 function twitch_conga_refresh_mimic()
+    async(effect_conga_refresh_mimic)
+end
+
+function effect_conga_refresh_mimic()
     local player
 
     repeat

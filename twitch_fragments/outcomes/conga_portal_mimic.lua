@@ -4,6 +4,10 @@
 --150
 --
 function twitch_conga_portal_mimic()
+    async(effect_conga_portal_mimic)
+end
+
+function effect_conga_portal_mimic()
     local player
 
     repeat

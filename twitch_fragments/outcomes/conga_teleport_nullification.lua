@@ -4,6 +4,10 @@
 --100
 --You can no longer teleport
 function twitch_conga_teleport_nullification()
+    async(effect_conga_teleport_nullification)
+end
+
+function effect_conga_teleport_nullification()
     local player
 
     repeat

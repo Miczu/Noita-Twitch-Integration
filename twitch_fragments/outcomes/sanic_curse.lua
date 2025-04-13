@@ -4,6 +4,10 @@
 --80
 --todo
 function twitch_sanic_curse()
+    async(effect_sanic_curse)
+end
+
+function effect_sanic_curse()
     
     local player
 

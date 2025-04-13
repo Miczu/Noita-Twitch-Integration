@@ -4,6 +4,10 @@
 --360
 --todo
 function twitch_stronk()
+    async(effect_stronk)
+end
+
+function effect_stronk()
     local player
 
     repeat

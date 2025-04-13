@@ -4,6 +4,10 @@
 --210
 --todo
 function twitch_shift()
+    async(effect_shift)
+end
+
+function effect_shift()
     
     local player
 

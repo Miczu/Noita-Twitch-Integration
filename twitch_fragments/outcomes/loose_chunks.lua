@@ -4,6 +4,10 @@
 --130
 --idk fml
 function twitch_loose_chunks()
+    async(effect_loose_chunks)
+end
+
+function effect_loose_chunks()
     
     local player
 

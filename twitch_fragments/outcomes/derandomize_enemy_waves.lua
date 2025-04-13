@@ -5,6 +5,10 @@
 --todo
 
 function twitch_derandomize_enemy_waves()
+    async(effect_derandomize_enemy_waves)
+end
+
+function effect_derandomize_enemy_waves()
     local player
 
     repeat

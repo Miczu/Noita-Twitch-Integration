@@ -4,6 +4,10 @@
 --90
 --
 function twitch_conga_derandomized_projectiles()
+    async(effect_conga_derandomized_projectiles)
+end
+
+function effect_conga_derandomized_projectiles()
     local player
 
     repeat

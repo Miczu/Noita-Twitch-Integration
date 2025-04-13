@@ -4,6 +4,10 @@
 --340
 --todo
 function twitch_mana_overdrive()
+    async(effect_mana_overdrive)
+end
+
+function effect_mana_overdrive()
     
     local player
 

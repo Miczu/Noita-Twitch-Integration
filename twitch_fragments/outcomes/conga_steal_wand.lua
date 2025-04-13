@@ -4,6 +4,10 @@
 --200
 --
 function twitch_conga_steal_wand()
+    async(effect_conga_steal_wand)
+end
+
+function effect_conga_steal_wand()
     local player
 
     repeat

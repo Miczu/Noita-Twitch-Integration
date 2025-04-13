@@ -5,6 +5,10 @@
 --todo
 
 function twitch_grounded()
+    async(effect_grounded)
+end
+
+function effect_grounded()
     local player
 
     repeat

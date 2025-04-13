@@ -4,6 +4,10 @@
 --150
 --todo
 function twitch_blindness()
+    async(effect_blindness)
+end
+
+function effect_blindness()
     local player
 
     repeat

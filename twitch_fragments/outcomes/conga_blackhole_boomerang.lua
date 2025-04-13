@@ -4,6 +4,10 @@
 --80
 --
 function twitch_conga_blackhole_boomerang()
+    async(effect_conga_blackhole_boomerang)
+end
+
+function effect_conga_blackhole_boomerang()
     local player
 
     repeat

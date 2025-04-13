@@ -4,6 +4,10 @@
 --119
 --Every enemy is set on fire, becomes immune to fire and tries to set you on fire
 function twitch_blazing_enemies()
+    async(effect_blazing_enemies)
+end
+
+function effect_blazing_enemies()
     local player
 
     repeat

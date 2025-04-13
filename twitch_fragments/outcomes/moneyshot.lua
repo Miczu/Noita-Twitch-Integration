@@ -4,6 +4,10 @@
 --90
 --todo
 function twitch_moneyshot()
+    async(effect_moneyshot)
+end
+
+function effect_moneyshot()
     
     local player
 

@@ -4,6 +4,10 @@
 --220
 --Makes the player stomp cause damage to the terrain
 function twitch_chonky()
+    async(effect_chonky)
+end
+
+function effect_chonky()
     local player
 
     repeat

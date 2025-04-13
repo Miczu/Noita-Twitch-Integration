@@ -4,6 +4,10 @@
 --100
 --
 function twitch_conga_spells_to_worms()
+    async(effect_conga_spells_to_worms)
+end
+
+function effect_conga_spells_to_worms()
     local player
 
     repeat

@@ -5,7 +5,14 @@
 --todo
 
 function twitch_randomize_enemies()
-    local player = get_player()
+    
+    local player
+
+    repeat
+		wait(1);
+		player = get_player_nopoly();
+	until player > 0;
+
     if (player) then
         local x, y = get_player_pos()
         local thingy = EntityLoad("mods/twitch-integration/files/effects/randomizer.xml", x, y)

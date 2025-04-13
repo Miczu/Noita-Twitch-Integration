@@ -4,7 +4,14 @@
 --210
 --todo
 function twitch_shift()
-    local player = get_player()
+    
+    local player
+
+    repeat
+		wait(1);
+		player = get_player_nopoly();
+	until player > 0;
+
     local fungi = CellFactory_GetType("fungi")
     local frame = GameGetFrameNum()
 	local last_frame = tonumber( GlobalsGetValue( "fungal_shift_last_frame", "-1000000" ) )

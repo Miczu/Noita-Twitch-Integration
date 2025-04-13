@@ -22,5 +22,9 @@ if #players > 0 then
     if damage_model ~= nil then
         local fire = ComponentObjectGetValue2(damage_model[1], "damage_multipliers", "fire")
         ComponentObjectSetValue2(damage_model[1], "damage_multipliers", "fire", fire / 2)
+        EntitySetDamageFromMaterial( player_id, "acid", 0.0)
+        EntitySetDamageFromMaterial( player_id, "lava", 0.0)
+        EntitySetDamageFromMaterial( player_id, "poison", 0.0)
+        EntitySetDamageFromMaterial( player_id, "cursed_liquid", 0.0)
     end
 end

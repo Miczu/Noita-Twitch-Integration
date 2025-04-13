@@ -6,7 +6,14 @@ function hello()
     print("Hello")
 end
 
-function get_player() return EntityGetWithTag("player_unit")[1] end
+function get_player()
+    local player = EntityGetWithTag("player_unit") or EntityGetWithTag("player_polymorph") or {}
+    if #player > 0 then
+        return player[1]
+    end
+end
+
+function get_player_nopoly() return EntityGetWithTag("player_unit")[1] end
 
 function get_player_pos()
     local x, y = EntityGetTransform(get_player())

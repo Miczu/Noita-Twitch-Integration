@@ -5,7 +5,13 @@
 --todo
 
 function twitch_enemies_to_steve()
-    local player = get_player()
+    local player
+
+    repeat
+		wait(1);
+		player = get_player_nopoly();
+	until player > 0;
+
     if (player) then
         local x, y = get_player_pos()
         local thingy = EntityLoad("mods/twitch-integration/files/effects/steve.xml", x, y)

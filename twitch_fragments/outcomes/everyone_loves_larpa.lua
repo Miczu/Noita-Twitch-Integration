@@ -6,25 +6,28 @@
 dofile_once("data/scripts/lib/utilities.lua")
 
 function twitch_everyone_loves_larpa()
-  local players = EntityGetWithTag("player_unit")
-  for k=1,#players do
-    local v = players[k]
-    -- Remove older instances of projectile larpa script
-    local entities = EntityGetAllChildren(v)
-    for l=1,#entities do
-      local e = entities[l]
-      local s = EntityGetFirstComponent(e,"LuaComponent","larpa_main")
-      if (s ~= nil) then
-        EntityRemoveComponent(e,s)
-      end
+  local player
+
+    repeat
+		wait(1);
+		player = get_player_nopoly();
+	until player > 0;
+
+  -- Remove older instances of projectile larpa script
+  local entities = EntityGetAllChildren(player)
+  for l=1,#entities do
+    local e = entities[l]
+    local s = EntityGetFirstComponent(e,"LuaComponent","larpa_main")
+    if (s ~= nil) then
+      EntityRemoveComponent(e,s)
     end
-    -- Add new instance of projectile larpa script
-    local x,y = EntityGetTransform(v)
-    local c = EntityLoad("mods/Twitch-integration/files/entities/misc/effect_everyone_loves_larpa.xml",x,y)
-    EntityAddTag(c,"larpa_entity")
-    EntityAddChild(v,c)
-    SetRandomSeed(x,y)
   end
+  -- Add new instance of projectile larpa script
+  local x,y = EntityGetTransform(player)
+  local c = EntityLoad("mods/Twitch-integration/files/entities/misc/effect_everyone_loves_larpa.xml",x,y)
+  EntityAddTag(c,"larpa_entity")
+  EntityAddChild(player,c)
+  SetRandomSeed(x,y)
 
   --[[ Stack larpa with subsequent votes
   local larpa_enabled = GlobalsGetValue("twitch_everyone_loves_larpa_enabled","")

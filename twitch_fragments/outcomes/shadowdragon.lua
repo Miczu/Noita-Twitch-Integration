@@ -12,7 +12,7 @@ function shadowDragonAdd()
 
 	repeat
 		wait(1);
-		playerId = get_player();
+		playerId = get_player_nopoly();
 	until playerId > 0;
 
 	local compId = EntityAddComponent( playerId, "LuaComponent", 

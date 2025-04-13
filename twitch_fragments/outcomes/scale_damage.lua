@@ -4,7 +4,14 @@
 --10
 --reee
 function twitch_scale_damage()
-    local player_entity = get_player()
+    
+    local player_entity
+
+    repeat
+		wait(1);
+		player_entity = get_player_nopoly();
+	until player_entity > 0;
+
 	local damagemodels = EntityGetComponent( player_entity, "DamageModelComponent" )
 	if( damagemodels ~= nil ) then
 		for i,damagemodel in ipairs(damagemodels) do

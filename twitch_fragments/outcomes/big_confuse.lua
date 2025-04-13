@@ -4,6 +4,10 @@
 --170
 --confuses player?
 function twitch_big_confuse()
+    async(big_confuse_effect)
+end
+
+function big_confuse_effect()
     local player
 
     repeat

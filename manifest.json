@@ -24,7 +24,7 @@
         "data/scripts/items/chest_random.lua": "9DDCA1EF58410D108B0FF7BA32A74E592813DC1EB26A684BC7B85D0DDDD11A4D",
         "data/scripts/items/chest_ti_appends.lua": "F1C133E0BBD0F77A5F93E879010B74C2D0ED12A53CF109D9D426F14C2EFFF017",
         "data/scripts/player_home.lua": "5ca8b330ba6afa8ae31f11a2926cbfc8ec2a85cab54ff3c91e90883eab1d2bba",
-        "data/scripts/shadow_dragon.lua": "eb4347451dcdf6231f13034a1a86e40c02967671bcbd1be5635206bfa3822edd",
+        "data/scripts/shadow_dragon.lua": "e0e9fabf1b347c3cb3c021d07fdceb4fba63f5a0f5b398391f18a902a53b9d1a",
         "data/scripts/toofarteleport.lua": "d41ab5ae2b63a1eb9abe55605d31990892dbe06ac08f4f95cba6eb9c0a28528a",
         "data/twitch/badge_1.xml": "c7af86eb5e9be9dd464d8e390a28611f066b0c5ac93670bf220045d06f5e29ef",
         "data/twitch/e.png": "5c0a821a23f22c35a82d03462a025453e410965447bc7141046b87ed1fa577f7",

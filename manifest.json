@@ -243,8 +243,8 @@
         "index.js": "aace9c34ead7ab17257e8e8ced765de158522f1c7a93899101834776019689f3",
         "init.lua": "ff4a386790bc0b3ef73098622e5a36cc7446617defa662e593c66dd366af76a2",
         "install.bat": "73181520463e8644a6179db5bba2df73356ab81458565ddc3aabb04ce6cdd0e2",
-        "lib/noita.js": "88e5dead4582046e0b972a9ca7a245d07b9b8f1230b2e2c53f30117009c09049",
-        "lib/settings.js": "f4d2eac8d0e23e606ad7033e06e78b9c91d316f89d8f5a7bbb6285671a137c0f",
+        "lib/noita.js": "74711be147e71ff60ee4c559c5ad9a6dc4b74a8d8043a3d585d58070e3d308a9",
+        "lib/settings.js": "08bb4534a7211452b1b13b843b022cdfb9642f6f94f7e2f651ccc407aca2b9a0",
         "lib/twitch.js": "7559549aeaa09419de74449e9e2150f4069bf8ccd00ead41cbd6988292a3c8f8",
         "lib/webui.js": "8defe9a8c1a4689ff1a2f69ec58d2b4cf013fb59925942648c1b3401dfed5993",
         "mod.xml": "c2ca1fbe86f4253aaa230d77e6e53337a497a31c6034897f47cfe83a4d50c952",
@@ -385,6 +385,6 @@
         "twitch_fragments/utils.lua": "5c67be53a2189e515f259d7cde6907ca1b707d3416667178886da87bb56b8ecb",
         "update.js": "bdc68c213786748d597b1800bcae733c294161d5e0797adbcfb364ebe5240732",
         "webui/index.html": "fe1e877ad7805a1feb6a97bac5f430a2b3b8eca8c014d8d80224652f15ede635",
-        "webui/js/main.js": "e556a0586af38ed1d14e57ff3ce734e0866766ef6d8b2cb178baddd1bd5e063f"
+        "webui/js/main.js": "dc79c558a7bce00246f6af02356b1fb21ae36eadd2796284e117f62120d406fe"
     }
 }

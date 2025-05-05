@@ -16,6 +16,8 @@ function effect_cut_health()
 		player_entity = get_player_nopoly();
 	until player_entity > 0;
 
+    wait(30)
+
     local x, y = get_player_pos()
     local hp = 0;
     local damage_models = EntityGetComponent(player_entity,

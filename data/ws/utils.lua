@@ -7,11 +7,11 @@ function hello()
 end
 
 function get_player()
-    local player = EntityGetWithTag("player_unit") or EntityGetWithTag("player_polymorph") or {}
+    local player = EntityGetWithTag("player_unit") or EntityGetWithTag("player_polymorph") or EntityGetWithTag("polymorphed_cessation") or {}
     if #player > 0 then
         return player[1]
     end
-    return 0
+    return nil
 end
 
 function get_player_nopoly()

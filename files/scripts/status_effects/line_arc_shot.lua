@@ -8,7 +8,7 @@ function shot( entity_id )
 		
 		local angle = math.deg(0 - math.atan2( vel_y, vel_x ))
 		local dist = math.sqrt( vel_y ^ 2 + vel_x ^ 2 )
-		angle = math.floor((angle + 22.5) / 45) * 45
+		angle = math.floor((angle + 45) / 90) * 90
 		angle = math.rad(angle)
 	
 		vel_x = math.cos( angle ) * dist

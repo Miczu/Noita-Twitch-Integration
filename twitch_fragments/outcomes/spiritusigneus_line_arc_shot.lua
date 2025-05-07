@@ -1,8 +1,8 @@
 --Linear Arc Shots
---Makes projectiles fire only in cardinal and diagonal directions
+--Makes projectiles fire only in cardinal directions
 --curses
 --100
---Your projectiles only fire in cardinal and diagonal directions
+--Your projectiles only fire in cardinal directions
 function twitch_spiritusigneus_line_arc_shot()
 	local players = EntityGetWithTag("player_unit")
 	for k=1,#players

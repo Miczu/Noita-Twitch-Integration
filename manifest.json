@@ -213,7 +213,7 @@
         "files/scripts/status_effects/ambrosia_cancel_start.lua": "a678fdf17e7edc94b3e7d901e834c0000e660deb81db3025785f6ff5f7431785",
         "files/scripts/status_effects/ambrosia_cancel.lua": "4004d77613d6477c86b86279fbe24869b9a906c11a219dd1e8466aa1fe86ffe9",
         "files/scripts/status_effects/ambrosia_cancel_end.lua": "13f4eb4e7734f98aa666e8971763736ebce75a93f542127fac90ac8dbf05a86d",
-		"files/scripts/status_effects/line_arc_shot.lua": "586722946d4f78d74713037d31075147b646f291351d602289e7d557274dd31c",
+		"files/scripts/status_effects/line_arc_shot.lua": "c7a2b53362c5ff4d13e5a847856e62e7619717c959d48df091a76ea6477a7986",
 		"files/scripts/status_effects/line_arc_shot_endcheck.lua": "9da33b579113a4287e6481f0cc07a30fa66617cbc8e0d9f064428fa4f5dc2838",
         "files/scripts/status_effects/teleport_cancel.lua": "BD4333319054B1C9D2AAED40000AC7BAEF2E6FA2BC0966BE8239E1DF41AD4261",
         "files/scripts/status_effects/teleport_cancel_end.lua": "79BF38697BBB4270A40222C7C9229BEDBBCF39ED01EFEDE30705C579C9C6164D",

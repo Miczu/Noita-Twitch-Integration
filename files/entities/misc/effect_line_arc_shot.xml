@@ -1,0 +1,35 @@
+<Entity name="spiritusigneus_line_arc">
+	<InheritTransformComponent>
+	</InheritTransformComponent>
+	
+	<LuaComponent
+		script_shot="mods/twitch-integration/files/scripts/status_effects/line_arc_shot.lua"
+		execute_every_n_frame="1"
+		>
+	</LuaComponent>
+	
+	<LuaComponent
+		execute_on_added="0"
+		script_source_file="mods/twitch-integration/files/scripts/status_effects/line_arc_endcheck.lua"
+		execute_every_n_frame="-1"
+		execute_on_removed="1"
+		remove_after_executed="1"
+		>
+	</LuaComponent>
+	
+	<GameEffectComponent
+		effect="NONE"
+		frames="2700"
+	>
+	</GameEffectComponent>
+	
+	<UIIconComponent
+		name="Linear Arc Shots"
+		description="Your projectiles are affected by Linear Arc"
+		icon_sprite_file="mods/twitch-integration/files/ui_gfx/status_indicators/line_arc_ui.png"
+		is_perk="0"
+		display_above_head="1"
+		display_in_hud="1"
+		>
+	</UIIconComponent>
+</Entity>

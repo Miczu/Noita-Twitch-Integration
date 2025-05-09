@@ -281,6 +281,14 @@ const NoitaView = Vue.component("ti-noita", {
                 return "Must be higher than min"
             }
             else return true
+        },
+        voteOptionsRule(val) {
+            if (val < 1) {
+                return "Must be at least 1"
+            } else if (val % 1 != 0) {
+                return "Must be an integer"
+            }
+            else return true
         }
     },
     beforeCreate: async function () {
@@ -333,7 +341,6 @@ const NoitaView = Vue.component("ti-noita", {
                                 <v-col cols="12">
                                     <v-divider></v-divider>
                                 </v-col>
-                                
 
                                 <v-col cols="12"  :sm="getCols.voting" :md="getCols.voting" :xl="getCols.voting" v-if="!randomizedTime['voting']">
                                     <v-text-field label="Voting Time" v-model.number="temp.noita.voting_time" type="number" :rules="[isNumber]" outlined>
@@ -385,6 +392,24 @@ const NoitaView = Vue.component("ti-noita", {
                                                 <v-col cols="12" sm="6" md="6">
                                                     <v-text-field label="Max" v-model.number="temp.noita.random_time_between.max" type="number" :rules="[isNumber, betweenMaxRule]" outlined>
                                                     </v-text-field>
+                                                </v-col>
+                                            </v-row>
+                                        </v-card-text>
+                                    </v-card>
+                                </v-col>
+                                
+                                <v-col cols="12">
+                                    <v-card color="grey darken-3" flat>
+                                        <v-toolbar color="deep-purple darken-1" flat>
+                                            <v-toolbar-title>Vote Choices</v-toolbar-title>
+                                        </v-toolbar>
+                                        <v-card-text>
+                                            <v-row>
+                                                <v-col cols="12">
+                                                    <v-text-field label="Number Of Options" v-model.number="temp.noita.options_per_vote" type="number" :rules="[isNumber, voteOptionsRule]" outlined>
+                                                    </v-text-field>
+                                                    <v-checkbox label="Permanent Gamba Option" v-model="temp.noita.permanent_gamba_option">
+                                                    </v-checkbox>
                                                 </v-col>
                                             </v-row>
                                         </v-card-text>

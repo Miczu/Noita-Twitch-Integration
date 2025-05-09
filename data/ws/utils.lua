@@ -7,10 +7,13 @@ function hello()
 end
 
 function get_player()
-    local player = EntityGetWithTag("player_unit") or EntityGetWithTag("polymorphed_player") or EntityGetWithTag("polymorphed_cessation") or {}
-    if #player > 0 then
-        return player[1]
-    end
+    local tags = {"player_unit", "polymorphed_player", "polymorphed_cessation"}
+	for tag=1,#tags do
+		local player = EntityGetWithTag(tags[tag])
+		if #player > 0 then
+			return player[1]
+		end
+	end
     return nil
 end
 

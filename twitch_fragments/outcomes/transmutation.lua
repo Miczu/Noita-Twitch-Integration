@@ -4,7 +4,17 @@
 --150
 --idk fml
 function twitch_transmutation()
-    local player = get_player()
+    async(effect_transmutation)
+end
+
+function effect_transmutation()
+    local player
+
+    repeat
+		wait(1);
+		player = get_player_nopoly();
+	until player > 0;
+
     local x, y = get_player_pos()
 
     local effect_id = EntityLoad("data/scripts/streaming_integration/entities/transmutation.xml", x, y)

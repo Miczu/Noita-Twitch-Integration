@@ -10,7 +10,7 @@ function twitch_swapper_curse()
 			--GamePrint("Start")
 			local lastSwap = GameGetFrameNum()
 			repeat
-				local pid = get_player()
+				local pid = get_player_nopoly()
 				if pid ~= nil then
 					local cid = EntityGetFirstComponent(pid, "ControlsComponent")
 					local x, y = ComponentGetValue2(cid, "mMousePosition") -- 1280/720

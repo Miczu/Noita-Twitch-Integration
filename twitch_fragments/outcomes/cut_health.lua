@@ -4,8 +4,20 @@
 --250
 --todo
 function twitch_cut_health()
+    async(effect_cut_health)
+end
+
+function effect_cut_health()
     local percent_to_remove = 0.25;
-    local player_entity = get_player()
+    local player_entity
+
+    repeat
+		wait(1);
+		player_entity = get_player_nopoly();
+	until player_entity > 0;
+
+    wait(30)
+
     local x, y = get_player_pos()
     local hp = 0;
     local damage_models = EntityGetComponent(player_entity,

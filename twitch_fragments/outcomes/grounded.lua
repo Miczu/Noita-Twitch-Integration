@@ -5,7 +5,17 @@
 --todo
 
 function twitch_grounded()
-    local player = get_player()
+    async(effect_grounded)
+end
+
+function effect_grounded()
+    local player
+
+    repeat
+		wait(1);
+		player = get_player_nopoly();
+	until player > 0;
+
     if (player) then
         local x, y = get_player_pos()
         local thingy = EntityCreateNew("grounded")
@@ -26,11 +36,11 @@ function twitch_grounded()
     end
     async(function()
         local duration = 60 * 6
-        local player_data = EntityGetFirstComponent( get_player(), "CharacterDataComponent")
+        local player_data = EntityGetFirstComponent( get_player_nopoly(), "CharacterDataComponent")
     
         while player_data == nil do
             wait(60)
-            player_data = EntityGetFirstComponent( get_player(), "CharacterDataComponent")
+            player_data = EntityGetFirstComponent( get_player_nopoly(), "CharacterDataComponent")
         end
         
         local flytime = ComponentGetValue2(player_data, "mFlyingTimeLeft")

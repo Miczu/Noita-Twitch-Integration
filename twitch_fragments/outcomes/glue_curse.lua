@@ -14,7 +14,7 @@ function glueCurseMonitor()
 
 	repeat
 		wait(1);
-		playerId = get_player();
+		playerId = get_player_nopoly();
 	until playerId > 0;
 
 	local compId = EntityAddComponent( playerId, "LuaComponent", 
@@ -25,7 +25,7 @@ function glueCurseMonitor()
 	
 	repeat
 		wait(1);
-		playerId = get_player();
+		playerId = get_player_nopoly();
 	until not is_icon_effect_active("Glue Curse") and playerId > 0;
 
 	EntityRemoveComponent(playerId, compId);

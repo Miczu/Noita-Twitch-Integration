@@ -6,7 +6,9 @@ function hello()
     print("Hello")
 end
 
-function get_player()
+function get_player() return EntityGetWithTag("player_unit")[1] end
+
+function get_player_event()
     local tags = {"player_unit", "polymorphed_player", "polymorphed_cessation"}
 	for tag=1,#tags do
 		local player = EntityGetWithTag(tags[tag])

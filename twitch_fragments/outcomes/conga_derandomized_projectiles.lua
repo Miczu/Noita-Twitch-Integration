@@ -289,7 +289,7 @@ function effect_conga_derandomized_projectiles()
         return spellid, iconid, threatlevel
     end
 
-    local x,y = EntityGetTransform(get_player())
+    local x,y = EntityGetTransform(get_player_event())
     local projFile, iconid, threatlevel = chooseSpell(x,y)
     GlobalsSetValue("TI_randomproj",projFile)
     GlobalsSetValue("TI_randomprojicon",iconid)

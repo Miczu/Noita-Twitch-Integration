@@ -29,7 +29,7 @@ end
 
 function shift_warning()
 	wait(10*60-70)
-    local player = get_player()
+    local player = get_player_event()
 	local x,y = EntityGetTransform(player)
 	local c = EntityLoad("mods/Twitch-integration/files/entities/misc/effect_standard_warning.xml",x,y)
 	EntityAddChild(player,c)

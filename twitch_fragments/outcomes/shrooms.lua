@@ -4,17 +4,7 @@
 --230
 --todo
 function twitch_shrooms()
-    async(effect_shrooms)
-end
-
-function effect_shrooms()
-    local player
-
-    repeat
-		wait(1);
-		player = get_player_nopoly();
-	until player > 0;
-
+    local player = get_player()
     local fungi = CellFactory_GetType("fungi")
     EntityIngestMaterial( player, fungi, 150 )
     empty_player_stomach()

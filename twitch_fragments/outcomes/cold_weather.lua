@@ -7,7 +7,7 @@ function twitch_cold_weather()
     async(function()
         while true do
             wait(6)
-            player_data = EntityGetFirstComponent( get_player_event(), "CharacterDataComponent")
+            player_data = EntityGetFirstComponent( get_player(), "CharacterDataComponent")
             if (player_data ~= nil) then                
                 local flytime = ComponentGetValue2(player_data, "mFlyingTimeLeft")
                 local flyMax = ComponentGetValue2(player_data, "fly_time_max")

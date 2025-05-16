@@ -5,7 +5,7 @@
 --Spawns a squad of 3 to 13 enemies consisting of toxic slimes, acid slimes, and mother slimes. Affected by current player health.
 function twitch_slime_squad()
     local additional = 0
-    local player = get_player_event()
+    local player = get_player()
     if player == nil then
         spawn_entity_in_view_random_angle("data/entities/animals/giantshooter_weak.xml", 50, 130, 20, append_viewer_name)
         spawn_entity_in_view_random_angle("data/entities/animals/giantshooter_weak.xml", 50, 130, 20, append_viewer_name)

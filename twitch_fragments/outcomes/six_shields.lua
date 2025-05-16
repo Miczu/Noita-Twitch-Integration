@@ -4,17 +4,7 @@
 --70
 --todo
 function twitch_six_shields()
-    async(effect_six_shields)
-end
-
-function effect_six_shields()
-    local player
-
-    repeat
-		wait(1);
-		player = get_player_nopoly();
-	until player > 0;
-
+    local player = get_player()
     local shieldrad = tonumber(GlobalsGetValue("twitch_shieldsize", "10"))
     for i = 1, 6 do
         local x, y = get_player_pos()

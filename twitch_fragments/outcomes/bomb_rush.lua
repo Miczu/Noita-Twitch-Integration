@@ -13,7 +13,7 @@ function twitch_bomb_rush()
             scale_x="4",
             scale_y="4"
         }
-        local timer = append_text(get_player(), TEXT)
+        local timer = append_text(get_player_event(), TEXT)
         local tnt = Random(5, 9)
         local small_bombs = Random(4, 7)
         local bombs = Random(3, 5)
@@ -22,10 +22,10 @@ function twitch_bomb_rush()
         for i=1, 3 do
             wait(60)
             local num = tonumber(TEXT.string) - i
-            update_text( get_player(), timer, tostring(num) )
+            update_text( get_player_event(), timer, tostring(num) )
         end
         wait(60)
-        remove_text(get_player(), timer)
+        remove_text(get_player_event(), timer)
         GameScreenshake( 100 )
         for i = 1, tnt do
             spawn_item("data/entities/projectiles/tnt.xml", 0, 70)
@@ -33,14 +33,14 @@ function twitch_bomb_rush()
 
         --Wave 2
         TEXT.string = "2"
-        timer = append_text(get_player(), TEXT)
+        timer = append_text(get_player_event(), TEXT)
         for i=1, 2 do
             wait(60)
             local num = tonumber(TEXT.string) - i
-            update_text( get_player(), timer, tostring(num) )
+            update_text( get_player_event(), timer, tostring(num) )
         end
         wait(60)
-        remove_text(get_player(), timer)
+        remove_text(get_player_event(), timer)
 
         GameScreenshake( 200 )
         for i = 1, small_bombs do
@@ -49,14 +49,14 @@ function twitch_bomb_rush()
 
         --Wave 3
         TEXT.string = "4"
-        timer = append_text(get_player(), TEXT)
+        timer = append_text(get_player_event(), TEXT)
         for i=1, 4 do
             wait(60)
             local num = tonumber(TEXT.string) - i
-            update_text( get_player(), timer, tostring(num) )
+            update_text( get_player_event(), timer, tostring(num) )
         end
         wait(60)
-        remove_text(get_player(), timer)
+        remove_text(get_player_event(), timer)
 
         GameScreenshake( 400 )
         for i = 1, bombs do
@@ -65,14 +65,14 @@ function twitch_bomb_rush()
 
         --Wave 4
         TEXT.string = "5"
-        timer = append_text(get_player(), TEXT)
+        timer = append_text(get_player_event(), TEXT)
         for i=1, 5 do
             wait(60)
             local num = tonumber(TEXT.string) - i
-            update_text( get_player(), timer, tostring(num) )
+            update_text( get_player_event(), timer, tostring(num) )
         end
         wait(60)
-        remove_text(get_player(), timer)
+        remove_text(get_player_event(), timer)
         GameScreenshake( 1000 )
         spawn_item("data/entities/projectiles/bomb_holy.xml", 140, 190, true)
     end)

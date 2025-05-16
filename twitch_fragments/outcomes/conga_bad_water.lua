@@ -7,7 +7,7 @@ function twitch_conga_bad_water()
     async(effect_conga_bad_water)
 end
 
-function effect_conga_bad_water()
+function effct_conga_bad_water()
     local player
 
     repeat

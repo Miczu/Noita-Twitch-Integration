@@ -4,18 +4,7 @@
 --210
 --todo
 function twitch_shift()
-    async(effect_shift)
-end
-
-function effect_shift()
-    
-    local player
-
-    repeat
-		wait(1);
-		player = get_player_nopoly();
-	until player > 0;
-
+    local player = get_player()
     local fungi = CellFactory_GetType("fungi")
     local frame = GameGetFrameNum()
 	local last_frame = tonumber( GlobalsGetValue( "fungal_shift_last_frame", "-1000000" ) )
@@ -29,7 +18,7 @@ end
 
 function shift_warning()
 	wait(10*60-70)
-    local player = get_player_event()
+    local player = get_player()
 	local x,y = EntityGetTransform(player)
 	local c = EntityLoad("mods/Twitch-integration/files/entities/misc/effect_standard_warning.xml",x,y)
 	EntityAddChild(player,c)

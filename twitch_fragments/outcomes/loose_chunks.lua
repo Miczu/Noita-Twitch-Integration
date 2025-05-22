@@ -4,18 +4,7 @@
 --130
 --idk fml
 function twitch_loose_chunks()
-    async(effect_loose_chunks)
-end
-
-function effect_loose_chunks()
-    
-    local player
-
-    repeat
-		wait(1);
-		player = get_player_nopoly();
-	until player > 0;
-
+    local player = get_player()
     local x, y = get_player_pos()
 
     local effect_id = EntityLoad("mods/twitch-integration/files/effects/earthquake_curse.xml", x, y)

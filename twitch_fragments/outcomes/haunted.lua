@@ -8,7 +8,7 @@ function twitch_haunted()
     if Random(0, 1) > 0 then from_avove = true end
     spawn_something("data/entities/animals/ghost.xml", 140, 140, from_avove,
                     true, function(entity_ghost)
-        local player = get_player_nopoly()
+        local player = get_player()
         if player ~= nil then
             edit_all_components(entity_ghost, "GhostComponent", function(comp,
                                                                          vars)

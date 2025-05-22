@@ -4,17 +4,7 @@
 --80
 --Stacks a 15-second heartache modifier on the player every 5 seconds, 3 times in a row
 function twitch_heart_attack()
-    async(effect_heart_attack)
-end
-
-function effect_heart_attack()
-    local player
-
-    repeat
-		wait(1);
-		player = get_player_nopoly();
-	until player > 0;
-    
+    local player = EntityGetWithTag("player_unit")[1]
     if player then
         local x, y = EntityGetTransform(player)
         local heart_attack = EntityGetAllChildren(player, "heart_attack")[1] or nil

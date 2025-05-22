@@ -15,7 +15,7 @@ function twitch_bleeding()
 			local condition = rand(conditionMin,conditionMax)
 			
 			repeat
-				local player_entity = get_player_nopoly()
+				local player_entity = get_player()
 				counter = counter + 1
 				if player_entity ~= nil then
 					x, y = get_player_pos()

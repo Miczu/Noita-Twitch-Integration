@@ -4,31 +4,24 @@
 --90
 --
 function twitch_conga_derandomized_projectiles()
-    async(effect_conga_derandomized_projectiles)
-end
-
-function effect_conga_derandomized_projectiles()
-    local player
-
-    repeat
-		wait(1);
-		player = get_player_nopoly();
-	until player > 0;
-
-    local found = false
-    local children = EntityGetAllChildren(player)
-    for z=1,#children do
-        if EntityGetName(children[z]) == "ti_event_derandomized_projectiles" then
-            local comp = EntityGetFirstComponentIncludingDisabled(children[z],"GameEffectComponent")
-            ComponentSetValue2(comp,"frames",ComponentGetValue2(comp,"frames") + 2400)
-            found = true
-            break
+    local players = EntityGetWithTag("player_unit")
+    for k=1,#players
+    do v = players[k]
+        local found = false
+        local children = EntityGetAllChildren(v)
+        for z=1,#children do
+            if EntityGetName(children[z]) == "ti_event_derandomized_projectiles" then
+                local comp = EntityGetFirstComponentIncludingDisabled(children[z],"GameEffectComponent")
+                ComponentSetValue2(comp,"frames",ComponentGetValue2(comp,"frames") + 2400)
+                found = true
+                break
+            end
         end
-    end
-    if found == false then
-        local x,y = EntityGetTransform(player)
-        local c = EntityLoad("mods/Twitch-integration/files/entities/misc/effect_derandomized_projectiles.xml",x,y)
-        EntityAddChild(player,c)
+        if found == false then
+            local x,y = EntityGetTransform(v)
+            local c = EntityLoad("mods/Twitch-integration/files/entities/misc/effect_derandomized_projectiles.xml",x,y)
+            EntityAddChild(v,c)
+        end
     end
 
     local projPoolFast = {
@@ -289,7 +282,7 @@ function effect_conga_derandomized_projectiles()
         return spellid, iconid, threatlevel
     end
 
-    local x,y = EntityGetTransform(get_player_event())
+    local x,y = EntityGetTransform(EntityGetWithTag("player_unit")[1])
     local projFile, iconid, threatlevel = chooseSpell(x,y)
     GlobalsSetValue("TI_randomproj",projFile)
     GlobalsSetValue("TI_randomprojicon",iconid)

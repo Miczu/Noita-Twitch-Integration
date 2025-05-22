@@ -19,7 +19,7 @@ function beacon_check()
 	wait(5)
 	local oldX, oldY = get_player_pos()
 	repeat
-		local pid = get_player_event()
+		local pid = get_player()
 		if pid ~= nil then
 			local cid = EntityGetFirstComponent(pid, "VelocityComponent")
 			

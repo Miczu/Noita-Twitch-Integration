@@ -1,7 +1,7 @@
 --Linear Arc Shots
 --Makes projectiles fire only in cardinal directions
 --curses
---100
+--0
 --Your projectiles only fire in cardinal directions
 function twitch_spiritusigneus_line_arc_shot()
     async(effect_spiritusigneus_line_arc_shot)

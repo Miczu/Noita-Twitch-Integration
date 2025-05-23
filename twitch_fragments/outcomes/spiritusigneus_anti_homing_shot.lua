@@ -1,7 +1,7 @@
 --Anti-Homing Shots
 --Makes your projectiles avoid enemies
 --curses
---100
+--0
 --Why are your projectiles afraid of enemies?
 function twitch_spiritusigneus_anti_homing_shot()
     async(effect_spiritusigneus_anti_homing_shot)

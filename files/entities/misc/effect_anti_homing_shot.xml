@@ -1,0 +1,35 @@
+<Entity name="spiritusigneus_anti_homing">
+	<InheritTransformComponent>
+	</InheritTransformComponent>
+	
+	<LuaComponent
+		script_shot="mods/twitch-integration/files/scripts/status_effects/anti_homing_shot.lua"
+		execute_every_n_frame="1"
+		>
+	</LuaComponent>
+	
+	<LuaComponent
+		execute_on_added="0"
+		script_source_file="mods/twitch-integration/files/scripts/status_effects/anti_homing_endcheck.lua"
+		execute_every_n_frame="-1"
+		execute_on_removed="1"
+		remove_after_executed="1"
+		>
+	</LuaComponent>
+	
+	<GameEffectComponent
+		effect="NONE"
+		frames="2100"
+	>
+	</GameEffectComponent>
+	
+	<UIIconComponent
+		name="Anti-Homing Shots"
+		description="Your projectiles are affected by Anti-Homing"
+		icon_sprite_file="mods/twitch-integration/files/ui_gfx/status_indicators/anti_homing_ui.png"
+		is_perk="0"
+		display_above_head="1"
+		display_in_hud="1"
+		>
+	</UIIconComponent>
+</Entity>

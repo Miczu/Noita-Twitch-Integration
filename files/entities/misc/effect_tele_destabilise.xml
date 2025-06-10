@@ -1,0 +1,36 @@
+<Entity name="spiritusigneus_tele_destabilise">
+	<InheritTransformComponent>
+	</InheritTransformComponent>
+	
+	<LuaComponent
+		script_shot="mods/twitch-integration/files/scripts/status_effects/tele_shot_destabilise.lua"
+		script_source_file="mods/twitch-integration/files/scripts/status_effects/tele_status_destabilise.lua"
+		execute_every_n_frame="1"
+		>
+	</LuaComponent>
+	
+	<LuaComponent
+		execute_on_added="0"
+		script_source_file="mods/twitch-integration/files/scripts/status_effects/tele_destabilise_endcheck.lua"
+		execute_every_n_frame="-1"
+		execute_on_removed="1"
+		remove_after_executed="1"
+		>
+	</LuaComponent>
+	
+	<GameEffectComponent
+		effect="NONE"
+		frames="3600"
+	>
+	</GameEffectComponent>
+	
+	<UIIconComponent
+		name="Teleport Destabilisation"
+		description="Your teleportation is being destabilised"
+		icon_sprite_file="mods/twitch-integration/files/ui_gfx/status_indicators/tele_destabilise_ui.png"
+		is_perk="0"
+		display_above_head="1"
+		display_in_hud="1"
+		>
+	</UIIconComponent>
+</Entity>

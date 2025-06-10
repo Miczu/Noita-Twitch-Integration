@@ -136,7 +136,7 @@
         "files/entities/misc/effect_standard_warning.xml": "91ced064287d61e0b004597e3687fa607d9595e079867de7e8c1961bd45ffdec",
         "files/entities/misc/effect_steal_wand.xml": "9987ce187da4de6f6e18ee4d3c96e560e9e96c6d622b21354e636b5211019312",
         "files/entities/misc/effect_spicyblood.xml": "65865336ECEE8BB06779A91EEAB5846E7808160D2E4EA20F1F19AFCE7AA28706",
-		"files/entities/misc/effects/effect_tele_destabilise.xml": "8a06c71b8c7df19fd4aebf31d7d2554ef588a1ccbd7921a8c9a151f3139e0161",
+		"files/entities/misc/effect_tele_destabilise.xml": "8a06c71b8c7df19fd4aebf31d7d2554ef588a1ccbd7921a8c9a151f3139e0161",
         "files/entities/misc/effect_weebpocalypse.xml": "24ca9a76784b53caf2735402136b18673f5385c25c779bababfa54fe50bb0697",
         "files/entities/particles/image_emitters/magical_symbol_materia_fungus.xml": "031d8f4d4c91bb00c82cfb0e1d3d1b842a10a0a20b52c44947274b5d90e4f94e",
         "files/entities/particles/image_emitters/square_out_128.png": "eab8b34bbddec5232e103ac38e0fbbb01466b36ec342ef9ba49b2b03aa096075",

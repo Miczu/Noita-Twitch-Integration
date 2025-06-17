@@ -137,7 +137,7 @@
         "files/entities/misc/effect_steal_wand.xml": "9987ce187da4de6f6e18ee4d3c96e560e9e96c6d622b21354e636b5211019312",
         "files/entities/misc/effect_spicyblood.xml": "65865336ECEE8BB06779A91EEAB5846E7808160D2E4EA20F1F19AFCE7AA28706",
 		"files/entities/misc/effect_tele_destabilise.xml": "7a4cc483ef987b5af0f2fed40804c3162ac23d20db1c79f375ada8f2cc36fa06",
-		"files/entities/misc/effect_teleport_restabilise.xml": "7b0049288cbe6d251b9e042c4f1a790f95f9978c43f4e3e272f732d1451806d1*",
+		"files/entities/misc/effect_teleport_restabilise.xml": "7b0049288cbe6d251b9e042c4f1a790f95f9978c43f4e3e272f732d1451806d1",
         "files/entities/misc/effect_weebpocalypse.xml": "24ca9a76784b53caf2735402136b18673f5385c25c779bababfa54fe50bb0697",
         "files/entities/particles/image_emitters/magical_symbol_materia_fungus.xml": "031d8f4d4c91bb00c82cfb0e1d3d1b842a10a0a20b52c44947274b5d90e4f94e",
         "files/entities/particles/image_emitters/square_out_128.png": "eab8b34bbddec5232e103ac38e0fbbb01466b36ec342ef9ba49b2b03aa096075",

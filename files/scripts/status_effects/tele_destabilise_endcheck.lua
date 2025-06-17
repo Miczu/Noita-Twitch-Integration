@@ -14,7 +14,7 @@ if children then
     end
 end
 
---If the player is no longer nullified, reenable teleportation perks & swapper mage swapping
+--If the player is no longer destabilised, restabilise teleportitis
 if teledestabilised == false then
     local pos_x, pos_y = EntityGetTransform(player_id)
     local c = EntityLoad("mods/Twitch-integration/files/entities/misc/effect_teleport_restabilise.xml", pos_x, pos_y)

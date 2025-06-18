@@ -10,6 +10,8 @@ if GameGetGameEffectCount( player_id, "TELEPORTITIS" ) ~= 0 then
 		EntityAddComponent( player_id, "LuaComponent", {
 			enable_coroutines = "1",
 			execute_every_n_frame = "-1",
+			limit_to_every_n_frame = "59",
+			limit_all_callbacks = "true",
 			script_damage_received = "mods/twitch-integration/files/scripts/status_effects/unstable_teleportitis.lua"
 		})
     end

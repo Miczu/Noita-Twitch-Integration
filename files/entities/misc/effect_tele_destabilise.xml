@@ -11,6 +11,14 @@
 	
 	<LuaComponent
 		execute_on_added="0"
+		script_source_file="mods/Twitch-integration/files/scripts/status_effects/tele_destabilise_start.lua"
+		execute_every_n_frame="2"
+		remove_after_executed="1"
+		>
+	</LuaComponent>
+	
+	<LuaComponent
+		execute_on_added="0"
 		script_source_file="mods/twitch-integration/files/scripts/status_effects/tele_destabilise_endcheck.lua"
 		execute_every_n_frame="-1"
 		execute_on_removed="1"

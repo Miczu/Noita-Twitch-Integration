@@ -1,4 +1,5 @@
 ModLuaFileAppend("data/scripts/status_effects/status_list.lua", "mods/twitch-integration/files/status_list_append.lua")
+ModLuaFileAppend("data/scripts/status_effects/status_list.lua", "mods/twitch-integration/files/spiritusigneus_status_list_append.lua")
 --
 ModLuaFileAppend("data/scripts/biomes/temple_altar.lua", "mods/twitch-integration/files/temple_altar_append.lua")
 ModLuaFileAppend("data/scripts/biomes/temple_altar_right.lua", "mods/twitch-integration/files/temple_append.lua")
@@ -21,6 +22,7 @@ ModMaterialsFileAdd("mods/twitch-integration/files/materials/stronk.xml")
 ModMaterialsFileAdd("mods/twitch-integration/files/materials/the_purge.xml")
 ModMaterialsFileAdd("mods/twitch-integration/files/materials/sanic_curse.xml")
 ModMaterialsFileAdd("mods/twitch-integration/files/materials/moneyshot.xml")
+ModMaterialsFileAdd("mods/twitch-integration/files/materials/spiritus_igneus_materials.xml")
 function OnModPreInit()
 	-- Nothing to do but this function has to exist
 end

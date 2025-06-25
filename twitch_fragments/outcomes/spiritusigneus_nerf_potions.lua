@@ -16,6 +16,16 @@ function twitch_spiritusigneus_nerf_potions()
 	nerf["water_salt"] = "water_thicc" --brine to thick water
 	nerf["water_ice"] = "water_thicc"  --chilly water to thick water
 	nerf["acid"] = "juice_lime" --acid to lime juice
+	nerf["magic_liquid_faster_levitation_and_movement"] = "magic_liquid_faster_levitation" --hastium to levitatium
+	nerf["magic_liquid_movement_faster"] = "magic_liquid_faster_levitation" --acceleratium to levitatium
+	nerf["magic_liquid_hp_regeneration"] = "magic_liquid_weakness" --healthium to diminution
+	nerf["magic_liquid_hp_regeneration_unstable"] = "magic_liquid_weakness" --lively concoction to diminution
+	nerf["magic_liquid_invisibility"] = "blood_cold" --invisiblium to freezing liquid
+	nerf["blood_worm"] = "urine" --worm blood to urine
+	nerf["blood"] = "slime" --blood to slime
+	nerf["beer"] = "molut" --beer to molut
+	nerf["milk"] = "molut" --milk to molut
+	nerf["midas"] = "gold_molten" --draught of midas to molten gold
 	
 	local inventory = GetInven()
 	local items = EntityGetAllChildren(inventory)

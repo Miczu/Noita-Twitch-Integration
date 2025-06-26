@@ -41,14 +41,12 @@ function twitch_spiritusigneus_nerf_potions()
 						local mat_id = CellFactory_GetName(i)
 						local amount = mat
 						if nerf[mat_id] ~= nil then
---							RemoveMaterialInventoryMaterial(item_id, mat_id)
 							if mat_amounts[nerf[mat_id]] == nil then
 								mat_amounts[nerf[mat_id]] = amount
 							else
 								mat_amounts[nerf[mat_id]] = mat_amounts[nerf[mat_id]] + amount
 							end
---							AddMaterialInventoryMaterial(item_id, nerf[mat_id], same_mat_amount[nerf[mat_id]])
-						elseif contains_value(nerf, mat_id) then
+						else
 							if mat_amounts[mat_id] == nil then
 								mat_amounts[mat_id] = amount
 							else
@@ -64,15 +62,4 @@ function twitch_spiritusigneus_nerf_potions()
 			end
 		end
 	end
-end
-
-function contains_value(containing_table, contained_item)
-	local returnvalue = false
-	for _, item in pairs(containing_table) do
-		if item == contained_item then
-			returnvalue = true
-			break
-		end
-	end
-	return returnvalue
 end

@@ -12,7 +12,7 @@ local nerf_potions_effects =
 		ui_name="Weak Ambrosia",
 		ui_description="Reduces all damage by half",
 		ui_icon="mods/twitch-integration/files/ui_gfx/status_indicators/protection_half.png",
-		effect_entity="mods/twitch_integration/files/entities/misc/effect_weak_ambrosia.xml"
+		effect_entity="mods/twitch-integration/files/entities/misc/effect_weak_ambrosia.xml"
 	},
 	{
 		id="SCAMBROSIA",

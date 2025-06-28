@@ -1,0 +1,12 @@
+<Entity>
+	<InheritTransformComponent 
+		_enabled="1" >
+    </InheritTransformComponent>	
+
+    <GameEffectComponent 
+        effect="CUSTOM"
+		custom_effect_id="CITRUS"
+        frames="7200"
+    >
+	</GameEffectComponent >
+</Entity>

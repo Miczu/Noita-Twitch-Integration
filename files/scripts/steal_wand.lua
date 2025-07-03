@@ -19,7 +19,6 @@ if inventory ~= nil then
                 EntityLoad("mods/Twitch-integration/files/entities/animals/wand_ghost.xml", pos_x, pos_y)
             end
             EntitySetTransform(active_item, pos_x, pos_y) -- spawn item/wand
-            -- if EntityHasTag(active_item, "potion") then -- throw item
             if EntityHasTag(active_item, "item_pickup") then -- throw item
                 local velcomp_victim = EntityGetFirstComponentIncludingDisabled(victim, "VelocityComponent")
                 if velcomp_victim ~= nil then

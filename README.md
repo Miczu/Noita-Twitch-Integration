@@ -7,6 +7,7 @@ Feel free to make PR with new TI vote options. I'll review it and give suggestio
 Let me know if you are looking to have [Wiki Page](https://github.com/Miczu/Noita-Twitch-Integration/wiki) expanded with anything you find missing for contributibuting.
 
 ## Installation
+* TI is configured in browser in Vue based app. It requires [Node.js](https://nodejs.org/en) to be installed.
 
 * [Download this](https://github.com/Miczu/Noita-Twitch-Integration/releases/download/1/twitch-integration.zip) and unzip the folder **inside noita's mods folder** 
 

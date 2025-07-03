@@ -6,8 +6,9 @@ local pos_x, pos_y = EntityGetTransform(victim)
 local inventory = EntityGetFirstComponentIncludingDisabled(victim, "Inventory2Component")
 if inventory ~= nil then
     local active_item = ComponentGetValue2(inventory, "mActualActiveItem")
-    if active_item ~= nil then
-        if EntityHasTag(active_item, "wand") or EntityHasTag(active_item, "item_pickup") then
+    if active_item ~= nil and active_item ~= 0 then
+        -- Keeping this if statement here in case we wanna revert anything
+        -- if EntityHasTag(active_item, "wand") or EntityHasTag(active_item, "item_pickup") or EntityHasTag(active_item, "tablet") then
             EntityRemoveFromParent(active_item)
             EntitySetComponentsWithTagEnabled(active_item,"enabled_in_hand",false)
             EntitySetComponentsWithTagEnabled(active_item,"enabled_in_world",true)
@@ -19,7 +20,7 @@ if inventory ~= nil then
                 EntityLoad("mods/Twitch-integration/files/entities/animals/wand_ghost.xml", pos_x, pos_y)
             end
             EntitySetTransform(active_item, pos_x, pos_y) -- spawn item/wand
-            if EntityHasTag(active_item, "item_pickup") then -- throw item
+            if not EntityHasTag(active_item, "wand") then -- throw item
                 local velcomp_victim = EntityGetFirstComponentIncludingDisabled(victim, "VelocityComponent")
                 if velcomp_victim ~= nil then
                     local vel_x, vel_y = ComponentGetValue2(velcomp_victim, "mVelocity")
@@ -28,7 +29,7 @@ if inventory ~= nil then
                 end
             end
             --EntityAddChild(wand, active_item)
-        end
+        -- end
     end
 end
 

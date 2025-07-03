@@ -11,7 +11,7 @@ if inventory ~= nil then
             EntityRemoveFromParent(active_item)
             EntitySetComponentsWithTagEnabled(active_item,"enabled_in_hand",false)
             EntitySetComponentsWithTagEnabled(active_item,"enabled_in_world",true)
-            --EntityKill(active_wand)
+            --EntityKill(active_item)
             ComponentSetValue2(inventory, "mActualActiveItem", 0)
             ComponentSetValue2(inventory, "mActiveItem", 0)
 
@@ -27,7 +27,7 @@ if inventory ~= nil then
                     PhysicsApplyTorque(active_item, 0.5+vel_x*5)
                 end
             end
-            --EntityAddChild(wand, active_wand)
+            --EntityAddChild(wand, active_item)
         end
     end
 end

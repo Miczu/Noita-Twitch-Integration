@@ -213,7 +213,7 @@
         "files/scripts/proj_slowdown_20.lua": "c69212409bdde0f59c46d153db05403dd1dfdc323ded2d087f132a789fc5e9a5",
         "files/scripts/projectiles/darkflame_fake.lua": "8ff1663ba08e6c77c8b1dbe05da9a53f762280b0e38504db25366ac1d12ee51a",
         "files/scripts/standard_warning.lua": "e8ed723ef5a3847773e1dc0886b774935b714253e69580448eadec0eb28f8a67",
-        "files/scripts/steal_wand.lua": "1c633f2c3f61a30d43be7a89f9c0459c59d468578c189923afb8725ad2e89d99",
+        "files/scripts/steal_wand.lua": "cca4ee4c6c0e1b2b74e2e8df78f25443c7492fbded795f069d5e8906a8d01dd6",
         "files/scripts/stealwand_distance_delete.lua": "dec34b51d56ff6a375b725707d090ae76b89e61ac3a8722839c4be70a107a145",
         "files/scripts/stealwand_emptyhands.lua": "4b7071293c5d979d02b3cbf278c05f2cb9f51555ed1af6e352ae8126bfc518fd",
         "files/scripts/status_effects/anti_homing_shot.lua": "7906d67f9b643ecc4c6ee9a31740a040058b751d831d4b73929c4f015bffb164",

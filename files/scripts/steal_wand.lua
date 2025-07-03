@@ -5,25 +5,28 @@ local victim = EntityGetRootEntity( entity_id )
 local pos_x, pos_y = EntityGetTransform(victim)
 local inventory = EntityGetFirstComponentIncludingDisabled(victim, "Inventory2Component")
 if inventory ~= nil then
-    local active_wand = ComponentGetValue2(inventory, "mActualActiveItem")
-    if active_wand ~= nil then
-        if EntityHasTag(active_wand, "wand") or EntityHasTag(active_wand, "potion") then
-            EntityRemoveFromParent(active_wand)
-            EntitySetComponentsWithTagEnabled(active_wand,"enabled_in_hand",false)
-            EntitySetComponentsWithTagEnabled(active_wand,"enabled_in_world",true)
+    local active_item = ComponentGetValue2(inventory, "mActualActiveItem")
+    if active_item ~= nil then
+        if EntityHasTag(active_item, "wand") or EntityHasTag(active_item, "potion") then
+        -- if EntityHasTag(active_item, "wand") or EntityHasTag(active_item, "item_pickup") then
+            EntityRemoveFromParent(active_item)
+            EntitySetComponentsWithTagEnabled(active_item,"enabled_in_hand",false)
+            EntitySetComponentsWithTagEnabled(active_item,"enabled_in_world",true)
             --EntityKill(active_wand)
             ComponentSetValue2(inventory, "mActualActiveItem", 0)
             ComponentSetValue2(inventory, "mActiveItem", 0)
 
-            if EntityHasTag(active_wand, "wand") then
+            if EntityHasTag(active_item, "wand") then -- spawn wand ghost
                 EntityLoad("mods/Twitch-integration/files/entities/animals/wand_ghost.xml", pos_x, pos_y)
             end
-            EntitySetTransform(active_wand, pos_x, pos_y)
-            if EntityHasTag(active_wand, "potion") then
+            EntitySetTransform(active_item, pos_x, pos_y) -- spawn item/wand
+            if EntityHasTag(active_item, "potion") then -- throw item
+            -- if EntityHasTag(active_item, "item_pickup") then -- throw item
                 local velcomp_victim = EntityGetFirstComponentIncludingDisabled(victim, "VelocityComponent")
                 if velcomp_victim ~= nil then
                     local vel_x, vel_y = ComponentGetValue2(velcomp_victim, "mVelocity")
-                    PhysicsApplyForce(active_wand, vel_x*50, vel_y*25-125)
+                    PhysicsApplyForce(active_item, vel_x*50, vel_y*25-125)
+                    PhysicsApplyTorque(active_item, 0.5+vel_x*5)
                 end
             end
             --EntityAddChild(wand, active_wand)

@@ -7,15 +7,25 @@ local inventory = EntityGetFirstComponentIncludingDisabled(victim, "Inventory2Co
 if inventory ~= nil then
     local active_wand = ComponentGetValue2(inventory, "mActualActiveItem")
     if active_wand ~= nil then
-        if EntityHasTag(active_wand, "wand") then
+        if EntityHasTag(active_wand, "wand") or EntityHasTag(active_wand, "potion") then
             EntityRemoveFromParent(active_wand)
             EntitySetComponentsWithTagEnabled(active_wand,"enabled_in_hand",false)
             EntitySetComponentsWithTagEnabled(active_wand,"enabled_in_world",true)
             --EntityKill(active_wand)
             ComponentSetValue2(inventory, "mActualActiveItem", 0)
             ComponentSetValue2(inventory, "mActiveItem", 0)
-            EntityLoad("mods/Twitch-integration/files/entities/animals/wand_ghost.xml", pos_x, pos_y)
+
+            if EntityHasTag(active_wand, "wand") then
+                EntityLoad("mods/Twitch-integration/files/entities/animals/wand_ghost.xml", pos_x, pos_y)
+            end
             EntitySetTransform(active_wand, pos_x, pos_y)
+            if EntityHasTag(active_wand, "potion") then
+                local velcomp_victim = EntityGetFirstComponentIncludingDisabled(victim, "VelocityComponent")
+                if velcomp_victim ~= nil then
+                    local vel_x, vel_y = ComponentGetValue2(velcomp_victim, "mVelocity")
+                    PhysicsApplyForce(active_wand, vel_x*50, vel_y*25-125)
+                end
+            end
             --EntityAddChild(wand, active_wand)
         end
     end

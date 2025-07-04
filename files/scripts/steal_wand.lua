@@ -27,6 +27,21 @@ if inventory ~= nil then
                     PhysicsApplyForce(active_item, vel_x*50, vel_y*25-125)
                     PhysicsApplyTorque(active_item, 0.5+vel_x*5)
                 end
+                -- TODO: Fix the code breaking the kick function of items
+
+                -- activate thrown item functionality
+                for _,comp in ipairs(EntityGetComponentIncludingDisabled(active_item, "LuaComponent") or {}) do
+                    local script_throw = ComponentGetValue2(comp, "script_throw_item")
+                    if script_throw and script_throw ~= "" then
+                        print("manually throwing!")
+                        local GetUpdatedEntityID_old = GetUpdatedEntityID
+                        GetUpdatedEntityID = function() return active_item end
+                        dofile_once(script_throw)
+                        throw_item(pos_x, pos_y, pos_x, pos_y-50)
+                        GetUpdatedEntityID = GetUpdatedEntityID_old
+                        break
+                    end
+                end
             end
             --EntityAddChild(wand, active_item)
         -- end

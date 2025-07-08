@@ -27,7 +27,7 @@ if inventory ~= nil then
                     local vel_x, vel_y = ComponentGetValue2(velcomp_victim, "mVelocity")
                     local mPixelCount = ComponentGetValue2(bodycomp, "mPixelCount")
                     PhysicsApplyForce(active_item, vel_x*2*mPixelCount, (vel_y*mPixelCount)-(5*mPixelCount))
-                    PhysicsApplyTorque(active_item, mPixelCount/10+vel_x*(mPixelCount/5))
+                    PhysicsApplyTorque(active_item, mPixelCount/13+vel_x*(mPixelCount/5))
                 end
                 -- TODO: Fix the code breaking the kick function of items
 

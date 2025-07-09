@@ -175,6 +175,11 @@ if (require.main === module) {
       continue;
     }
 
+    // pre-normalize crlf, excluding binary and .bat files
+    if ([".dll", ".png", ".xcf", ".bat"].every(end => !key.endsWith(end))) {
+      data = data.toString('utf8').replaceAll(/\r\n/g, '\n');
+    }
+
     const hashed = hash(data).toLowerCase(); // lol
     if (hashed == value.toLowerCase()) {
       pairs.push([key, value]);

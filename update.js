@@ -156,3 +156,43 @@ class Updater extends EventEmitter {
 }
 
 module.exports = Updater;
+
+
+// if you run `node update.js` this will run
+if (require.main === module) {
+  const manifest = JSON.parse(fs.readFileSync("manifest.json"));
+  const pairs = [];
+  for (const [key, value] of Object.entries(manifest.files)) {
+    let data;
+
+    try {
+      data = fs.readFileSync(key);
+    } catch (e) {
+      if (e.code != "ENOENT") {
+        throw e;
+      }
+      console.log(`File \x1b[31m${key}\x1b[0m was deleted? Removing from manifest...`);
+      continue;
+    }
+
+    // pre-normalize crlf, excluding binary and .bat files
+    if ([".dll", ".png", ".xcf", ".bat"].every(end => !key.endsWith(end))) {
+      data = data.toString('utf8').replaceAll(/\r\n/g, '\n');
+    }
+
+    const hashed = hash(data).toLowerCase(); // lol
+    if (hashed == value.toLowerCase()) {
+      pairs.push([key, value]);
+      continue;
+    }
+    console.log(`File \x1b[32m${key}\x1b[0m has hash \x1b[2m${hashed}\x1b[0m, expected \x1b[2m${value}\x1b[0m, updating...`);
+    pairs.push([key, hashed]);
+  }
+
+  pairs.sort(([a], [b]) => a.localeCompare(b));
+
+  // hoping that node will never stop preserving object insertion order
+  fs.writeFileSync("manifest.json", JSON.stringify({
+    files: Object.fromEntries(pairs),
+  }, undefined, 4));
+}

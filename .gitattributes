@@ -1,0 +1,5 @@
+# make sure to normalize line endings on checkin even if *your* git is misconfigured and wouldn't do that otherwise
+* text=auto
+
+# force .bat files to keep CRLF on Linux
+*.bat text eol=crlf

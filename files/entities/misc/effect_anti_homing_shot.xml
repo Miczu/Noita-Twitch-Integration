@@ -10,7 +10,7 @@
 	
 	<LuaComponent
 		execute_on_added="0"
-		script_source_file="mods/twitch-integration/files/scripts/status_effects/anti_homing_endcheck.lua"
+		script_source_file="mods/twitch-integration/files/scripts/status_effects/endcheck_just_remove.lua"
 		execute_every_n_frame="-1"
 		execute_on_removed="1"
 		remove_after_executed="1"

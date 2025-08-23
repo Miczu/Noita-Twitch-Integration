@@ -283,7 +283,6 @@
         "mod.xml": "c2ca1fbe86f4253aaa230d77e6e53337a497a31c6034897f47cfe83a4d50c952",
         "module.json": "d1f3fcbfba381fd1a06b54be7b46d4c8737d1df029615b26f460037fbefe79b5",
         "noita_api.lua": "a32c37cf49a5eab22ed965493ac863eaa78b4136a3d44d6ee6cd8536b374ecc0",
-        "package-lock.json": "c16efeda5d4a02cb7b7cebdaf4ff0777731d045977ed234c779ad255eadc0c27",
         "package.json": "ef9bf6e9add4ae31795241ab09d379b9dc306dffceb5baef2e704d8ab2dc9618",
         "start_twitch.bat": "306adcccb5f5a1cd60a524451894dc8108059b08833015877e1fddeeaa4f4582",
         "twitch_fragments/action_handlers.lua": "6b2bda58ec5c95058f99eae954e3666cbee90f9819d794ec9a8170c43994cdfb",

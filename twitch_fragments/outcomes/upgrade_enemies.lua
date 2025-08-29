@@ -1,3 +1,8 @@
+--Upgrade Enemies
+--Enemies feel a bit stronger...
+--curses
+--69
+--todo
 function twitch_upgrade_enemies()
     async(effect_upgrade_enemies)
 end

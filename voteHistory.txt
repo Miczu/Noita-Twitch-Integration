@@ -1,0 +1,10 @@
+{"vote":{"stronk":0,"health_down":0,"mana_overdrive":0,"conga_blackhole_boomerang":0},"time":156188}
+{"vote":{"buoyancy":0,"health_down":0,"become_speed":0,"couple_worms":0},"time":183371}
+{"vote":{"bloody_mess":0,"health_down":0,"couple_worms":0,"conga_blackhole_boomerang":0},"time":334566}
+{"vote":{"shrooms":0,"health_down":0,"swimming_pool":0,"secret_ending":0},"time":485763}
+{"vote":{"gamba":0,"moist_mob":0,"shuffle_perks":0,"couple_worms":0},"time":636960}
+{"vote":{"counter":0,"random_wand":0,"secret_ending":0,"electrocution":0},"time":224507}
+{"vote":{"farts":0,"stronk":0,"mana_overdrive":0,"thunderstone_madness":0},"time":660883}
+{"vote":{"big_worm":0,"spiritusigneus_nerf_potions":0,"couple_worms":0,"spiritusigneus_random_projectile_effect":0},"time":214781}
+{"vote":{"big_worm":0,"the_purge":0,"rainy_day":0,"spell_refresher":0},"time":477928}
+{"vote":{"hounds":0,"stronk":0,"spiked_drink":0,"helpful_black_hole":0},"time":192716}

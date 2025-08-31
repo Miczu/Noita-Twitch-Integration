@@ -55,15 +55,56 @@ if player then
             xml = "data/entities/animals/roboguard_big.xml"
         },
     }
+    local pX, pY = EntityGetTransform(player)
+    local upgradeTime = 1
     for i = 1, #enemies do
         local enemy = enemies[i]
         local name = EntityGetName(enemy)
         local upgrade = upgrades[name]
-
+        local eX, eY = EntityGetTransform(enemy)
         if upgrade then
-            local eX, eY = EntityGetTransform(enemy)
-            EntityLoad(upgrade.xml, eX, eY)
-            EntityKill(enemy)
+            if not RaytracePlatforms(pX,pY,eX,eY) then
+                if not EntityHasTag(enemy, "isUpgrading") then
+                    ComponentSetValue2(EntityAddComponent2(enemy, "VariableStorageComponent", {name = "upgradeFinishTime",value_int = GameGetFrameNum() + upgradeTime*60}), 0)
+                    EntityAddTag(enemy, "isUpgrading")
+                    local icon = EntityLoad("mods/twitch-integration/files/effects/upgrade_icon.xml", eX, eY)
+                    EntityAddComponent2(
+                        icon,
+                        "UIIconComponent",
+                        {
+                            icon_sprite_file="mods/twitch-integration/files/effects/status_icons/enemy_upgrade.png",
+                            name="Upgrading",
+                            description="could get stronger",
+                            is_perk=true,
+                            display_above_head=true,
+                            display_in_hud=true,
+                        }
+                    )
+                    EntityAddChild(enemy, icon)
+                end
+            end
         end
+        if EntityHasTag(enemy,"isUpgrading") then
+            local components = EntityGetComponentIncludingDisabled(enemy, "VariableStorageComponent")
+            local finishTime = -1
+            upgrade = upgrades[name]
+            for _, component in ipairs(components) do
+                if ComponentGetValue2(component, "name") == "upgradeFinishTime" then
+                    finishTime = ComponentGetValue2(component, "value_int")
+                    break
+                end
+            end
+            if GameGetFrameNum() >= finishTime and finishTime ~= -1 then
+                local children = EntityGetAllChildren(enemy) or {}
+                for _, child in ipairs(children) do
+                    if EntityHasTag(child, "upgrade_icon") then
+                        EntityKill(child)
+                    end
+                end
+                EntityLoad(upgrade.xml, eX, eY)
+                EntityKill(enemy)
+            end
+        end
+
     end
 end

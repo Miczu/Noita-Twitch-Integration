@@ -1,7 +1,13 @@
 player = EntityGetWithTag("player_unit")[1]
 if player then
     local x, y = EntityGetTransform(player)
-    local enemies = EntityGetInRadius(x, y, 150)
+    local enemies = {}
+    for _, t in ipairs({"enemy", "helpless_animal"}) do
+        local list = EntityGetInRadiusWithTag(x, y, 150, t) or {}
+        for _, id in ipairs(list) do
+            table.insert(enemies, id)
+        end
+    end
     local upgrades = {
         -- thundermage
         ["data/entities/animals/thundermage.xml"] = { xml = "data/entities/animals/thundermage_big.xml" },

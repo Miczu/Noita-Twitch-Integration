@@ -425,7 +425,7 @@
         "webui/js/main.js": "e94c50d0127b03d5182b44925371c2a7e4f37aa91d45072c4378300ec0d8b642",
         "twitch_fragments/outcomes/upgrade_enemies.lua" : "8E96A5090535FA0AD4610DA9D03FF078E36F6CC9A94CA9433B67888A4FA831DA",
         "files/effects/upgrade_enemies.xml" : "A93B580E97C4FCC6B46B220B0622FC8718CCBDA8EDFE2006A0CDF51044BC1944",
-        "files/effects/upgrade_enemies.lua" : "AD99E5C463CD64297693932A7A20A56AAD5F31FECB0255AAB1AB02350F01D7D9",
+        "files/effects/upgrade_enemies.lua" : "8C5D0A3662E98D29EF8A80812F36029191A830E09CC3B14D879D2E6E696039CE",
         "files/effects/status_icons/enemy_upgrade.png" :"47d92702942e3920276e0be188dcead7b51e102d5f387a3642fdbfc7d81bc5cc",
         "files/effects/upgrade_icon.xml":"5C91452EB78F90C616723F9F484AA493C201CDEB969B516AAB92CC8536B18C0C"
     }

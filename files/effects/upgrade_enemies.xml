@@ -1,11 +1,12 @@
 <Entity>
-	<LuaComponent
-		script_source_file="mods/twitch-integration/files/effects/upgrade_enemies.lua"
-		execute_every_n_frame="1"
-    >
-	</LuaComponent>
-    <LifetimeComponent
-		lifetime="3600" 
-	>
-	</LifetimeComponent>
+  <LuaComponent
+    script_source_file="mods/twitch-integration/files/effects/upgrade_enemies.lua"
+    execute_every_n_frame="1"
+  >
+  </LuaComponent>
+  <GameEffectComponent
+    effect="NONE"
+    frames="3600"
+  >
+  </GameEffectComponent>
 </Entity>

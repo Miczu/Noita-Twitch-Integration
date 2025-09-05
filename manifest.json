@@ -423,10 +423,10 @@
         "update.js": "bdc68c213786748d597b1800bcae733c294161d5e0797adbcfb364ebe5240732",
         "webui/index.html": "fe1e877ad7805a1feb6a97bac5f430a2b3b8eca8c014d8d80224652f15ede635",
         "webui/js/main.js": "e94c50d0127b03d5182b44925371c2a7e4f37aa91d45072c4378300ec0d8b642",
-        "twitch_fragments/outcomes/upgrade_enemies.lua" : "110c0fd39e17a9967c147e7b7d6e0d12c2bf03ac7e3c487806c3abbaad28cd55",
-        "files/effects/upgrade_enemies.xml" : "cadd7dba3520e05664011915898e348a0c74de8a5a52fa3ec51c92b466bf7b5c",
-        "files/effects/upgrade_enemies.lua" : "3f49521a58f2412a424d67111892e4bcd8a643daaaba0bfda14c72854b9bdc29",
-        "files/effects/status_icons/enemy_upgrade.png" :"47d92702942e3920276e0be188dcead7b51e102d5f387a3642fdbfc7d81bc5cc"
-
+        "twitch_fragments/outcomes/upgrade_enemies.lua" : "8E96A5090535FA0AD4610DA9D03FF078E36F6CC9A94CA9433B67888A4FA831DA",
+        "files/effects/upgrade_enemies.xml" : "A93B580E97C4FCC6B46B220B0622FC8718CCBDA8EDFE2006A0CDF51044BC1944",
+        "files/effects/upgrade_enemies.lua" : "AD99E5C463CD64297693932A7A20A56AAD5F31FECB0255AAB1AB02350F01D7D9",
+        "files/effects/status_icons/enemy_upgrade.png" :"47d92702942e3920276e0be188dcead7b51e102d5f387a3642fdbfc7d81bc5cc",
+        "files/effects/upgrade_icon.xml":"5C91452EB78F90C616723F9F484AA493C201CDEB969B516AAB92CC8536B18C0C"
     }
 }

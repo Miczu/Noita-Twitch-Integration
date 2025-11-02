@@ -4,8 +4,11 @@
 --200
 --todo
 function twitch_hounds()
-    local rng = Random(1, 2)
+    
     local hounds = {
+        superStrong = {
+            "data/entities/animals/bigzombie.xml"
+        },
         strong = {
             "data/entities/animals/zombie.xml"
         },
@@ -14,14 +17,18 @@ function twitch_hounds()
         }
     }
     local selected = "weak"
-    if rng == 2 then
-        selected = "strong"
-    end
-
-    for _, entity in pairs(hounds[selected]) do
-        local amount = Random(2, 7)
-        for i = 1, amount do
-            spawn_something(entity, Random(60, 90), Random(150, 190), true, false, append_viewer_name)
+    local amount = Random(6,9)
+    for i = 1,amount do
+        local rng = Random(1, 10)
+        if rng ==1 then
+            selected = "superStrong"
+        elseif rng >=8 then
+            selected = "weak"
+        else
+            selected = "strong"
+        end
+        for _, entity in pairs(hounds[selected]) do
+            spawn_something(entity, Random(30, 70), Random(90, 150), true, false, append_viewer_name)
         end
     end
 end

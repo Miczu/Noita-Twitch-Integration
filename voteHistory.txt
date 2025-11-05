@@ -1,2 +1,0 @@
-{"vote":{"stronk":0,"swimming_pool":0,"ice_cage":0,"spell_refresher":0},"time":196418}
-{"vote":{"stronk":0,"unshuffle":0,"full_health":0,"upgrade_enemies":0},"time":172663}

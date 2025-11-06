@@ -1,0 +1,4 @@
+{"vote":{"rainy_day":0,"fire_trap":0,"healer_bonanza":0,"derandomize_enemy_waves":0},"time":155248}
+{"vote":{"lava_sea":0,"dryspell":0,"loose_chunks":0,"hiisi_bastards":0},"time":171238}
+{"vote":{"chonky":0,"the_purge":0,"angry_steve":0,"become_speed":0},"time":155851}
+{"vote":{"hounds":0,"rainy_day":0,"teleport_beacon":0,"random_teleport":0},"time":308113}

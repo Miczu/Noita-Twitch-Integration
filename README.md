@@ -21,6 +21,17 @@ Let me know if you are looking to have [Wiki Page](https://github.com/Miczu/Noit
 
 More instructions on how to use it soon
 
+## OBS Overlay
+
+To enable "obs overlay" first go to control panel, Noita Settings and check the checkbox and Apply.
+
+<img width="517" height="206" alt="image" src="https://github.com/user-attachments/assets/ce65b807-12ca-4e9f-be7c-2f06c2a37d2f" />
+
+Once the game starts, mod will create obs.txt file that can be captured by obs and made into overlay.
+The obs.txt file is located in the mod folder where the start_twitch.bat is located.
+
+<img width="561" height="239" alt="image" src="https://github.com/user-attachments/assets/d2a0f06d-003e-45ae-8c5d-c6a683cf010a" />
+
 ## A Shoutout to Soler
 
 Thanks Soler for taking care of Twitch Integration for so long, best wishesh to you and good luck with your future projects.

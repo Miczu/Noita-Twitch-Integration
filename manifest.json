@@ -222,7 +222,7 @@
         "files/scripts/projectiles/darkflame_fake.lua": "8ff1663ba08e6c77c8b1dbe05da9a53f762280b0e38504db25366ac1d12ee51a",
         "files/scripts/snail_scripts/item_dropper.lua" : "742F1A6E51ABDB8B89F8D6E9DD7EB0D2488A5C03289942CEE956FA9FFC7FFCED",
         "files/scripts/snail_scripts/snail_ai.lua" : "CDF8674946579A76C228D8556E96C73850EC44F005D7E41BF8E5F7F871189545",
-        "files/scripts/snail_scripts/snail_annihilation.lua" : "79BFC5532E2A42C41988DBF9E90968D048913E6D698C23AF7D4E923C04B3833C",
+        "files/scripts/snail_scripts/snail_annihilation.lua" : "32D1B291C8D38CE8C57608B56D1EF4E3E13DD0D7475C9EE3CA334F9F50564F99",
         "files/scripts/snail_scripts/spawn_snail.lua" : "AC32B9BFF83D025C0DD01E456BA34645CD6224825D87411CA19401929B652F25",
         "files/scripts/snail_scripts/too_far_teleport.lua" : "AAE635BD017B220FDB9CC23B2B0BF48F5BF2DAF41B5838455DCF4590F47D9EDE",
         "files/scripts/standard_warning.lua": "e8ed723ef5a3847773e1dc0886b774935b714253e69580448eadec0eb28f8a67",

@@ -58,7 +58,7 @@ end
 function OnWorldPostUpdate() 
 	if _ws_main then _ws_main() end
 
-	if GameGetFrameNum() % 60 == 0 tonumber(GlobalsGetValue("ti_snail_max_amount","0")) > 0 then
+	if GameGetFrameNum() % 60 == 0 and tonumber(GlobalsGetValue("ti_snail_max_amount","0")) > 0 then
 		dofile("mods/twitch-integration/files/scripts/snail_scripts/spawn_snail.lua")
 	end
 end

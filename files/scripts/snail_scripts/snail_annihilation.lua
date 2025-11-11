@@ -43,9 +43,13 @@ end
 if snail_damagetimer < GameGetFrameNum() then
 	for i, player in ipairs(nearby_players) do
 
+		--Testment of the Snail: Chapter 8
+		--The old could not handle our gods all-mighty power and fled in cowardice
+		--So as to lure the old back, our benelovent god has generously decided to only use a fraction of their incomparable power
+		--May the snail prosper forever and its land be forever remembered in our hearts, for this mod is fair
 		local hp = 4
 		local hp_max = 4
-		local percent_to_hurt = 0.33
+		local percent_to_hurt = 0.35
 		local damage_model_comp = EntityGetFirstComponentIncludingDisabled(player, "DamageModelComponent")
 		if damage_model_comp then
 			ComponentSetValue2(damage_model_comp, "wait_for_kill_flag_on_death", false)
@@ -78,7 +82,7 @@ if snail_damagetimer < GameGetFrameNum() then
 		GamePlaySound( "data/audio/Desktop/animals.bank", "animals/slime/damage/physics_hit", x, y )
 
 		--3 second cooldown between snail impacts
-		GlobalsSetValue("SnailDamageTimer", tostring(GameGetFrameNum() + 180))
+		GlobalsSetValue("SnailDamageTimer", tostring(GameGetFrameNum() + 40))
 	end
 end
 

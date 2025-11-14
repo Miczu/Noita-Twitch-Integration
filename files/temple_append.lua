@@ -17,13 +17,11 @@ end
 function TrapPerksLava(x, y, count) 
     GlobalsSetValue("twitch_hotperks", tostring(count - 1))
     LoadPixelScene("mods/twitch-integration/files/pixel_scenes/lava_perks.png","",x - 112, y + 15, "", true)
-    GamePrint("Lava " .. GlobalsGetValue("twitch_hotperks", "0"))
 end
 
 function TrapPerksAcid(x, y, count) 
     GlobalsSetValue("twitch_bitterperks", tostring(count - 1))
     LoadPixelScene("mods/twitch-integration/files/pixel_scenes/acid_perks.png","",x - 112, y + 15, "", true)
-    GamePrint("Acid " .. GlobalsGetValue("twitch_bitterperks", "0"))
 end
 
 function TrapPerksElectricity(x, y, count) 

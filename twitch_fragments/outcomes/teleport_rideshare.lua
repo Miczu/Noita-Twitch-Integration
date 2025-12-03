@@ -38,6 +38,26 @@ function rideshare()
 end
 
 function did_teleport(newX, newY, oldX, oldY, vx, vy)
+	local portal_destinations = {
+		{x=-677,y=1350}, --coalpits
+		{x=-677,y=2886}, --snowy
+		{x=-677,y=4934}, --hiisi
+		{x=-677,y=6470}, --jungle
+		{x=-677,y=8518}, --vault
+		{x=-677,y=10566}, --temple
+		{x=1891,y=13126}, --lab
+		{x=6220,y=15175}, --winning area
+		{x=764,y=-814} -- note/tower portal
+		-- could add the other niche portal locations here but who's gonna actually use them in TI
+	}
+	local ignoreRadius = 50
+	for _, p in ipairs(portal_destinations) do
+        local dx_portal = newX - p.x
+        local dy_portal = newY - p.y
+        if (dx_portal*dx_portal + dy_portal*dy_portal) <= (ignoreRadius*ignoreRadius) then
+            return false
+        end
+    end
 	local jump = 30
 	jump = jump * jump;
 	
@@ -46,6 +66,7 @@ function did_teleport(newX, newY, oldX, oldY, vx, vy)
 
 	return ((dx+dy) > jump)
 end
+
 
 function shoot_tele( who_shot, pid, x, y )
 	local angle = math.random(0, 314) / 100 * math.pi * 2

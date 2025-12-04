@@ -51,12 +51,12 @@ function did_teleport_beacon(newX, newY, oldX, oldY, vx, vy,prevIdx)
 		{x=-677,y=6470,idx=3}, --jungle
 		{x=-677,y=8518,idx=4}, --vault
 		{x=-677,y=10566,idx=5}, --temple
-		{x=1891,y=13126,idx=6}, --lab
+		{x=1910,y=13100,idx=6}, --lab
 		{x=6220,y=15175,idx=7}, --winning area
 		{x=764,y=-814,idx=8} -- note/tower portal
 		-- could add the other niche portal locations here but who's gonna actually use them in TI
 	}
-	local ignoreRadius = 50
+	local ignoreRadius = 25
 	local thisIdx = -1
 	local portalEntered = false
 	for _, p in ipairs(portal_destinations) do

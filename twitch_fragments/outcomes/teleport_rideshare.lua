@@ -50,7 +50,7 @@ function did_teleport(newX, newY, oldX, oldY, vx, vy)
 		{x=764,y=-814,idx=8} -- note/tower portal
 		-- could add the other niche portal locations here but who's gonna actually use them in TI
 	}
-	local ignoreRadius = 50
+	local ignoreRadius = 25
 	for _, p in ipairs(portal_destinations) do
         local dx_portal = newX - p.x
         local dy_portal = newY - p.y

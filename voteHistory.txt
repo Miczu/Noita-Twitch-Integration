@@ -1,1 +1,0 @@
-{"vote":{"rainy_day":0,"random_flask":0,"wand_replacement":0,"holy_bombastic":0},"time":17455}

@@ -1,0 +1,6 @@
+{"vote":{"deers":0,"gamba":0,"random_flask":0,"holy_bombastic":0},"time":26909}
+{"vote":{"rainy_day":0,"random_flask":0,"holy_bombastic":0,"helpful_black_hole":0},"time":49068}
+{"vote":{"deers":0,"rainy_day":0,"random_flask":0,"holy_bombastic":0},"time":47969}
+{"vote":{"gamba":0,"random_flask":0,"wand_replacement":0,"random_circle":0},"time":37882}
+{"vote":{"deers":0,"rainy_day":0,"random_flask":0,"helpful_black_hole":0},"time":37804}
+{"vote":{"deers":0,"rainy_day":0,"random_flask":0,"helpful_black_hole":0},"time":23418}

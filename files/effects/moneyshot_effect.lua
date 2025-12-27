@@ -36,7 +36,7 @@ function shot(shot_id)
                 local hp = ComponentGetValue2(dmg_model, "hp")
                 if hp > 5/25 then
                     local dmg = 3/25
-                    EntityInflictDamage(owner,dmg,"DAMAGE_CURSE","If this message has appeared there is a bug and any associated bets or predictions should be redone",0, 0, 0,entity_id)
+                    EntityInflictDamage(owner,dmg,"DAMAGE_CURSE","Bad financial decisions",0, 0, 0,entity_id)
                 end
             end
         end

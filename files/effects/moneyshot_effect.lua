@@ -2,8 +2,24 @@ function shot(shot_id)
     local entity_id = GetUpdatedEntityID()
     local x, y = EntityGetTransform(entity_id)
     local owner = EntityGetClosestWithTag(x, y, "mortal")
+    local cd = 6
+    local currFrame = GameGetFrameNum()
+    local cdStore = nil
+    local components = EntityGetComponentIncludingDisabled(owner, "VariableStorageComponent") or {}
+    for _, c in ipairs(components) do
+        if ComponentGetValue2(c, "name") == "moneyShotCD" then
+            cdStore = c
+            break
+        end
+    end
+    if cdStore == nil then
+        cdStore = EntityAddComponent2(owner, "VariableStorageComponent", {name = "moneyShotCD", value_int = 0})
+    end
+    if currFrame < ComponentGetValue2(cdStore, "value_int") then
+        return
+    end
+    ComponentSetValue2(cdStore, "value_int", currFrame + cd)
     local moneyToRemove = 5
-    local dmgPercent = 0.03
     local wallet_component = EntityGetFirstComponent(owner, "WalletComponent")
     if (wallet_component) then
         local money = tonumber(ComponentGetValue2(wallet_component, "money"))
@@ -17,9 +33,11 @@ function shot(shot_id)
         else 
             local dmg_model = EntityGetFirstComponent(owner, "DamageModelComponent")
             if dmg_model then
-                local max_hp = ComponentGetValue2(dmg_model, "max_hp")
-                local dmg = max_hp * dmgPercent
-                EntityInflictDamage(owner,dmg,"DAMAGE_CURSE","Bad financial decisions",0, 0, 0,entity_id)
+                local hp = ComponentGetValue2(dmg_model, "hp")
+                if hp > 5/25 then
+                    local dmg = 3/25
+                    EntityInflictDamage(owner,dmg,"DAMAGE_CURSE","Bad financial decisions",0, 0, 0,entity_id)
+                end
             end
         end
     end

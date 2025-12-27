@@ -12,3 +12,12 @@ if (lua_components ~= nil) then
         end
     end
 end
+local children = EntityGetAllChildren(owner)
+if children then
+    for _, child in ipairs(children) do
+        local name = EntityGetName(child)
+        if name == "moneyshot_icon" then
+            EntityKill(child)
+        end
+    end
+end

@@ -20,7 +20,6 @@ function shot(shot_id)
     end
     ComponentSetValue2(cdStore, "value_int", currFrame + cd)
     local moneyToRemove = 5
-    local dmgPercent = 0.02
     local wallet_component = EntityGetFirstComponent(owner, "WalletComponent")
     if (wallet_component) then
         local money = tonumber(ComponentGetValue2(wallet_component, "money"))

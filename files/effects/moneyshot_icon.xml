@@ -1,0 +1,9 @@
+<Entity name="moneyshot_icon">
+    <InheritTransformComponent only_position="1"/>
+    <SpriteComponent
+        image_file="mods/twitch-integration/files/effects/status_icons/moneyshot_icon.png"
+        offset_x="6"
+        offset_y="34"
+        z_index="50"
+    />
+</Entity>

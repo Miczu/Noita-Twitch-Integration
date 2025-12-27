@@ -17,6 +17,6 @@ function effect_moneyshot()
 	until player > 0;
 
     local effect = CellFactory_GetType("twitch_moneyshot")
-    EntityIngestMaterial( player, effect, 30 )
+    EntityIngestMaterial( player, effect, 60 )
     empty_player_stomach()
 end

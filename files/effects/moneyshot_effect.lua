@@ -35,9 +35,8 @@ function shot(shot_id)
             local dmg_model = EntityGetFirstComponent(owner, "DamageModelComponent")
             if dmg_model then
                 local hp = ComponentGetValue2(dmg_model, "hp")
-                local max_hp = ComponentGetValue2(dmg_model, "max_hp")
-                if hp > max_hp*0.2 then
-                    local dmg = hp * dmgPercent
+                if hp > 5/25 then
+                    local dmg = 3/25
                     EntityInflictDamage(owner,dmg,"DAMAGE_CURSE","If this message has appeared there is a bug and any associated bets or predictions should be redone",0, 0, 0,entity_id)
                 end
             end

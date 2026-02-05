@@ -689,8 +689,22 @@ const MiscView = Vue.component("ti-misc", {
     compareSettings(currentData, importData, path = "") {
       const changes = [];
 
+      const getOutcomeClassification = (type) => {
+        if (type === "good_effects") return "good";
+        if (type === "bad_effects") return "bad";
+        return "neutral";
+      };
+
       const processValue = (key, oldVal, newVal, currentPath) => {
         const fullPath = currentPath ? `${currentPath}.${key}` : key;
+        const parts = fullPath.split(".");
+
+        let classification = "neutral";
+        if (parts[0] === "outcomes") {
+          classification = getOutcomeClassification(importData.type || (currentData ? currentData.type : null));
+        } else if (parts[0] === "noita" && parts[1] === "option_types" && parts.length > 2) {
+          classification = getOutcomeClassification(importData.name || (currentData ? currentData.name : null));
+        }
 
         if (typeof oldVal === "object" && oldVal !== null && typeof newVal === "object" && newVal !== null) {
           if (Array.isArray(oldVal) && Array.isArray(newVal)) {
@@ -700,6 +714,7 @@ const MiscView = Vue.component("ti-misc", {
                 oldValue: JSON.stringify(oldVal),
                 newValue: JSON.stringify(newVal),
                 isPercentChange: false,
+                classification: classification,
               });
             }
           } else {
@@ -717,6 +732,7 @@ const MiscView = Vue.component("ti-misc", {
             newValue: newVal,
             isPercentChange: isNumeric,
             percentChange: percentChange,
+            classification: classification,
           });
         }
       };
@@ -727,20 +743,36 @@ const MiscView = Vue.component("ti-misc", {
         const newVal = importData ? importData[key] : undefined;
 
         if (oldVal === undefined && newVal !== undefined) {
+          const fullPath = path ? `${path}.${key}` : key;
+          const parts = fullPath.split(".");
+          let classification = "neutral";
+          if (parts[0] === "outcomes") {
+            classification = getOutcomeClassification(importData.type || (typeof newVal === "object" ? newVal.type : null));
+          }
+
           changes.push({
-            setting: path ? `${path}.${key}` : key,
+            setting: fullPath,
             oldValue: "(not set)",
             newValue: typeof newVal === "object" ? JSON.stringify(newVal) : newVal,
             isPercentChange: false,
             isNew: true,
+            classification: classification,
           });
         } else if (oldVal !== undefined && newVal === undefined) {
+          const fullPath = path ? `${path}.${key}` : key;
+          const parts = fullPath.split(".");
+          let classification = "neutral";
+          if (parts[0] === "outcomes") {
+            classification = getOutcomeClassification(currentData.type || (typeof oldVal === "object" ? oldVal.type : null));
+          }
+
           changes.push({
-            setting: path ? `${path}.${key}` : key,
+            setting: fullPath,
             oldValue: typeof oldVal === "object" ? JSON.stringify(oldVal) : oldVal,
             newValue: "(removed)",
             isPercentChange: false,
             isRemoved: true,
+            classification: classification,
           });
         } else {
           processValue(key, oldVal, newVal, path);
@@ -778,7 +810,7 @@ const MiscView = Vue.component("ti-misc", {
       const formatPart = (part) => {
         if (propertyLabels[part]) return propertyLabels[part];
         // Convert snake_case to Title Case
-        return part.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+        return part.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
       };
 
       // Handle different path structures
@@ -797,7 +829,11 @@ const MiscView = Vue.component("ti-misc", {
       if (change.isNew) return "blue--text";
       if (change.isRemoved) return "orange--text";
       if (change.isPercentChange && change.percentChange !== null) {
-        return change.percentChange < 0 ? "green--text" : "red--text";
+        const isPositive = change.percentChange > 0;
+        if (change.classification === "bad") {
+          return isPositive ? "red--text" : "green--text";
+        }
+        return isPositive ? "green--text" : "red--text";
       }
       return "";
     },
@@ -918,7 +954,11 @@ const MiscView = Vue.component("ti-misc", {
                               <thead><tr><th class="text-left">Setting</th><th class="text-left">Change</th></tr></thead>    
                               <tbody>
                                   <tr v-for="(change, index) in diffChanges" :key="index">
-                                      <td class="caption">{{ formatSettingPath(change.setting) }}</td>
+                                      <td class="caption">
+                                        {{ formatSettingPath(change.setting) }}
+                                        <div v-if="change.classification === 'good'" class="green--text overline">Good Outcome</div>
+                                        <div v-if="change.classification === 'bad'" class="red--text overline">Bad Outcome</div>
+                                      </td>
                                       <td :class="getDiffClass(change)">
                                           <span>{{ formatValue(change.oldValue) }}</span>
                                           <span class="mx-2">--></span>
@@ -929,7 +969,7 @@ const MiscView = Vue.component("ti-misc", {
                               </tbody>
                           </template>
                       </v-simple-table>
-                      <p class="caption mt-4"><span class="green--text">Green</span> = decrease, <span class="red--text">Red</span> = increase, <span class="blue--text">Blue</span> = new, <span class="orange--text">Orange</span> = removed</p>        
+                      <p class="caption mt-4"><span class="green--text">Green</span> = good change, <span class="red--text">Red</span> = bad change, <span class="blue--text">Blue</span> = new, <span class="orange--text">Orange</span> = removed</p>        
                   </v-card-text>
                   <v-card-actions>
                       <v-spacer></v-spacer>
@@ -1023,6 +1063,12 @@ const CreditsView = Vue.component("ti-credits", {
           twitch: "https://www.twitch.tv/sleepylemonbug/",
         },
         { name: "Dunkorslam", description: "Streamer, user and tester.", twitch: "https://www.twitch.tv/dunkorslam/" },
+        {
+          name: "WUOTE",
+          description: "Added settings import/export functionality.",
+          github: "https://github.com/wuote",
+          twitch: "https://www.twitch.tv/wuote",
+        },
       ],
     };
   },

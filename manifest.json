@@ -437,7 +437,7 @@
         "twitch_fragments/utils.lua": "5c67be53a2189e515f259d7cde6907ca1b707d3416667178886da87bb56b8ecb",
         "update.js": "bdc68c213786748d597b1800bcae733c294161d5e0797adbcfb364ebe5240732",
         "webui/index.html": "fe1e877ad7805a1feb6a97bac5f430a2b3b8eca8c014d8d80224652f15ede635",
-        "webui/js/main.js": "e2965735156423dde67f0fa0dd2c713dfeb959585d8eda6cca2ca4db5bb826ab",
+        "webui/js/main.js": "5dc3509e2946a3eb050037affa77b64cea751fa45fe1d6e9231998450c48f73c",
         "twitch_fragments/outcomes/upgrade_enemies.lua": "98C2477C4E944DE18FA02B992E08AC6B0AFAE74BFBA9157D173E73B3C314768F",
         "files/effects/upgrade_enemies.xml": "340DB8B3EC9294A60758E0C20C6C9BEC52FFF154A1A115E678CD0EDB3B1DDBE6",
         "files/effects/upgrade_enemies.lua": "83F0C4A7EAA6BB5A8FE8F0E191C8333424D20A1958C06488919277A91FE8B3FB",

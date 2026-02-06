@@ -643,6 +643,45 @@ const MiscView = Vue.component("ti-misc", {
       pendingImportData: null,
     };
   },
+  computed: {
+    groupedChanges() {
+      const good = this.diffChanges.filter((c) => c.classification === "good");
+      const bad = this.diffChanges.filter((c) => c.classification === "bad");
+
+      const sortChanges = (changes) => {
+        return [...changes].sort((a, b) => {
+          // 1. Percentage changes first
+          if (a.isPercentChange && !b.isPercentChange) return -1;
+          if (!a.isPercentChange && b.isPercentChange) return 1;
+
+          if (a.isPercentChange && b.isPercentChange) {
+            // Sorted by % change descending
+            return (b.percentChange || 0) - (a.percentChange || 0);
+          }
+
+          // 2. Enabled changes next
+          const isEnabledChange = (c) => c.setting.toLowerCase().endsWith(".enabled");
+          const aEnabled = isEnabledChange(a);
+          const bEnabled = isEnabledChange(b);
+          if (aEnabled && !bEnabled) return -1;
+          if (!aEnabled && bEnabled) return 1;
+
+          if (aEnabled && bEnabled) {
+            // Starting by enabled yes (new value is true)
+            if (a.newValue === true && b.newValue !== true) return -1;
+            if (a.newValue !== true && b.newValue === true) return 1;
+          }
+
+          return 0;
+        });
+      };
+
+      return {
+        good: sortChanges(good),
+        bad: sortChanges(bad),
+      };
+    },
+  },
   methods: {
     async exportSettings() {
       try {
@@ -690,9 +729,8 @@ const MiscView = Vue.component("ti-misc", {
       const changes = [];
 
       const getOutcomeClassification = (type) => {
-        if (type === "good_effects") return "good";
-        if (type === "bad_effects") return "bad";
-        return "neutral";
+        if (type === "good_effects" || type === "helpful") return "good";
+        return "bad";
       };
 
       const processValue = (key, oldVal, newVal, currentPath) => {
@@ -700,10 +738,13 @@ const MiscView = Vue.component("ti-misc", {
         const parts = fullPath.split(".");
 
         let classification = "neutral";
+        let outcomeType = null;
         if (parts[0] === "outcomes") {
-          classification = getOutcomeClassification(importData.type || (currentData ? currentData.type : null));
+          outcomeType = importData.type || (currentData ? currentData.type : null);
+          classification = getOutcomeClassification(outcomeType);
         } else if (parts[0] === "noita" && parts[1] === "option_types" && parts.length > 2) {
-          classification = getOutcomeClassification(importData.name || (currentData ? currentData.name : null));
+          outcomeType = importData.name || (currentData ? currentData.name : null);
+          classification = getOutcomeClassification(outcomeType);
         }
 
         if (typeof oldVal === "object" && oldVal !== null && typeof newVal === "object" && newVal !== null) {
@@ -715,6 +756,7 @@ const MiscView = Vue.component("ti-misc", {
                 newValue: JSON.stringify(newVal),
                 isPercentChange: false,
                 classification: classification,
+                outcomeType: outcomeType,
               });
             }
           } else {
@@ -733,6 +775,7 @@ const MiscView = Vue.component("ti-misc", {
             isPercentChange: isNumeric,
             percentChange: percentChange,
             classification: classification,
+            outcomeType: outcomeType,
           });
         }
       };
@@ -746,8 +789,10 @@ const MiscView = Vue.component("ti-misc", {
           const fullPath = path ? `${path}.${key}` : key;
           const parts = fullPath.split(".");
           let classification = "neutral";
+          let outcomeType = null;
           if (parts[0] === "outcomes") {
-            classification = getOutcomeClassification(importData.type || (typeof newVal === "object" ? newVal.type : null));
+            outcomeType = importData.type || (typeof newVal === "object" ? newVal.type : null);
+            classification = getOutcomeClassification(outcomeType);
           }
 
           changes.push({
@@ -757,13 +802,16 @@ const MiscView = Vue.component("ti-misc", {
             isPercentChange: false,
             isNew: true,
             classification: classification,
+            outcomeType: outcomeType,
           });
         } else if (oldVal !== undefined && newVal === undefined) {
           const fullPath = path ? `${path}.${key}` : key;
           const parts = fullPath.split(".");
           let classification = "neutral";
+          let outcomeType = null;
           if (parts[0] === "outcomes") {
-            classification = getOutcomeClassification(currentData.type || (typeof oldVal === "object" ? oldVal.type : null));
+            outcomeType = currentData.type || (typeof oldVal === "object" ? oldVal.type : null);
+            classification = getOutcomeClassification(outcomeType);
           }
 
           changes.push({
@@ -773,6 +821,7 @@ const MiscView = Vue.component("ti-misc", {
             isPercentChange: false,
             isRemoved: true,
             classification: classification,
+            outcomeType: outcomeType,
           });
         } else {
           processValue(key, oldVal, newVal, path);
@@ -825,9 +874,20 @@ const MiscView = Vue.component("ti-misc", {
 
       return parts.map(formatPart).join(" → ");
     },
-    getDiffClass(change) {
+    getDiffClass(change, value) {
       if (change.isNew) return "blue--text";
       if (change.isRemoved) return "orange--text";
+
+      const val = value !== undefined ? value : change.newValue;
+
+      if (typeof val === "boolean") {
+        if (change.classification === "good") {
+          return val ? "green--text" : "red--text";
+        } else {
+          return val ? "red--text" : "green--text";
+        }
+      }
+
       if (change.isPercentChange && change.percentChange !== null) {
         const isPositive = change.percentChange > 0;
         if (change.classification === "bad") {
@@ -948,28 +1008,60 @@ const MiscView = Vue.component("ti-misc", {
                       <v-btn icon @click="cancelImport()"><v-icon>mdi-close</v-icon></v-btn>
                   </v-toolbar>
                   <v-card-text style="max-height: 500px;">
-                      <p class="body-2 grey--text mb-4">The following settings will be changed:</p>
+                      <p class="body-2 grey--text mt-4 mb-4">The following settings will be changed:</p>
                       <v-simple-table dense>
                           <template v-slot:default>
-                              <thead><tr><th class="text-left">Setting</th><th class="text-left">Change</th></tr></thead>    
-                              <tbody>
-                                  <tr v-for="(change, index) in diffChanges" :key="index">
-                                      <td class="caption">
-                                        {{ formatSettingPath(change.setting) }}
-                                        <div v-if="change.classification === 'good'" class="green--text overline">Good Outcome</div>
-                                        <div v-if="change.classification === 'bad'" class="red--text overline">Bad Outcome</div>
-                                      </td>
-                                      <td :class="getDiffClass(change)">
-                                          <span>{{ formatValue(change.oldValue) }}</span>
-                                          <span class="mx-2">--></span>
-                                          <span :class="getDiffClass(change)">{{ formatValue(change.newValue) }}</span>      
-                                          <span v-if="change.isPercentChange && change.percentChange !== null" class="ml-2 caption">({{ change.percentChange > 0 ? '+' : '' }}{{ change.percentChange.toFixed(1) }}%)</span>
-                                      </td>
-                                  </tr>
-                              </tbody>
+                              <template v-if="groupedChanges.good.length > 0">
+                                  <thead><tr><th colspan="3" class="green--text subtitle-1">Good outcome changes</th></tr></thead>
+                                  <tbody>
+                                      <tr v-for="(change, index) in groupedChanges.good" :key="'good-' + index">
+                                          <td class="caption" style="width: 33.33%;">
+                                            <v-tooltip bottom>
+                                              <template v-slot:activator="{ on, attrs }">
+                                                <span v-bind="attrs" v-on="on">{{ formatSettingPath(change.setting) }}</span>
+                                              </template>
+                                              <span>{{ change.outcomeType || 'Good Outcome' }}</span>
+                                            </v-tooltip>
+                                          </td>
+                                          <td class="text-no-wrap text-right caption grey--text text--lighten-1" style="width: 33.33%; font-family: monospace !important;">
+                                              <span style="display: inline-block; width: 80px; text-align: right;">{{ formatValue(change.oldValue) }}</span>
+                                              <span class="mx-2">→</span>
+                                              <span style="display: inline-block; width: 80px; text-align: left;">{{ formatValue(change.newValue) }}</span>
+                                          </td>
+                                          <td class="text-no-wrap text-right caption" style="width: 33.33%; font-family: monospace !important;">
+                                              <span v-if="typeof change.newValue === 'boolean'" :class="getDiffClass(change, change.newValue)" style="font-weight: 500;">{{ change.newValue ? 'Now enabled' : 'Now disabled' }}</span>
+                                              <span v-if="change.isPercentChange && change.percentChange !== null" :class="getDiffClass(change)" style="font-weight: 500;">{{ change.percentChange > 0 ? '+' : '' }}{{ change.percentChange.toFixed(1) }}%</span>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </template>
+                              <template v-if="groupedChanges.bad.length > 0">
+                                  <thead><tr><th colspan="3" class="red--text subtitle-1 pt-6">Bad outcome changes</th></tr></thead>
+                                  <tbody>
+                                      <tr v-for="(change, index) in groupedChanges.bad" :key="'bad-' + index">
+                                          <td class="caption" style="width: 33.33%;">
+                                            <v-tooltip bottom>
+                                              <template v-slot:activator="{ on, attrs }">
+                                                <span v-bind="attrs" v-on="on">{{ formatSettingPath(change.setting) }}</span>
+                                              </template>
+                                              <span>{{ change.outcomeType || 'Bad Outcome' }}</span>
+                                            </v-tooltip>
+                                          </td>
+                                          <td class="text-no-wrap text-right caption grey--text text--lighten-1" style="width: 33.33%; font-family: monospace !important;">
+                                              <span style="display: inline-block; width: 80px; text-align: right;">{{ formatValue(change.oldValue) }}</span>
+                                              <span class="mx-2">→</span>
+                                              <span style="display: inline-block; width: 80px; text-align: left;">{{ formatValue(change.newValue) }}</span>
+                                          </td>
+                                          <td class="text-no-wrap text-right caption" style="width: 33.33%; font-family: monospace !important;">
+                                              <span v-if="typeof change.newValue === 'boolean'" :class="getDiffClass(change, change.newValue)" style="font-weight: 500;">{{ change.newValue ? 'Now enabled' : 'Now disabled' }}</span>
+                                              <span v-if="change.isPercentChange && change.percentChange !== null" :class="getDiffClass(change)" style="font-weight: 500;">{{ change.percentChange > 0 ? '+' : '' }}{{ change.percentChange.toFixed(1) }}%</span>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </template>
                           </template>
                       </v-simple-table>
-                      <p class="caption mt-4"><span class="green--text">Green</span> = good change, <span class="red--text">Red</span> = bad change, <span class="blue--text">Blue</span> = new, <span class="orange--text">Orange</span> = removed</p>        
+                      <p class="caption mt-4"><span class="green--text">Green</span> = good state/change, <span class="red--text">Red</span> = bad state/change, <span class="blue--text">Blue</span> = new, <span class="orange--text">Orange</span> = removed</p>        
                   </v-card-text>
                   <v-card-actions>
                       <v-spacer></v-spacer>

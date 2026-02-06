@@ -1,53 +1,55 @@
 const TwitchView = Vue.component("ti-twitch", {
-    data() {
-        return {
-            tempId: "",
-            snackbar: { right: true, bottom: true },
-            models: { twitch: {} },
-            temp: { twitch: {} }
-        }
+  data() {
+    return {
+      tempId: "",
+      snackbar: { right: true, bottom: true },
+      models: { twitch: {} },
+      temp: { twitch: {} },
+    };
+  },
+  computed: {
+    unsavedChanges: function () {
+      return JSON.stringify(this.models) !== JSON.stringify(this.temp);
     },
-    computed: {
-        unsavedChanges: function () {
-            return JSON.stringify(this.models) !== JSON.stringify(this.temp)
-        },
-        enabledHighlights: function () {
-            return this.temp.twitch.show_user_msg || false
-        },
-        rewards: function () {
-            if (!this.temp.twitch["custom-rewards"]) { return [] }
-            return Object.keys(this.temp.twitch["custom-rewards"])
-        }
+    enabledHighlights: function () {
+      return this.temp.twitch.show_user_msg || false;
     },
-    methods: {
-        reset: function () {
-            this.temp = JSON.parse(JSON.stringify(this.models))
-        },
-        apply: function (id) {
-            axios.post(`/twitch`, this.temp.twitch)
-            this.models = JSON.parse(JSON.stringify(this.temp))
-        },
-        addReward: function (id) {
-            this.$set(this.temp.twitch["custom-rewards"], id, {
-                enabled: false,
-                name: "Unnamed",
-                comment: "What does it do?",
-                msg_head: "",
-                msg_body: "",
-                func: ""
-            })
-        },
-        rmReward: function (id) {
-            this.$set(this.temp.twitch["custom-rewards"], id, undefined)
-        }
+    rewards: function () {
+      if (!this.temp.twitch["custom-rewards"]) {
+        return [];
+      }
+      return Object.keys(this.temp.twitch["custom-rewards"]);
     },
-    beforeCreate: async function () {
-        let twitch = await axios.get("/twitch")
-        const data = JSON.stringify(twitch.data)
-        this.$set(this.models, "twitch", JSON.parse(data))
-        this.$set(this.temp, "twitch", JSON.parse(data))
+  },
+  methods: {
+    reset: function () {
+      this.temp = JSON.parse(JSON.stringify(this.models));
     },
-    template: `<v-container fluid> <v-snackbar :timeout="0" :right="snackbar.right" :bottom="snackbar.bottom" :value="unsavedChanges">Unsaved Changes</v-snackbar>
+    apply: function (id) {
+      axios.post(`/twitch`, this.temp.twitch);
+      this.models = JSON.parse(JSON.stringify(this.temp));
+    },
+    addReward: function (id) {
+      this.$set(this.temp.twitch["custom-rewards"], id, {
+        enabled: false,
+        name: "Unnamed",
+        comment: "What does it do?",
+        msg_head: "",
+        msg_body: "",
+        func: "",
+      });
+    },
+    rmReward: function (id) {
+      this.$set(this.temp.twitch["custom-rewards"], id, undefined);
+    },
+  },
+  beforeCreate: async function () {
+    let twitch = await axios.get("/twitch");
+    const data = JSON.stringify(twitch.data);
+    this.$set(this.models, "twitch", JSON.parse(data));
+    this.$set(this.temp, "twitch", JSON.parse(data));
+  },
+  template: `<v-container fluid> <v-snackbar :timeout="0" :right="snackbar.right" :bottom="snackbar.bottom" :value="unsavedChanges">Unsaved Changes</v-snackbar>
         <v-card>
             <v-toolbar color="deep-purple" flat>
                 <v-toolbar-title>Twitch Settings</v-toolbar-title>
@@ -159,151 +161,150 @@ const TwitchView = Vue.component("ti-twitch", {
                 </v-card-actions>
             </v-card-text>
         </v-card>
-    </v-container>`
-})
+    </v-container>`,
+});
 
 const NoitaView = Vue.component("ti-noita", {
-    data() {
-        return {
-            snackbar: { right: true, bottom: true },
-            models: { noita: {} },
-            temp: { noita: {} }
-        }
+  data() {
+    return {
+      snackbar: { right: true, bottom: true },
+      models: { noita: {} },
+      temp: { noita: {} },
+    };
+  },
+  computed: {
+    randomizedTime: function () {
+      const timers = {
+        voting: false,
+        between: false,
+      };
+      if (Object.keys(this.temp.noita).length > 0) {
+        timers.voting = this.temp.noita.random_voting_time.enabled;
+        timers.between = this.temp.noita.random_time_between.enabled;
+      }
+      return timers;
     },
-    computed: {
-        randomizedTime: function () {
-            const timers = {
-                voting: false,
-                between: false
-            }
-            if (Object.keys(this.temp.noita).length > 0) {
-                timers.voting = this.temp.noita.random_voting_time.enabled
-                timers.between = this.temp.noita.random_time_between.enabled
-            }
-            return timers
-        },
-        getCols: function () {
-            const cols = {
-                voting: 6,
-                between: 6
-            }
-            if (Object.keys(this.temp.noita).length > 0) {
-                cols.between = this.temp.noita.random_voting_time.enabled ? 12 : 6
-                cols.voting = this.temp.noita.random_time_between.enabled ? 12 : 6
-                cols.varying = cols.voting == cols.between ? 6 : 12
-            }
-            return cols
-        },
-        unsavedChanges: function () {
-            if (!this.temp.noita) { return }
-            let temp = JSON.parse(JSON.stringify(this.temp.noita))
-            if (temp.option_types && temp.option_types.length > 0) {
-                for (let option in temp.option_types) {
-                    delete temp.option_types[option].uid
-                }
-            }
-            return JSON.stringify(this.models.noita) !== JSON.stringify(temp)
-        },
-        totalWeight: function () {
-            if (!this.temp.noita) { return }
-            if (Object.keys(this.temp.noita.option_types || {}) == 0) { return }
-            if (this.temp.noita.option_types) {
-                return this.temp.noita.option_types.reduce((accumulator, val) => accumulator + val.rarity, 0)
-            }
-            else {
-                return 0
-            }
-        }
+    getCols: function () {
+      const cols = {
+        voting: 6,
+        between: 6,
+      };
+      if (Object.keys(this.temp.noita).length > 0) {
+        cols.between = this.temp.noita.random_voting_time.enabled ? 12 : 6;
+        cols.voting = this.temp.noita.random_time_between.enabled ? 12 : 6;
+        cols.varying = cols.voting == cols.between ? 6 : 12;
+      }
+      return cols;
     },
-    methods: {
-        reset: function () {
-            this.temp = JSON.parse(JSON.stringify(this.models))
-            if (this.temp.noita.option_types.length > 0) {
-                for (let option in this.temp.noita.option_types) {
-                    this.temp.noita.option_types[option].uid = (Math.random() * 100000000) + 1000
-                }
-            }
-        },
-        apply: function (id) {
-            let toSend = JSON.parse(JSON.stringify(this.temp.noita))
-            if (toSend.option_types.length > 0) {
-                for (let option in toSend.option_types) {
-                    delete toSend.option_types[option].uid
-                }
-            }
-            axios.post(`/noita`, toSend)
-            this.$set(this.models, "noita", toSend)
-        },
-        getDefaults: async function () {
-            let defaults = await axios.get("/reset/option_types")
-            let data = JSON.stringify(defaults.data)
-            this.$set(this.models, "noita", JSON.parse(data))
-            this.$set(this.temp, "noita", JSON.parse(data))
-            if (this.temp.noita.option_types.length > 0) {
-                for (let option in this.temp.noita.option_types) {
-                    this.temp.noita.option_types[option].uid = (Math.random() * 100000000) + 1000
-                }
-            }
-        },
-        isNumber(val) {
-            if (typeof val == "number") {
-                return true
-            }
-            else {
-                return "Not a number"
-            }
-        },
-        calculateOdds: function (index) {
-            let weight = this.temp.noita.option_types[index].rarity
-            let odds = (weight / this.totalWeight) * 100
-            return `${odds.toFixed(2)}%`
-        },
-        votingMinRule(val) {
-            if (val > this.temp.noita.random_voting_time.max) {
-                return "Must be lower than max"
-            }
-            else return true
-        },
-        betweenMinRule(val) {
-            if (val > this.temp.noita.random_time_between.max) {
-                return "Must be lower than max"
-            }
-            else return true
-        },
-        votingMaxRule(val) {
-            if (val < this.temp.noita.random_voting_time.min) {
-                return "Must be higher than min"
-            }
-            else return true
-        },
-        betweenMaxRule(val) {
-            if (val < this.temp.noita.random_time_between.min) {
-                return "Must be higher than min"
-            }
-            else return true
-        },
-        voteOptionsRule(val) {
-            if (val < 1) {
-                return "Must be at least 1"
-            } else if (val % 1 != 0) {
-                return "Must be an integer"
-            }
-            else return true
+    unsavedChanges: function () {
+      if (!this.temp.noita) {
+        return;
+      }
+      let temp = JSON.parse(JSON.stringify(this.temp.noita));
+      if (temp.option_types && temp.option_types.length > 0) {
+        for (let option in temp.option_types) {
+          delete temp.option_types[option].uid;
         }
+      }
+      return JSON.stringify(this.models.noita) !== JSON.stringify(temp);
     },
-    beforeCreate: async function () {
-        let noita = await axios.get("/noita")
-        const data = JSON.stringify(noita.data)
-        this.$set(this.models, "noita", JSON.parse(data))
-        this.$set(this.temp, "noita", JSON.parse(data))
+    totalWeight: function () {
+      if (!this.temp.noita) {
+        return;
+      }
+      if (Object.keys(this.temp.noita.option_types || {}) == 0) {
+        return;
+      }
+      if (this.temp.noita.option_types) {
+        return this.temp.noita.option_types.reduce((accumulator, val) => accumulator + val.rarity, 0);
+      } else {
+        return 0;
+      }
+    },
+  },
+  methods: {
+    reset: function () {
+      this.temp = JSON.parse(JSON.stringify(this.models));
+      if (this.temp.noita.option_types.length > 0) {
+        for (let option in this.temp.noita.option_types) {
+          this.temp.noita.option_types[option].uid = Math.random() * 100000000 + 1000;
+        }
+      }
+    },
+    apply: function (id) {
+      let toSend = JSON.parse(JSON.stringify(this.temp.noita));
+      if (toSend.option_types.length > 0) {
+        for (let option in toSend.option_types) {
+          delete toSend.option_types[option].uid;
+        }
+      }
+      axios.post(`/noita`, toSend);
+      this.$set(this.models, "noita", toSend);
+    },
+    getDefaults: async function () {
+      let defaults = await axios.get("/reset/option_types");
+      let data = JSON.stringify(defaults.data);
+      this.$set(this.models, "noita", JSON.parse(data));
+      this.$set(this.temp, "noita", JSON.parse(data));
+      if (this.temp.noita.option_types.length > 0) {
+        for (let option in this.temp.noita.option_types) {
+          this.temp.noita.option_types[option].uid = Math.random() * 100000000 + 1000;
+        }
+      }
+    },
+    isNumber(val) {
+      if (typeof val == "number") {
+        return true;
+      } else {
+        return "Not a number";
+      }
+    },
+    calculateOdds: function (index) {
+      let weight = this.temp.noita.option_types[index].rarity;
+      let odds = (weight / this.totalWeight) * 100;
+      return `${odds.toFixed(2)}%`;
+    },
+    votingMinRule(val) {
+      if (val > this.temp.noita.random_voting_time.max) {
+        return "Must be lower than max";
+      } else return true;
+    },
+    betweenMinRule(val) {
+      if (val > this.temp.noita.random_time_between.max) {
+        return "Must be lower than max";
+      } else return true;
+    },
+    votingMaxRule(val) {
+      if (val < this.temp.noita.random_voting_time.min) {
+        return "Must be higher than min";
+      } else return true;
+    },
+    betweenMaxRule(val) {
+      if (val < this.temp.noita.random_time_between.min) {
+        return "Must be higher than min";
+      } else return true;
+    },
+    voteOptionsRule(val) {
+      if (val < 1) {
+        return "Must be at least 1";
+      } else if (val % 1 != 0) {
+        return "Must be an integer";
+      } else return true;
+    },
+  },
+  beforeCreate: async function () {
+    let noita = await axios.get("/noita");
+    const data = JSON.stringify(noita.data);
+    this.$set(this.models, "noita", JSON.parse(data));
+    this.$set(this.temp, "noita", JSON.parse(data));
 
-        if (this.temp.noita.option_types.length > 0) {
-            for (let option in this.temp.noita.option_types) {
-                this.temp.noita.option_types[option].uid = (Math.random() * 100000000) + 1000
-            }
-        }
-    },
-    template: `<v-container fluid> <v-snackbar :timeout="0" :right="snackbar.right" :bottom="snackbar.bottom" :value="unsavedChanges">Unsaved Changes</v-snackbar>
+    if (this.temp.noita.option_types.length > 0) {
+      for (let option in this.temp.noita.option_types) {
+        this.temp.noita.option_types[option].uid = Math.random() * 100000000 + 1000;
+      }
+    }
+  },
+  template: `<v-container fluid> <v-snackbar :timeout="0" :right="snackbar.right" :bottom="snackbar.bottom" :value="unsavedChanges">Unsaved Changes</v-snackbar>
     <v-card>
         <v-toolbar color="deep-purple" flat>
             <v-toolbar-title>Noita Settings</v-toolbar-title>
@@ -461,103 +462,108 @@ const NoitaView = Vue.component("ti-noita", {
             </v-card-actions>
         </v-card-text>
     </v-card>
-</v-container>`
-})
+</v-container>`,
+});
 
 const OutcomesView = Vue.component("ti-outcomes", {
-    data() {
-        return {
-            snackbar: { right: true, bottom: true },
-            models: {},
-            temp: {},
-            activeKey: "",
-            filterKey: ""
-        }
+  data() {
+    return {
+      snackbar: { right: true, bottom: true },
+      models: {},
+      temp: {},
+      activeKey: "",
+      filterKey: "",
+    };
+  },
+  computed: {
+    unsavedChanges: function () {
+      return JSON.stringify(this.models) !== JSON.stringify(this.temp);
     },
-    computed: {
-        unsavedChanges: function () {
-            return JSON.stringify(this.models) !== JSON.stringify(this.temp)
-        },
-        totalWeight: function () {
-            if (Object.keys(this.temp) == 0) { return }
-            let weights = {}
-            Object.values(this.temp).forEach(outcome => {
-                if (!outcome.enabled) { return }
-                weights[outcome.type] = (weights[outcome.type] || 0) + outcome.rarity
-            })
-            return weights
-        },
-        list: function () {
-            let key = this.filterKey.toLowerCase()
-            let filtered = Object.values(this.models).filter(val => {
-                return val.name.toLowerCase().includes(key) || val.type.toLowerCase().includes(key)
-            })
-            let sorted = filtered.sort((a, b) => {
-                let nameA = a.name.toUpperCase()
-                let nameB = b.name.toUpperCase()
-                if (nameA < nameB) {
-                    return -1
-                }
-                if (nameA > nameB) {
-                    return 1
-                }
+    totalWeight: function () {
+      if (Object.keys(this.temp) == 0) {
+        return;
+      }
+      let weights = {};
+      Object.values(this.temp).forEach((outcome) => {
+        if (!outcome.enabled) {
+          return;
+        }
+        weights[outcome.type] = (weights[outcome.type] || 0) + outcome.rarity;
+      });
+      return weights;
+    },
+    list: function () {
+      let key = this.filterKey.toLowerCase();
+      let filtered = Object.values(this.models).filter((val) => {
+        return val.name.toLowerCase().includes(key) || val.type.toLowerCase().includes(key);
+      });
+      let sorted = filtered
+        .sort((a, b) => {
+          let nameA = a.name.toUpperCase();
+          let nameB = b.name.toUpperCase();
+          if (nameA < nameB) {
+            return -1;
+          }
+          if (nameA > nameB) {
+            return 1;
+          }
 
-                return 0
-            }).sort((a, b) => {
-                let typeA = a.type.toUpperCase()
-                let typeB = b.type.toUpperCase()
-                if (typeA < typeB) {
-                    return -1
-                }
-                if (typeA > typeB) {
-                    return 1
-                }
+          return 0;
+        })
+        .sort((a, b) => {
+          let typeA = a.type.toUpperCase();
+          let typeB = b.type.toUpperCase();
+          if (typeA < typeB) {
+            return -1;
+          }
+          if (typeA > typeB) {
+            return 1;
+          }
 
-                return 0
-            })
-            if (this.activeKey === "" && sorted.length > 0) {
-                this.activeKey = sorted[0].id
-            }
-            return sorted
-        }
+          return 0;
+        });
+      if (this.activeKey === "" && sorted.length > 0) {
+        this.activeKey = sorted[0].id;
+      }
+      return sorted;
     },
-    methods: {
-        reset: function () {
-            this.temp = JSON.parse(JSON.stringify(this.models))
-        },
-        getDefaults: async function () {
-            let defaults = await axios.get("/reset/outcomes")
-            let data = JSON.stringify(defaults.data)
-            this.$set(this, "models", JSON.parse(data))
-            this.$set(this, "temp", JSON.parse(data))
-        },
-        calculateOdds: function (type, weight) {
-            let odds = (weight / this.totalWeight[type]) * 100
-            return `${odds.toFixed(2)}%`
-        },
-        apply: function (id) {
-            axios.post(`/outcomes/${id}`, this.temp[id])
-            this.models[id] = JSON.parse(JSON.stringify(this.temp[id]))
-        },
-        toGame: function (id) {
-            axios.post(`/togame/${id}`)
-        },
-        isNumber(val) {
-            if (typeof val == "number") {
-                return true
-            }
-            else {
-                return "Not a number"
-            }
-        }
+  },
+  methods: {
+    reset: function () {
+      this.temp = JSON.parse(JSON.stringify(this.models));
     },
-    beforeCreate: async function () {
-        let outcomes = await axios.get("/outcomes")
-        let outcomesData = JSON.stringify(outcomes.data)
-        this.$set(this, "models", JSON.parse(outcomesData))
-        this.$set(this, "temp", JSON.parse(outcomesData))
+    getDefaults: async function () {
+      let defaults = await axios.get("/reset/outcomes");
+      let data = JSON.stringify(defaults.data);
+      this.$set(this, "models", JSON.parse(data));
+      this.$set(this, "temp", JSON.parse(data));
     },
-    template: `<v-container fluid> <v-snackbar :timeout="0" :right="snackbar.right" :bottom="snackbar.bottom" :value="unsavedChanges">Unsaved Changes</v-snackbar>
+    calculateOdds: function (type, weight) {
+      let odds = (weight / this.totalWeight[type]) * 100;
+      return `${odds.toFixed(2)}%`;
+    },
+    apply: function (id) {
+      axios.post(`/outcomes/${id}`, this.temp[id]);
+      this.models[id] = JSON.parse(JSON.stringify(this.temp[id]));
+    },
+    toGame: function (id) {
+      axios.post(`/togame/${id}`);
+    },
+    isNumber(val) {
+      if (typeof val == "number") {
+        return true;
+      } else {
+        return "Not a number";
+      }
+    },
+  },
+  beforeCreate: async function () {
+    let outcomes = await axios.get("/outcomes");
+    let outcomesData = JSON.stringify(outcomes.data);
+    this.$set(this, "models", JSON.parse(outcomesData));
+    this.$set(this, "temp", JSON.parse(outcomesData));
+  },
+  template: `<v-container fluid> <v-snackbar :timeout="0" :right="snackbar.right" :bottom="snackbar.bottom" :value="unsavedChanges">Unsaved Changes</v-snackbar>
     <v-navigation-drawer app clipped permanent >
         <v-toolbar color="deep-purple" extended>
             <v-toolbar-title>Outcomes</v-toolbar-title>
@@ -623,58 +629,542 @@ const OutcomesView = Vue.component("ti-outcomes", {
         </v-card-text>
     </v-card>
 
-    </v-container>`
-})
+    </v-container>`,
+});
 
 const MiscView = Vue.component("ti-misc", {
-    data() {
-        return {
-            snackbar: { right: true, bottom: true },
-            models: { config: {} },
-            temp: { config: {} }
+  data() {
+    return {
+      snackbar: { right: true, bottom: true, show: false, text: "" },
+      importStatus: "",
+      importing: false,
+      showDiffDialog: false,
+      diffChanges: [],
+      pendingImportData: null,
+    };
+  },
+  computed: {
+    groupedChanges() {
+      const good = this.diffChanges.filter((c) => c.classification === "good");
+      const bad = this.diffChanges.filter((c) => c.classification === "bad");
+
+      const sortChanges = (changes) => {
+        return [...changes].sort((a, b) => {
+          // 1. Percentage changes first
+          if (a.isPercentChange && !b.isPercentChange) return -1;
+          if (!a.isPercentChange && b.isPercentChange) return 1;
+
+          if (a.isPercentChange && b.isPercentChange) {
+            // Sorted by % change descending
+            return (b.percentChange || 0) - (a.percentChange || 0);
+          }
+
+          // 2. Enabled changes next
+          const isEnabledChange = (c) => c.setting.toLowerCase().endsWith(".enabled");
+          const aEnabled = isEnabledChange(a);
+          const bEnabled = isEnabledChange(b);
+          if (aEnabled && !bEnabled) return -1;
+          if (!aEnabled && bEnabled) return 1;
+
+          if (aEnabled && bEnabled) {
+            // Starting by enabled yes (new value is true)
+            if (a.newValue === true && b.newValue !== true) return -1;
+            if (a.newValue !== true && b.newValue === true) return 1;
+          }
+
+          return 0;
+        });
+      };
+
+      return {
+        good: sortChanges(good),
+        bad: sortChanges(bad),
+      };
+    },
+  },
+  methods: {
+    async exportSettings() {
+      try {
+        const [noitaRes, outcomesRes, twitchRes] = await Promise.all([
+          axios.get("/noita"),
+          axios.get("/outcomes"),
+          axios.get("/twitch"),
+        ]);
+
+        const channelName = twitchRes.data.channel_name || "unknown";
+        const safeName = channelName.replace(/[^a-zA-Z0-9_-]/g, "_");
+
+        const exportData = {
+          _exportInfo: {
+            exportedAt: new Date().toISOString(),
+            version: "1.0",
+          },
+          noita: noitaRes.data,
+          outcomes: outcomesRes.data,
+        };
+
+        const json = JSON.stringify(exportData, null, 2);
+        const blob = new Blob([json], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `noita-twitch-settings-${safeName}-${new Date().toISOString().split("T")[0]}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        this.snackbar.text = "Settings exported successfully";
+        this.snackbar.show = true;
+      } catch (error) {
+        console.error("Export failed:", error);
+        this.snackbar.text = "Export failed: " + error.message;
+        this.snackbar.show = true;
+      }
+    },
+    triggerImport() {
+      this.$refs.fileInput.click();
+    },
+    compareSettings(currentData, importData, path = "") {
+      const changes = [];
+
+      const getOutcomeClassification = (type) => {
+        if (type === "good_effects" || type === "helpful") return "good";
+        return "bad";
+      };
+
+      const processValue = (key, oldVal, newVal, currentPath) => {
+        const fullPath = currentPath ? `${currentPath}.${key}` : key;
+        const parts = fullPath.split(".");
+
+        let classification = "neutral";
+        let outcomeType = null;
+        if (parts[0] === "outcomes") {
+          outcomeType = importData.type || (currentData ? currentData.type : null);
+          classification = getOutcomeClassification(outcomeType);
+        } else if (parts[0] === "noita" && parts[1] === "option_types" && parts.length > 2) {
+          outcomeType = importData.name || (currentData ? currentData.name : null);
+          classification = getOutcomeClassification(outcomeType);
         }
-    },
-    computed: {
-        unsavedChanges: function () {
-            return JSON.stringify(this.models) !== JSON.stringify(this.temp)
+
+        if (typeof oldVal === "object" && oldVal !== null && typeof newVal === "object" && newVal !== null) {
+          if (Array.isArray(oldVal) && Array.isArray(newVal)) {
+            if (JSON.stringify(oldVal) !== JSON.stringify(newVal)) {
+              changes.push({
+                setting: fullPath,
+                oldValue: JSON.stringify(oldVal),
+                newValue: JSON.stringify(newVal),
+                isPercentChange: false,
+                classification: classification,
+                outcomeType: outcomeType,
+              });
+            }
+          } else {
+            changes.push(...this.compareSettings(oldVal, newVal, fullPath));
+          }
+        } else if (oldVal !== newVal) {
+          const isNumeric = typeof oldVal === "number" && typeof newVal === "number";
+          let percentChange = null;
+          if (isNumeric && oldVal !== 0) {
+            percentChange = ((newVal - oldVal) / Math.abs(oldVal)) * 100;
+          }
+          changes.push({
+            setting: fullPath,
+            oldValue: oldVal,
+            newValue: newVal,
+            isPercentChange: isNumeric,
+            percentChange: percentChange,
+            classification: classification,
+            outcomeType: outcomeType,
+          });
         }
+      };
+
+      const allKeys = new Set([...Object.keys(currentData || {}), ...Object.keys(importData || {})]);
+      for (const key of allKeys) {
+        const oldVal = currentData ? currentData[key] : undefined;
+        const newVal = importData ? importData[key] : undefined;
+
+        if (oldVal === undefined && newVal !== undefined) {
+          const fullPath = path ? `${path}.${key}` : key;
+          const parts = fullPath.split(".");
+          let classification = "neutral";
+          let outcomeType = null;
+          if (parts[0] === "outcomes") {
+            outcomeType = importData.type || (typeof newVal === "object" ? newVal.type : null);
+            classification = getOutcomeClassification(outcomeType);
+          }
+
+          changes.push({
+            setting: fullPath,
+            oldValue: "(not set)",
+            newValue: typeof newVal === "object" ? JSON.stringify(newVal) : newVal,
+            isPercentChange: false,
+            isNew: true,
+            classification: classification,
+            outcomeType: outcomeType,
+          });
+        } else if (oldVal !== undefined && newVal === undefined) {
+          const fullPath = path ? `${path}.${key}` : key;
+          const parts = fullPath.split(".");
+          let classification = "neutral";
+          let outcomeType = null;
+          if (parts[0] === "outcomes") {
+            outcomeType = currentData.type || (typeof oldVal === "object" ? oldVal.type : null);
+            classification = getOutcomeClassification(outcomeType);
+          }
+
+          changes.push({
+            setting: fullPath,
+            oldValue: typeof oldVal === "object" ? JSON.stringify(oldVal) : oldVal,
+            newValue: "(removed)",
+            isPercentChange: false,
+            isRemoved: true,
+            classification: classification,
+            outcomeType: outcomeType,
+          });
+        } else {
+          processValue(key, oldVal, newVal, path);
+        }
+      }
+      return changes;
     },
-    beforeCreate: async function () {
-        /*
-        let config = await axios.get("/outcomes")
-        this.$set(this.models, "outcomes", config.data)
-        */
+    formatValue(val) {
+      if (typeof val === "boolean") return val ? "Yes" : "No";
+      if (typeof val === "object") return JSON.stringify(val);
+      return String(val);
     },
-    template: `<v-container fluid> <v-snackbar :timeout="0" :right="snackbar.right" :bottom="snackbar.bottom" :value="unsavedChanges">Unsaved Changes</v-snackbar>
-        <v-card>
-            <v-toolbar color="deep-purple" flat>
-                <v-toolbar-title class="title">W.I.P</v-toolbar-title>
-            </v-toolbar>
-            <v-card-text>
-                <v-spacer></v-spacer>
-            </v-card-text>
-        </v-card>
-    </v-container>`
-})
+    formatSettingPath(path) {
+      const parts = path.split(".");
+      const propertyLabels = {
+        rarity: "Rarity",
+        enabled: "Enabled",
+        type: "Type",
+        name: "Name",
+        description: "Description",
+        comment: "Comment",
+        voting_time: "Voting Time",
+        time_between_votes: "Time Between Votes",
+        options_per_vote: "Options Per Vote",
+        game_ui: "Game UI",
+        obs_overlay: "OBS Overlay",
+        display_votes: "Show Votes",
+        named_enemies: "Named Enemies",
+        random_on_no_votes: "Random Winner",
+        scuffed_mode: "Scuffed Mode",
+        multiple_winners: "Multiple Winners",
+        permanent_gamba_option: "Permanent Gamba",
+      };
+
+      const formatPart = (part) => {
+        if (propertyLabels[part]) return propertyLabels[part];
+        // Convert snake_case to Title Case
+        return part.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+      };
+
+      // Handle different path structures
+      if (parts[0] === "outcomes" && parts.length >= 2) {
+        const outcomeName = parts[1];
+        const property = parts.length > 2 ? formatPart(parts[parts.length - 1]) : "";
+        return property ? `${outcomeName} → ${property}` : outcomeName;
+      } else if (parts[0] === "noita" && parts.length >= 2) {
+        const property = formatPart(parts[parts.length - 1]);
+        return `Noita → ${property}`;
+      }
+
+      return parts.map(formatPart).join(" → ");
+    },
+    getDiffClass(change, value) {
+      if (change.isNew) return "blue--text";
+      if (change.isRemoved) return "orange--text";
+
+      const val = value !== undefined ? value : change.newValue;
+
+      if (typeof val === "boolean") {
+        if (change.classification === "good") {
+          return val ? "green--text" : "red--text";
+        } else {
+          return val ? "red--text" : "green--text";
+        }
+      }
+
+      if (change.isPercentChange && change.percentChange !== null) {
+        const isPositive = change.percentChange > 0;
+        if (change.classification === "bad") {
+          return isPositive ? "red--text" : "green--text";
+        }
+        return isPositive ? "green--text" : "red--text";
+      }
+      return "";
+    },
+    async handleImport(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      this.importing = true;
+      this.importStatus = "Reading file...";
+      try {
+        const text = await file.text();
+        let data;
+        try {
+          data = JSON.parse(text);
+        } catch (e) {
+          throw new Error("Invalid JSON file");
+        }
+        if (!data.noita && !data.outcomes) {
+          throw new Error("Invalid settings file: missing noita or outcomes data");
+        }
+
+        this.importStatus = "Comparing settings...";
+        const [currentNoita, currentOutcomes] = await Promise.all([axios.get("/noita"), axios.get("/outcomes")]);
+        this.diffChanges = [];
+
+        if (data.noita) {
+          this.diffChanges.push(...this.compareSettings(currentNoita.data, data.noita, "noita"));
+        }
+        if (data.outcomes) {
+          for (const [id, outcome] of Object.entries(data.outcomes)) {
+            const currentOutcome = currentOutcomes.data[id];
+            if (currentOutcome) {
+              this.diffChanges.push(...this.compareSettings(currentOutcome, outcome, `outcomes.${outcome.name || id}`));
+            } else {
+              this.diffChanges.push({
+                setting: `outcomes.${outcome.name || id}`,
+                oldValue: "(not set)",
+                newValue: "(new outcome)",
+                isNew: true,
+              });
+            }
+          }
+        }
+
+        if (this.diffChanges.length > 0) {
+          this.showDiffDialog = true;
+          this.pendingImportData = data;
+          this.importing = false;
+          this.importStatus = "";
+          event.target.value = "";
+          return;
+        }
+        this.snackbar.text = "No changes detected in import file";
+        this.snackbar.show = true;
+      } catch (error) {
+        console.error("Import failed:", error);
+        this.snackbar.text = "Import failed: " + error.message;
+        this.snackbar.show = true;
+      } finally {
+        this.importing = false;
+        this.importStatus = "";
+        event.target.value = "";
+      }
+    },
+    async confirmImport() {
+      this.showDiffDialog = false;
+      this.importing = true;
+      await this.performImport(this.pendingImportData);
+      this.pendingImportData = null;
+    },
+    cancelImport() {
+      this.showDiffDialog = false;
+      this.pendingImportData = null;
+      this.diffChanges = [];
+    },
+    async performImport(data) {
+      let imported = [];
+      try {
+        if (data.noita) {
+          this.importStatus = "Importing Noita settings...";
+          await axios.post("/noita", data.noita);
+          imported.push("Noita settings");
+        }
+        if (data.outcomes) {
+          const outcomeIds = Object.keys(data.outcomes);
+          for (let i = 0; i < outcomeIds.length; i++) {
+            this.importStatus = `Importing Outcomes (${i + 1}/${outcomeIds.length})...`;
+            await axios.post(`/outcomes/${outcomeIds[i]}`, data.outcomes[outcomeIds[i]]);
+          }
+          imported.push(`${outcomeIds.length} outcomes`);
+        }
+        this.snackbar.text = `Import successful: ${imported.join(", ")}`;
+        this.snackbar.show = true;
+      } catch (error) {
+        this.snackbar.text = "Import failed: " + error.message;
+        this.snackbar.show = true;
+      } finally {
+        this.importing = false;
+        this.importStatus = "";
+        this.diffChanges = [];
+      }
+    },
+  },
+  template: `<v-container fluid>
+          <v-snackbar v-model="snackbar.show" :timeout="3000" :right="snackbar.right" :bottom="snackbar.bottom">{{ snackbar.text }}</v-snackbar>
+          <input type="file" ref="fileInput" accept=".json" style="display: none" @change="handleImport">
+
+          <v-dialog v-model="showDiffDialog" max-width="800" scrollable>
+              <v-card>
+                  <v-toolbar color="deep-purple" flat>
+                      <v-toolbar-title>Settings Changes Preview</v-toolbar-title>
+                      <v-spacer></v-spacer>
+                      <v-btn icon @click="cancelImport()"><v-icon>mdi-close</v-icon></v-btn>
+                  </v-toolbar>
+                  <v-card-text style="max-height: 500px;">
+                      <p class="body-2 grey--text mt-4 mb-4">The following settings will be changed:</p>
+                      <v-simple-table dense>
+                          <template v-slot:default>
+                              <template v-if="groupedChanges.good.length > 0">
+                                  <thead><tr><th colspan="3" class="green--text subtitle-1">Good outcome changes</th></tr></thead>
+                                  <tbody>
+                                      <tr v-for="(change, index) in groupedChanges.good" :key="'good-' + index">
+                                          <td class="caption" style="width: 33.33%;">
+                                            <v-tooltip bottom>
+                                              <template v-slot:activator="{ on, attrs }">
+                                                <span v-bind="attrs" v-on="on">{{ formatSettingPath(change.setting) }}</span>
+                                              </template>
+                                              <span>{{ change.outcomeType || 'Good Outcome' }}</span>
+                                            </v-tooltip>
+                                          </td>
+                                          <td class="text-no-wrap text-right caption grey--text text--lighten-1" style="width: 33.33%; font-family: monospace !important;">
+                                              <span style="display: inline-block; width: 80px; text-align: right;">{{ formatValue(change.oldValue) }}</span>
+                                              <span class="mx-2">→</span>
+                                              <span style="display: inline-block; width: 80px; text-align: left;">{{ formatValue(change.newValue) }}</span>
+                                          </td>
+                                          <td class="text-no-wrap text-right caption" style="width: 33.33%; font-family: monospace !important;">
+                                              <span v-if="typeof change.newValue === 'boolean'" :class="getDiffClass(change, change.newValue)" style="font-weight: 500;">{{ change.newValue ? 'Now enabled' : 'Now disabled' }}</span>
+                                              <span v-if="change.isPercentChange && change.percentChange !== null" :class="getDiffClass(change)" style="font-weight: 500;">{{ change.percentChange > 0 ? '+' : '' }}{{ change.percentChange.toFixed(1) }}%</span>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </template>
+                              <template v-if="groupedChanges.bad.length > 0">
+                                  <thead><tr><th colspan="3" class="red--text subtitle-1 pt-6">Bad outcome changes</th></tr></thead>
+                                  <tbody>
+                                      <tr v-for="(change, index) in groupedChanges.bad" :key="'bad-' + index">
+                                          <td class="caption" style="width: 33.33%;">
+                                            <v-tooltip bottom>
+                                              <template v-slot:activator="{ on, attrs }">
+                                                <span v-bind="attrs" v-on="on">{{ formatSettingPath(change.setting) }}</span>
+                                              </template>
+                                              <span>{{ change.outcomeType || 'Bad Outcome' }}</span>
+                                            </v-tooltip>
+                                          </td>
+                                          <td class="text-no-wrap text-right caption grey--text text--lighten-1" style="width: 33.33%; font-family: monospace !important;">
+                                              <span style="display: inline-block; width: 80px; text-align: right;">{{ formatValue(change.oldValue) }}</span>
+                                              <span class="mx-2">→</span>
+                                              <span style="display: inline-block; width: 80px; text-align: left;">{{ formatValue(change.newValue) }}</span>
+                                          </td>
+                                          <td class="text-no-wrap text-right caption" style="width: 33.33%; font-family: monospace !important;">
+                                              <span v-if="typeof change.newValue === 'boolean'" :class="getDiffClass(change, change.newValue)" style="font-weight: 500;">{{ change.newValue ? 'Now enabled' : 'Now disabled' }}</span>
+                                              <span v-if="change.isPercentChange && change.percentChange !== null" :class="getDiffClass(change)" style="font-weight: 500;">{{ change.percentChange > 0 ? '+' : '' }}{{ change.percentChange.toFixed(1) }}%</span>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </template>
+                          </template>
+                      </v-simple-table>
+                      <p class="caption mt-4"><span class="green--text">Green</span> = good state/change, <span class="red--text">Red</span> = bad state/change, <span class="blue--text">Blue</span> = new, <span class="orange--text">Orange</span> = removed</p>        
+                  </v-card-text>
+                  <v-card-actions>
+                      <v-spacer></v-spacer>
+                      <v-btn text @click="cancelImport()">Cancel</v-btn>
+                      <v-btn color="deep-purple" @click="confirmImport()">Confirm Import</v-btn>
+                  </v-card-actions>
+              </v-card>
+          </v-dialog>
+
+          <v-card>
+              <v-toolbar color="deep-purple" flat><v-toolbar-title class="title">Import / Export Settings</v-toolbar-title></v-toolbar>
+              <v-card-text>
+                  <v-row><v-col cols="12">
+                      <p class="body-1">Export your Noita voting settings and outcome configurations to share with others or backup your setup.</p>
+                      <p class="body-2 grey--text">Note: Twitch settings (channel name, custom rewards) are not included in exports for privacy.</p>
+                  </v-col></v-row>
+                  <v-row>
+                      <v-col cols="12" sm="6">
+                          <v-card outlined>
+                              <v-card-title>Export</v-card-title>
+                              <v-card-text><p>Download your current settings as a JSON file.</p><p class="caption grey--text">Includes: Noita settings, Outcomes</p></v-card-text>
+                              <v-card-actions><v-btn color="deep-purple" @click="exportSettings()"><v-icon left>mdi-upload</v-icon>Export Settings</v-btn></v-card-actions>
+                          </v-card>
+                      </v-col>
+                      <v-col cols="12" sm="6">
+                          <v-card outlined>
+                              <v-card-title>Import</v-card-title>
+                              <v-card-text><p>Load settings from a previously exported JSON file.</p><p class="caption grey--text">You'll see a preview of changes before applying.</p></v-card-text>
+                              <v-card-actions><v-btn color="deep-purple" @click="triggerImport()" :loading="importing"><v-icon left>mdi-download</v-icon>Import Settings</v-btn></v-card-actions>
+                              <v-card-text v-if="importStatus"><v-progress-linear indeterminate color="deep-purple"></v-progress-linear><p class="caption mt-2">{{ importStatus }}</p></v-card-text>
+                          </v-card>
+                      </v-col>
+                  </v-row>
+              </v-card-text>
+          </v-card>
+      </v-container>`,
+});
 
 const CreditsView = Vue.component("ti-credits", {
-    data() {
-        return {
-            credits: [
-                { name: "Soler91", description: "Creator of the twitch integration you are using now.", github: "https://github.com/soler91/Noita-Twitch-Integration", twitch: "https://www.twitch.tv/soler91" },
-                { name: "Pyry", description: "Creator of the first twitch integration this is based off.", github: "https://github.com/probable-basilisk/noita-ws-api", twitch: "https://www.twitch.tv/fakepyry" },
-                { name: "MiczuPL", description: "Created some outcomes.", github: "https://github.com/miczupl", twitch: "https://www.twitch.tv/MiczuPL" },
-                { name: "Goki", description: "Created some outcomes.", github: "https://github.com/gokiburikin", twitch: "https://www.twitch.tv/goki_dev" },
-                { name: "Conga Lyne", description: "Created some outcomes.", github: "https://github.com/Conga0", twitch: "https://www.twitch.tv/conga_lyne" },
-                { name: "AsterCastell", description: "Created some pixel art for the temporal \"perks\".", twitch: "https://www.twitch.tv/astercastell/" },
-                { name: "AndyTheIllusion", description: "Created the pixel art for the thunderballs.", twitch: "https://www.twitch.tv/andy_the_illusion/" },
-                { name: "TheSm1rk", description: "Created some pixel art for the temporal \"perks\".", twitch: "https://www.twitch.tv/theSm1rk/" },
-                { name: "Sleepylemonbug", description: "Streamer, user and tester.", twitch: "https://www.twitch.tv/sleepylemonbug/" },
-                { name: "Dunkorslam", description: "Streamer, user and tester.", twitch: "https://www.twitch.tv/dunkorslam/" }
-            ]
-        }
-    },
-    template: `<v-container fluid>
+  data() {
+    return {
+      credits: [
+        {
+          name: "Soler91",
+          description: "Creator of the twitch integration you are using now.",
+          github: "https://github.com/soler91/Noita-Twitch-Integration",
+          twitch: "https://www.twitch.tv/soler91",
+        },
+        {
+          name: "Pyry",
+          description: "Creator of the first twitch integration this is based off.",
+          github: "https://github.com/probable-basilisk/noita-ws-api",
+          twitch: "https://www.twitch.tv/fakepyry",
+        },
+        {
+          name: "MiczuPL",
+          description: "Created some outcomes.",
+          github: "https://github.com/miczupl",
+          twitch: "https://www.twitch.tv/MiczuPL",
+        },
+        {
+          name: "Goki",
+          description: "Created some outcomes.",
+          github: "https://github.com/gokiburikin",
+          twitch: "https://www.twitch.tv/goki_dev",
+        },
+        {
+          name: "Conga Lyne",
+          description: "Created some outcomes.",
+          github: "https://github.com/Conga0",
+          twitch: "https://www.twitch.tv/conga_lyne",
+        },
+        {
+          name: "AsterCastell",
+          description: 'Created some pixel art for the temporal "perks".',
+          twitch: "https://www.twitch.tv/astercastell/",
+        },
+        {
+          name: "AndyTheIllusion",
+          description: "Created the pixel art for the thunderballs.",
+          twitch: "https://www.twitch.tv/andy_the_illusion/",
+        },
+        {
+          name: "TheSm1rk",
+          description: 'Created some pixel art for the temporal "perks".',
+          twitch: "https://www.twitch.tv/theSm1rk/",
+        },
+        {
+          name: "Sleepylemonbug",
+          description: "Streamer, user and tester.",
+          twitch: "https://www.twitch.tv/sleepylemonbug/",
+        },
+        { name: "Dunkorslam", description: "Streamer, user and tester.", twitch: "https://www.twitch.tv/dunkorslam/" },
+        {
+          name: "WUOTE",
+          description: "Added settings import/export functionality.",
+          github: "https://github.com/wuote",
+          twitch: "https://www.twitch.tv/wuote",
+        },
+      ],
+    };
+  },
+  template: `<v-container fluid>
         <v-card>
             <v-toolbar color="deep-purple" flat>
                 <v-toolbar-title class="title">Credits</v-toolbar-title>
@@ -693,19 +1183,19 @@ const CreditsView = Vue.component("ti-credits", {
             </v-list>
                 
         </v-card>
-    </v-container>`
-})
+    </v-container>`,
+});
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 const routes = [
-    { path: '/', redirect: "/twitch" },
-    { path: '/twitch', component: TwitchView },
-    { path: '/noita', component: NoitaView },
-    { path: '/outcomes', component: OutcomesView },
-    { path: '/misc', component: MiscView },
-    { path: '/credits', component: CreditsView },
-]
-const router = new VueRouter({ routes })
+  { path: "/", redirect: "/twitch" },
+  { path: "/twitch", component: TwitchView },
+  { path: "/noita", component: NoitaView },
+  { path: "/outcomes", component: OutcomesView },
+  { path: "/misc", component: MiscView },
+  { path: "/credits", component: CreditsView },
+];
+const router = new VueRouter({ routes });
 /*
 Vue.component("comp-misc", {
     data: function () {
@@ -774,28 +1264,28 @@ Vue.component("comp-misc", {
 })
 */
 let vm = new Vue({
-    el: '#app',
-    router,
-    vuetify: new Vuetify(),
-    data: {
-        models: {
-            outcomes: {},
-            twitch: {},
-            noita: {},
-            obs_template: {},
-            misc: {}
-        }
+  el: "#app",
+  router,
+  vuetify: new Vuetify(),
+  data: {
+    models: {
+      outcomes: {},
+      twitch: {},
+      noita: {},
+      obs_template: {},
+      misc: {},
     },
-    beforeCreate: async function () {
-        this.$vuetify.theme.dark = true
+  },
+  beforeCreate: async function () {
+    this.$vuetify.theme.dark = true;
 
-        let outcomes = await axios.get("/outcomes")
-        this.$set(this.models, "outcomes", outcomes.data)
+    let outcomes = await axios.get("/outcomes");
+    this.$set(this.models, "outcomes", outcomes.data);
 
-        let twitch = await axios.get("/twitch")
-        this.$set(this.models, "twitch", twitch.data)
+    let twitch = await axios.get("/twitch");
+    this.$set(this.models, "twitch", twitch.data);
 
-        let noita = await axios.get("/noita")
-        this.$set(this.models, "noita", noita.data)
-    }
-})
+    let noita = await axios.get("/noita");
+    this.$set(this.models, "noita", noita.data);
+  },
+});

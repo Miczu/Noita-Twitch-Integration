@@ -1,0 +1,26 @@
+<Entity name="ti_event_perkageddon" >
+	<InheritTransformComponent />
+   
+	<LuaComponent
+		script_source_file="mods/Twitch-integration/files/scripts/effect_perkageddon.lua"
+		execute_every_n_frame="45"
+		>
+	</LuaComponent>
+
+	<GameEffectComponent 
+		effect="NONE"
+		frames="3600"
+		>
+	</GameEffectComponent >
+
+	<UIIconComponent
+		name="Perkageddon"
+		description="Don't act like you're the only person who can use them"
+		icon_sprite_file="mods/Twitch-integration/files/ui_gfx/status_indicators/perkageddon.png"
+		is_perk="0"
+		display_above_head="0"
+		display_in_hud="1"
+		>
+	</UIIconComponent>
+  
+</Entity>

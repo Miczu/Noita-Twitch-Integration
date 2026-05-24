@@ -45,6 +45,14 @@ function OnModInit()
 		content = content:gsub("\"data/entities/projectiles/ice%.xml\"", "ComponentGetValue2(EntityGetFirstComponentIncludingDisabled(entity_id,\"AnimalAIComponent\"),\"attack_ranged_entity_file\")")
 		ModTextFileSetContent(path, content)
 	end
+
+	--Modifies Kolmisilma's Spiral attack to respect derandomized projectiles
+	do
+		local path = "data/entities/animals/boss_centipede/boss_centipede_update.lua"
+		local content = ModTextFileGetContent(path)
+		content = content:gsub("shoot_projectile%( this, \"data/entities/animals/boss_centipede/orb_circleshot%.xml\", pos_x, pos_y, vel_x, vel_y %)", "local proj_filepath = GlobalsGetValue(\"TI_randomproj\",\"default\") if proj_filepath == \"default\" then proj_filepath = \"data/entities/animals/boss_centipede/orb_circleshot.xml\" else proj_filepath = table.concat({\"data/entities/projectiles/\",proj_filepath,\".xml\"}) end shoot_projectile( this, proj_filepath, pos_x, pos_y, vel_x, vel_y )")
+		ModTextFileSetContent(path, content)
+	end
 end
 
 function OnModPostInit()

@@ -29,10 +29,12 @@ function GivePerkToEnemy(entity_id, x, y, perk_data)
 		return
 	elseif perk_data.id == "EXTRA_HP" then
 		--buffs the extra hp perk to give 2.5x hp instead of just 1.5x hp so it has a more meaningful impact on gameplay. I think 5x hp would be fair if this wasn't in the context of being TI
-		local dmgcomp = EntityGetFirstComponentIncludingDisabled(entity_id,"DamageModelComponent")
-		local hp = ComponentGetValue2(dmgcomp,"hp_max")
-		ComponentSetValue2(dmgcomp,"hp_max",hp * 2.5)
-		ComponentSetValue2(dmgcomp,"hp",hp * 2.5)
+		local dmgcomp = EntityGetFirstComponentIncludingDisabled(entity_id,"DamageModelComponent") or 0
+		if dmgcomp > 0 then
+			local hp = ComponentGetValue2(dmgcomp,"max_hp")
+			ComponentSetValue2(dmgcomp,"max_hp",hp * 2.5)
+			ComponentSetValue2(dmgcomp,"hp",hp * 2.5)
+		end
 	end
 
 	if not perk_data.usable_by_enemies then
@@ -78,7 +80,6 @@ function GivePerkToEnemy(entity_id, x, y, perk_data)
 end
 
 local perk_data = perk_list[1]
-GamePrint(perk_to_give)
 for k=1,#perk_list do
     if perk_list[k].id == perk_to_give then
         perk_data = perk_list[k]

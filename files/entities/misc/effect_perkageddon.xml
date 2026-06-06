@@ -9,7 +9,7 @@
 
 	<GameEffectComponent 
 		effect="NONE"
-		frames="3600"
+		frames="5400"
 		>
 	</GameEffectComponent >
 

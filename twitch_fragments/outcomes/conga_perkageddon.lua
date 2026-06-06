@@ -44,7 +44,7 @@ function effect_conga_perkageddon()
     for z=1,#children do
         if EntityGetName(children[z]) == "ti_event_perkageddon" then
             local comp = EntityGetFirstComponentIncludingDisabled(children[z],"GameEffectComponent")
-            ComponentSetValue2(comp,"frames",ComponentGetValue2(comp,"frames") + 3600)
+            ComponentSetValue2(comp,"frames",ComponentGetValue2(comp,"frames") + 5400)
             found = true
             break
         end
@@ -81,7 +81,7 @@ function effect_conga_perkageddon()
         },
         {
             id = "GLASS_CANNON",
-            weight = 0.01, --Conga: I don't think glass cannon is fun as a viewer, it's just going to be the streamer dying suddenly from something happening off-screen without any warning or heads up... But it might be fun once in a blue moon
+            weight = 0.02, --Conga: I don't think glass cannon is fun as a viewer, it's just going to be the streamer dying suddenly from something happening off-screen without any warning or heads up... But it might be fun once in a blue moon
         },
         {
             id = "LOW_HP_DAMAGE_BOOST",

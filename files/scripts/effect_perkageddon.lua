@@ -14,7 +14,7 @@ function AddEnemyPerkIcon(entity_id, x, y, perk)
 end
 
 function GivePerkToEnemy(entity_id, x, y, perk_data)
-	AddEnemyPerkIcon(entity_id, x, y, perk_data)
+	if perk_data.id ~= "INVISIBILITY" then AddEnemyPerkIcon(entity_id, x, y, perk_data) end
 
 	if perk_data.id == "PROJECTILE_HOMING" then
 		--Use a severely nerfed homing instead of vanilla's homing, since vanilla's perk homing on enemies has perfect near-unavoidable tracking and would essentially turn into "kill the streamer" without any of the exciting flair glass cannon has

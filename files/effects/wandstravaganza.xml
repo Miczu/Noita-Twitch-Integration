@@ -1,0 +1,11 @@
+<Entity name="ti_wandstravaganza_status">
+    <GameEffectComponent effect="NONE" frames="600" />
+    <UIIconComponent
+        name="Wandstravaganza"
+        description="Loaded wand-capable enemies have a 90% chance to receive a biome-tiered wand."
+        icon_sprite_file="data/ui_gfx/perk_icons/edit_wands_everywhere.png"
+        display_in_hud="1"
+        display_above_head="0"
+        is_perk="0"
+    />
+</Entity>

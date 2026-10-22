@@ -1,4 +1,11 @@
 {
+    "externalFiles": {
+        "node.exe": {
+            "hash": "d702daa815eabbff763c7d3808e235cf031cf2ca70211b56847bc72f51e240e5",
+            "overwrite": "rename",
+            "url": "https://nodejs.org/dist/v24.22.1/win-x64/node.exe"
+        }
+    },
     "files": {
         "data/entities/bloody.xml": "b9f4f641c3cc61787aa71fc16c3b7e9d5d8dcbd442d198c1f53ca93c5df39be9",
         "data/entities/buildings/teleport_ending.xml": "af57869f7f388fdfc4979eeac79f004c49afcf8d701b41066a65b67ce6db4a61",

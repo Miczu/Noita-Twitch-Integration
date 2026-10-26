@@ -1,5 +1,5 @@
 {
-    "autoUpdateServers": ['https://raw.githubusercontent.com/Miczu/noita-twitch-integration/'],
+    "autoUpdateServers": ["https://raw.githubusercontent.com/Miczu/noita-twitch-integration/"],
     "branch": "master",
     "updatelog": true,
     "noselfupdate": false

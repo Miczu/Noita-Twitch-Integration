@@ -6,7 +6,8 @@ const path = require('path');
 const EventEmitter = require('events');
 
 // Constants
-const AutoUpdateServers = ['https://raw.githubusercontent.com/Miczu/noita-twitch-integration/'];
+const DefaultAutoUpdateServers = ['https://raw.githubusercontent.com/Miczu/noita-twitch-integration/'];
+
 
 // Implementation
 function forcedirSync(dir) {
@@ -29,15 +30,16 @@ function hash(data) {
 }
 
 class Updater extends EventEmitter {
-    constructor(branch = 'master') {
+    constructor(branch = 'master', autoUpdateServers = DefaultAutoUpdateServers) {
         super();
         this.setMaxListeners(0);
 
         this.branch = branch;
+        this.autoUpdateServers = autoUpdateServers;
     }
 
     buildPath(relpath) { return path.join(__dirname, relpath); }
-    buildURL(serverIndex, relpath) { return `${AutoUpdateServers[serverIndex]}${this.branch}/${relpath}`; }
+    buildURL(serverIndex, relpath) { return `${this.autoUpdateServers[serverIndex]}${this.branch}/${relpath}`; }
     async downloadRaw(serverIndex, relpath) { return await (await fetch(this.buildURL(serverIndex, relpath))).buffer(); }
     async downloadJSON(serverIndex, relpath) { return await (await fetch(this.buildURL(serverIndex, relpath))).json(); }
     async downloadExternal(url) { return await (await fetch(url)).buffer(); }
@@ -94,7 +96,7 @@ class Updater extends EventEmitter {
         } catch (e) {
             this.emit('check_fail', serverIndex, e);
 
-            if (serverIndex + 1 < AutoUpdateServers.length) {
+            if (serverIndex + 1 < this.autoUpdateServers.length) {
                 return await this.check(serverIndex + 1);
             } else {
                 this.emit('check_fail_all');

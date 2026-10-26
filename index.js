@@ -21,7 +21,7 @@ async function updateSelf() {
 
     let error = false;
 
-    const updater = new Updater(branch);
+    const updater = new Updater(branch, autoUpdateServers);
     updater.on('run_start', () => { console.log(`[update] Self-update started (Branch: ${updater.branch})`); });
     updater.on('check_start', (serverIndex) => { if (updatelog) console.log(`[update] Update check started (Server: ${serverIndex})`); });
     updater.on('check_success', (serverIndex, operations) => { if (updatelog) console.log(`[update] Update check finished (Server: ${serverIndex}), ${operations.length} operations required`); });
@@ -117,7 +117,8 @@ process.on('uncaughtException', (e) => {
 });
 
 // Safely load configuration
-let branch = 'master';
+let branch;
+let autoUpdateServers;
 let updatelog = true;
 let noselfupdate = false;
 try {
@@ -125,6 +126,8 @@ try {
     if (config) {
         if (config.branch)
             branch = config.branch.toLowerCase();
+        if (config.autoUpdateServers)
+            autoUpdateServers = config.autoUpdateServers;
         updatelog = !!config.updatelog;
         noselfupdate = !!config.noselfupdate;
     }

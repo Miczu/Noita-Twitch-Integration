@@ -125,7 +125,7 @@ try {
     const config = require('./config.json');
     if (config) {
         if (config.branch)
-            branch = config.branch.toLowerCase();
+            branch = config.branch;
         if (config.autoUpdateServers)
             autoUpdateServers = config.autoUpdateServers;
         updatelog = !!config.updatelog;

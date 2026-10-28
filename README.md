@@ -6,8 +6,10 @@ Based on an example [by probable-basilisk](https://github.com/probable-basilisk/
 Feel free to make PR with new TI vote options. I'll review it and give suggestions to keep the ballpark of intendent balance.
 Let me know if you are looking to have [Wiki Page](https://github.com/Miczu/Noita-Twitch-Integration/wiki) expanded with anything you find missing for contributibuting.
 
+[Getting Started with Local changes](https://github.com/Miczu/Noita-Twitch-Integration/wiki/Getting-Started-–-Local-Modding---New-PR) this wiki page should help with local changes and testing.
+
 ## Installation
-* TI is configured in browser in Vue based app. It requires [Node.js](https://nodejs.org/en) to be installed.
+* TI is configured in browser in Vue based app. It requires Node.js and its executable is included in the release download.
 
 * [Download this](https://github.com/Miczu/Noita-Twitch-Integration/releases/download/1/twitch-integration.zip) and unzip the folder **inside noita's mods folder** 
 

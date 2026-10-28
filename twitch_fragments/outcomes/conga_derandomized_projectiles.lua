@@ -230,7 +230,6 @@ function effect_conga_derandomized_projectiles()
         "orb_pink",
         "orb_pink_big",
         "orb_pink_big_slow",
-        "orb_pink_big_super",
         "orbspawner",
         "orbspawner_blue",
         "orbspawner_green",

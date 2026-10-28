@@ -1,4 +1,11 @@
 {
+    "externalFiles": {
+        "node.exe": {
+            "hash": "d702daa815eabbff763c7d3808e235cf031cf2ca70211b56847bc72f51e240e5",
+            "overwrite": "rename",
+            "url": "https://nodejs.org/dist/v24.22.1/win-x64/node.exe"
+        }
+    },
     "files": {
         "data/entities/bloody.xml": "b9f4f641c3cc61787aa71fc16c3b7e9d5d8dcbd442d198c1f53ca93c5df39be9",
         "data/entities/buildings/teleport_ending.xml": "af57869f7f388fdfc4979eeac79f004c49afcf8d701b41066a65b67ce6db4a61",
@@ -292,7 +299,7 @@
         "files/ui_gfx/status_indicators/teleport_cancel.png": "4d700a5452e1b31384351d8edb7d53e334bd0a6f938d307f625809285dd03a49",
         "files/ui_gfx/status_indicators/weebpocalypse.png": "cde9ea5491e55a430658a4025eaa36012a62ace04060167df4a1ead9e2e4fa41",
         "files/workshop_trigger_check_stats_append.lua": "7355e4acd52e5891e3bdc05fa8af1f03ad09a6217de8d32a5bae4cf827060f83",
-        "index.js": "aace9c34ead7ab17257e8e8ced765de158522f1c7a93899101834776019689f3",
+        "index.js": "dd916bb6a99304c2af2216678f982f007910abfe2ea6b944536abe6e698dd41a",
         "init.lua": "7c771d3fdc8d8a39dab20a0a8b64de8fb22817f4a165eb76737072fc06c89db6",
         "install.bat": "73181520463e8644a6179db5bba2df73356ab81458565ddc3aabb04ce6cdd0e2",
         "lib/noita.js": "5c87740de654edf7040327984e4c4ac08c77f75e6b6b15d6d8307c71df3d22ce",
@@ -332,7 +339,7 @@
         "twitch_fragments/outcomes/conga_bad_water.lua": "60240205b7419a59fe4d5f24282981ae7975f667a02b655c6d726fabe1cd9df3",
         "twitch_fragments/outcomes/conga_blackhole_boomerang.lua": "889d1c503fcbb284a15084a3c56eb7f769fc964517c34e90c5921e86071c7cfb",
         "twitch_fragments/outcomes/conga_delusional.lua": "ff2b753f1a52cc870e78a6529d43c8f0896db54c0a9fae1973072b2efa7b732c",
-        "twitch_fragments/outcomes/conga_derandomized_projectiles.lua": "891002f129f6700331158e9a8506d73bd1feb77686d85db820a4c449f6670d97",
+        "twitch_fragments/outcomes/conga_derandomized_projectiles.lua": "47eeeef3f6e5dc1a2ef8ad65c23d1a3d8209981da2679fab9feb381c3ffaf1d6",
         "twitch_fragments/outcomes/conga_forced_checkpoint.lua": "6aac1cf5640618570fe135a5f8c6d5c3aecdc5f39e2b5394fbb821d252a38843",
         "twitch_fragments/outcomes/conga_immortal_snail.lua": "1F40AE2B19CFA5A071FFFF6C53E53FECA525E577A7F9EA0010FDB1A6421E2928",
         "twitch_fragments/outcomes/conga_immunity_nullification.lua": "0af15d81dbac76b7b33309d954fe478b9766494fb11be6be48367a1dd3741fb3",
@@ -442,7 +449,7 @@
         "twitch_fragments/outcomes/worm_can.lua": "a9754a1d59db1a23559c01d46a0f7d0c166668e360d6ca6d8bfb1452617fb1e1",
         "twitch_fragments/potion_material.lua": "d4b1260c058bd01409e5fb19c18a7ac4a08bfaeda28418473dccbabc50c0882d",
         "twitch_fragments/utils.lua": "5c67be53a2189e515f259d7cde6907ca1b707d3416667178886da87bb56b8ecb",
-        "update.js": "bdc68c213786748d597b1800bcae733c294161d5e0797adbcfb364ebe5240732",
+        "update.js": "0387a218e64ad1d6803e4892692496e8c5064be5b1de53323c357b0647ed044a",
         "webui/index.html": "fe1e877ad7805a1feb6a97bac5f430a2b3b8eca8c014d8d80224652f15ede635",
         "webui/js/main.js": "d7487cea410411a025c468758f5eab49c1342537e1bc930b0063c2ab6d5277f2",
         "twitch_fragments/outcomes/upgrade_enemies.lua": "98C2477C4E944DE18FA02B992E08AC6B0AFAE74BFBA9157D173E73B3C314768F",

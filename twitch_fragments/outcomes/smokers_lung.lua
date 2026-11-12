@@ -20,6 +20,7 @@ function cig_smoke_effect()
 			local player_data = EntityGetFirstComponent( get_player_nopoly(), "DamageModelComponent")
 			capacity = ComponentGetValue2(player_data, "air_in_lungs_max")
 		end
+		wait(1)
 	until pid > 0
 	
 	repeat
@@ -36,7 +37,7 @@ function cig_smoke_effect()
 				ComponentSetValue2(player_data, "air_in_lungs_max", 0.8)
 			end
 		end
-		wait(0)
+		wait(1)
 	until not is_icon_effect_active("Smoker's Lung")
 	
 	repeat
@@ -45,5 +46,6 @@ function cig_smoke_effect()
 			local player_data = EntityGetFirstComponent( get_player_nopoly(), "DamageModelComponent")
 			capacity = ComponentSetValue2(player_data, "air_in_lungs_max", capacity)
 		end
+		wait(1)
 	until pid > 0
 end

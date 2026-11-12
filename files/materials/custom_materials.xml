@@ -12,6 +12,7 @@
     liquid_stains="0"
     liquid_sprite_stain_shaken_drop_chance="5"
     lifetime="-1"
+    electrical_conductivity="1"
     generates_flames="0"
     generates_smoke="0"
     show_in_creative_mode="1"

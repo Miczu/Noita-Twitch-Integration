@@ -23,6 +23,7 @@ ModMaterialsFileAdd("mods/twitch-integration/files/materials/the_purge.xml")
 ModMaterialsFileAdd("mods/twitch-integration/files/materials/sanic_curse.xml")
 ModMaterialsFileAdd("mods/twitch-integration/files/materials/moneyshot.xml")
 ModMaterialsFileAdd("mods/twitch-integration/files/materials/spiritus_igneus_materials.xml")
+ModMaterialsFileAdd("mods/twitch-integration/files/materials/custom_materials.xml")
 function OnModPreInit()
 	-- Nothing to do but this function has to exist
 end

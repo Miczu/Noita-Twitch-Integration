@@ -1,0 +1,32 @@
+<Materials>
+<CellData
+    name="cigarete_smoke"
+    ui_name="Cigarete Smoke"
+    tags="[]"
+    burnable="0"
+    density="2"
+    cell_type="gas"
+    wang_color="a0807f85"
+    liquid_gravity="0.8"
+    liquid_sand="0"
+    liquid_stains="0"
+    liquid_sprite_stain_shaken_drop_chance="5"
+    lifetime="-1"
+    generates_flames="0"
+    generates_smoke="0"
+    show_in_creative_mode="1"
+    gas_downwards_speed="55"
+    gas_upwards_speed="15"
+    gas_horizontal_speed="25"
+    gas_speed="110"
+    >
+    <Graphics
+    color="a0807f85"
+    ></Graphics>
+    </CellData>
+	
+  <Reaction probability="0.3"
+	input_cell1="cc_methane"  input_cell2="air" input_cell3="cc_methane"
+	output_cell1="smoke"  output_cell2="air" output_cell3="cc_methane"
+  ></Reaction>
+</Materials>
